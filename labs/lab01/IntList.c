@@ -109,7 +109,7 @@ static struct IntListNode *newIntListNode(int v) {
  */
 void IntListInsertInOrder(IntList l, int v) {
 	if(l->size == 0){
-		struct IntListNode *newNode;
+		struct IntListNode *newNode = malloc(sizeof(struct IntListNode));
 		newNode -> data = v;
 		newNode -> next = NULL;
 		l->first = newNode;
@@ -131,13 +131,13 @@ void IntListInsertInOrder(IntList l, int v) {
 }
 static void insertNodeAtIndex(IntList l, int v,int insertIndex){
 	if(insertIndex == 0){
-		struct IntListNode *newHead;
+		struct IntListNode *newHead = malloc(sizeof(struct IntListNode));
 		newHead -> data = v;
 		newHead -> next = l -> first;
 		l -> first = newHead;
 	}
 	else if(insertIndex == l -> size){
-		struct IntListNode *newTail;
+		struct IntListNode *newTail = malloc(sizeof(struct IntListNode));
 		newTail -> data = v;
 		newTail -> next = NULL;
 		l -> last -> next = newTail;
@@ -148,7 +148,7 @@ static void insertNodeAtIndex(IntList l, int v,int insertIndex){
 		for(int i = 0;i < insertIndex - 1;i++){
 			curr = curr -> next;
 		}
-		struct IntListNode *newNode;
+		struct IntListNode *newNode = malloc(sizeof(struct IntListNode));
 		newNode -> data = v;
 		newNode ->next = curr -> next;
 		curr -> next = newNode;
@@ -179,12 +179,13 @@ IntList IntListCopy(IntList l) {
  * Creates a sorted copy of an IntList.
  */
 IntList IntListSortedCopy(IntList l) {
-	struct IntList *ordered = IntListNew();
-	for(struct IntListNode *curr = l->first;curr != NULL; curr = curr->next)
-		IntListInsertInOrder(ordered,curr->data);
+	// struct IntList *ordered = IntListNew();
+	// for(struct IntListNode *curr = l->first;curr != NULL; curr = curr->next)
+	// 	IntListInsertInOrder(ordered,curr->data);
 	
 	
-	return ordered;
+	// return ordered;
+	return IntListNew();
 }
 
 /**
