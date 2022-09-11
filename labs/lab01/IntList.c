@@ -179,13 +179,13 @@ IntList IntListCopy(IntList l) {
  * Creates a sorted copy of an IntList.
  */
 IntList IntListSortedCopy(IntList l) {
-	// struct IntList *ordered = IntListNew();
-	// for(struct IntListNode *curr = l->first;curr != NULL; curr = curr->next)
-	// 	IntListInsertInOrder(ordered,curr->data);
+	IntList ordered = IntListNew();
+	for(struct IntListNode *curr = l->first;curr != NULL; curr = curr->next)
+		IntListInsertInOrder(ordered,curr->data);
 	
 	
-	// return ordered;
-	return IntListNew();
+	return ordered;
+	
 }
 
 /**
