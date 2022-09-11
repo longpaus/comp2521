@@ -17,13 +17,13 @@ struct IntListNode {
 };
 
 struct IntListRep {
-	int size;                  // number of elements in the list
-	struct IntListNode *first; // pointer to node containing first value
-	struct IntListNode *last;  // pointer to node containing last value
+	int size;                   // number of elements in the list
+	struct IntListNode *first;  // pointer to node containing first value
+	struct IntListNode *last;   // pointer to node containing last value
 };
 
 static struct IntListNode *newIntListNode(int v);
-static void insertNodeAtIndex(IntList l, int v,int insertIndex);
+static void insertNodeAtIndex(IntList l, int v, int insertIndex);
 
 /**
  * Creates a new, empty IntList.
@@ -108,50 +108,47 @@ static struct IntListNode *newIntListNode(int v) {
  * Assumes that the given list is sorted.
  */
 void IntListInsertInOrder(IntList l, int v) {
-	if(l->size == 0){
+	if (l->size == 0) {
 		struct IntListNode *newNode = malloc(sizeof(struct IntListNode));
-		newNode -> data = v;
-		newNode -> next = NULL;
+		newNode->data = v;
+		newNode->next = NULL;
 		l->first = newNode;
-		l-> last = newNode;
+		l->last = newNode;
 		l->size += 1;
 		return;
 	}
 	int insertIndex = l->size;
-	struct IntListNode *curr = l -> first;
-	for(int i = 0;i < l->size; i++){
-		if(curr -> data > v){
+	struct IntListNode *curr = l->first;
+	for (int i = 0; i < l->size; i++) {
+		if (curr->data > v) {
 			insertIndex = i;
 			break;
 		}
-		curr = curr -> next;
+		curr = curr->next;
 	}
-	insertNodeAtIndex(l,v,insertIndex);
-	
+	insertNodeAtIndex(l, v, insertIndex);
 }
-static void insertNodeAtIndex(IntList l, int v,int insertIndex){
-	if(insertIndex == 0){
+static void insertNodeAtIndex(IntList l, int v, int insertIndex) {
+	if (insertIndex == 0) {
 		struct IntListNode *newHead = malloc(sizeof(struct IntListNode));
-		newHead -> data = v;
-		newHead -> next = l -> first;
-		l -> first = newHead;
-	}
-	else if(insertIndex == l -> size){
+		newHead->data = v;
+		newHead->next = l->first;
+		l->first = newHead;
+	} else if (insertIndex == l->size) {
 		struct IntListNode *newTail = malloc(sizeof(struct IntListNode));
-		newTail -> data = v;
-		newTail -> next = NULL;
-		l -> last -> next = newTail;
-		l -> last = newTail;
-	}
-	else{
-		struct IntListNode *curr = l -> first;
-		for(int i = 0;i < insertIndex - 1;i++){
-			curr = curr -> next;
+		newTail->data = v;
+		newTail->next = NULL;
+		l->last->next = newTail;
+		l->last = newTail;
+	} else {
+		struct IntListNode *curr = l->first;
+		for (int i = 0; i < insertIndex - 1; i++) {
+			curr = curr->next;
 		}
 		struct IntListNode *newNode = malloc(sizeof(struct IntListNode));
-		newNode -> data = v;
-		newNode ->next = curr -> next;
-		curr -> next = newNode;
+		newNode->data = v;
+		newNode->next = curr->next;
+		curr->next = newNode;
 	}
 	l->size += 1;
 }
@@ -168,8 +165,7 @@ int IntListLength(IntList l) {
  */
 IntList IntListCopy(IntList l) {
 	IntList copy = IntListNew();
-	for (struct IntListNode *curr = l->first;
-			curr != NULL; curr = curr->next) {
+	for (struct IntListNode *curr = l->first; curr != NULL; curr = curr->next) {
 		IntListAppend(copy, curr->data);
 	}
 	return copy;
@@ -180,12 +176,10 @@ IntList IntListCopy(IntList l) {
  */
 IntList IntListSortedCopy(IntList l) {
 	IntList ordered = IntListNew();
-	for(struct IntListNode *curr = l->first;curr != NULL; curr = curr->next)
-		IntListInsertInOrder(ordered,curr->data);
-	
-	
+	for (struct IntListNode *curr = l->first; curr != NULL; curr = curr->next)
+		IntListInsertInOrder(ordered, curr->data);
+
 	return ordered;
-	
 }
 
 /**
@@ -198,8 +192,8 @@ bool IntListIsSorted(IntList l) {
 	}
 
 	// scan the list, looking for an out-of-order pair
-	for (struct IntListNode *curr = l->first;
-			curr->next != NULL; curr = curr->next) {
+	for (struct IntListNode *curr = l->first; curr->next != NULL;
+	     curr = curr->next) {
 		if (curr->data > curr->next->data) {
 			return false;
 		}
@@ -232,7 +226,7 @@ bool IntListOK(IntList l) {
 	struct IntListNode *curr = l->first;
 	struct IntListNode *prev = NULL;
 	int numNodes = 0;
-	
+
 	while (curr != NULL) {
 		numNodes++;
 		prev = curr;
@@ -247,9 +241,7 @@ bool IntListOK(IntList l) {
  * Assumes that the file is open for writing.
  */
 void IntListPrint(IntList l, FILE *out) {
-	for (struct IntListNode *curr = l->first;
-			curr != NULL; curr = curr->next) {
+	for (struct IntListNode *curr = l->first; curr != NULL; curr = curr->next) {
 		fprintf(out, "%d\n", curr->data);
 	}
 }
-
