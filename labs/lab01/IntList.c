@@ -107,7 +107,38 @@ static struct IntListNode *newIntListNode(int v) {
  * Assumes that the given list is sorted.
  */
 void IntListInsertInOrder(IntList l, int v) {
-	// TODO: Task 1 - Implement this function
+	int insertIndex = l->size;
+	struct IntListNode *curr = l -> first;
+	for(int i = 0;i < l->size; i++){
+		if(curr -> data > v){
+			insertIndex = i;
+			break;
+		}
+		curr = curr -> next;
+	}
+	if(insertIndex == 0){
+		struct IntListNode *newHead;
+		newHead -> data = v;
+		newHead -> next = l -> first;
+		l -> first = newHead;
+	}
+	else if(insertIndex == l -> size){
+		struct IntListNode *newTail;
+		newTail -> data = v;
+		newTail -> next = NULL;
+		l -> last -> next = newTail;
+		l -> last = newTail;
+	}
+	else{
+		curr = l -> first;
+		for(int i = 0;i < insertIndex - 1;i++){
+			curr = curr -> next;
+		}
+		struct IntListNode *newNode;
+		newNode -> data = v;
+		newNode ->next = curr -> next;
+		curr -> next = newNode;
+	}
 }
 
 /**
