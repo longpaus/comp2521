@@ -23,6 +23,7 @@ struct IntListRep {
 };
 
 static struct IntListNode *newIntListNode(int v);
+static void insertNodeAtIndex(IntList l, int v,int insertIndex);
 
 /**
  * Creates a new, empty IntList.
@@ -107,6 +108,15 @@ static struct IntListNode *newIntListNode(int v) {
  * Assumes that the given list is sorted.
  */
 void IntListInsertInOrder(IntList l, int v) {
+	if(l->size == 0){
+		struct IntListNode *newNode;
+		newNode -> data = v;
+		newNode -> next = NULL;
+		l->first = newNode;
+		l-> last = newNode;
+		l->size += 1;
+		return;
+	}
 	int insertIndex = l->size;
 	struct IntListNode *curr = l -> first;
 	for(int i = 0;i < l->size; i++){
@@ -116,6 +126,10 @@ void IntListInsertInOrder(IntList l, int v) {
 		}
 		curr = curr -> next;
 	}
+	insertNodeAtIndex(l,v,insertIndex);
+	
+}
+static void insertNodeAtIndex(IntList l, int v,int insertIndex){
 	if(insertIndex == 0){
 		struct IntListNode *newHead;
 		newHead -> data = v;
@@ -130,7 +144,7 @@ void IntListInsertInOrder(IntList l, int v) {
 		l -> last = newTail;
 	}
 	else{
-		curr = l -> first;
+		struct IntListNode *curr = l -> first;
 		for(int i = 0;i < insertIndex - 1;i++){
 			curr = curr -> next;
 		}
@@ -139,6 +153,7 @@ void IntListInsertInOrder(IntList l, int v) {
 		newNode ->next = curr -> next;
 		curr -> next = newNode;
 	}
+	l->size += 1;
 }
 
 /**
@@ -164,11 +179,12 @@ IntList IntListCopy(IntList l) {
  * Creates a sorted copy of an IntList.
  */
 IntList IntListSortedCopy(IntList l) {
-	// TODO: Task 2 - Implement this function
-	// Note: You *must* use IntListInsertInOrder
-
-	// TODO: Replace this with your return value
-	return IntListNew();
+	struct IntList *ordered = IntListNew();
+	for(struct IntListNode *curr = l->first;curr != NULL; curr = curr->next)
+		IntListInsertInOrder(ordered,curr->data);
+	
+	
+	return ordered;
 }
 
 /**
