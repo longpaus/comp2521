@@ -64,7 +64,9 @@ void QueueEnqueue(Queue q, Item it) {
  */
 Item QueueDequeue(Queue q) {
 	Item v = q->head->item;
+	Node tmp = q -> head;
 	q -> head = q ->head -> next;
+	free(tmp);
 	return v;
 }
 
