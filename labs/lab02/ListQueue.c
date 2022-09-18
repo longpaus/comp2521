@@ -51,7 +51,7 @@ void QueueFree(Queue q) {
  * Adds an item to the end of the queue
  */
 void QueueEnqueue(Queue q, Item it) {
-	Node newNode = malloc(sizeof(Node));
+	Node newNode = malloc(sizeof(struct node));
 	newNode->item = it;
 	newNode->next = NULL;
 	if (q->head == NULL && q->tail == NULL) {
