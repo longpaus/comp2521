@@ -51,7 +51,11 @@ void QueueFree(Queue q) {
  * Adds an item to the end of the queue
  */
 void QueueEnqueue(Queue q, Item it) {
-	// TODO
+	Node newNode = malloc(sizeof(Node));
+	q->tail -> next = newNode;
+	newNode->item = it;
+	q -> tail = newNode;
+	q -> tail -> next = NULL;
 }
 
 /**
@@ -59,8 +63,9 @@ void QueueEnqueue(Queue q, Item it) {
  * Assumes that the queue is not empty
  */
 Item QueueDequeue(Queue q) {
-	// TODO
-	return 0;
+	Item v = q->head->item;
+	q -> head = q ->head -> next;
+	return v;
 }
 
 /**
@@ -101,6 +106,10 @@ void QueueDump(Queue q, FILE *fp) {
  * Prints out information for debugging
  */
 void QueueDebugPrint(Queue q) {
-
+	Node curr = q->head;
+	while(curr != NULL){
+		printf("%d\n",curr -> item);
+		curr = curr -> next;
+	}
 }
 
