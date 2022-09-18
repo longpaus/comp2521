@@ -15,7 +15,7 @@ struct node {
 struct queue {
 	Node head;
 	Node tail;
-	int  size;
+	int size;
 };
 
 /**
@@ -52,10 +52,15 @@ void QueueFree(Queue q) {
  */
 void QueueEnqueue(Queue q, Item it) {
 	Node newNode = malloc(sizeof(Node));
-	q->tail -> next = newNode;
 	newNode->item = it;
-	q -> tail = newNode;
-	q -> tail -> next = NULL;
+	newNode->next = NULL;
+	if (q->head == NULL && q->tail == NULL) {
+		q->head = newNode;
+		q->tail = newNode;
+	} else {
+		q->tail->next = newNode;
+		q->tail = newNode;
+	}
 	q->size += 1;
 }
 
@@ -65,8 +70,8 @@ void QueueEnqueue(Queue q, Item it) {
  */
 Item QueueDequeue(Queue q) {
 	Item v = q->head->item;
-	Node tmp = q -> head;
-	q -> head = q ->head -> next;
+	Node tmp = q->head;
+	q->head = q->head->next;
 	free(tmp);
 	q->size -= 1;
 	return v;
@@ -111,9 +116,8 @@ void QueueDump(Queue q, FILE *fp) {
  */
 void QueueDebugPrint(Queue q) {
 	Node curr = q->head;
-	while(curr != NULL){
-		printf("%d\n",curr -> item);
-		curr = curr -> next;
+	while (curr != NULL) {
+		printf("%d\n", curr->item);
+		curr = curr->next;
 	}
 }
-
