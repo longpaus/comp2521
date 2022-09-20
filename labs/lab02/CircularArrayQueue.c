@@ -59,8 +59,8 @@ void QueueEnqueue(Queue q, Item it) {
 		newQ->size = q->size;
 		Queue tmp = q;
 		q = newQ;
-		QueueFree(tmp);
 		q->items = newQ->items;
+		QueueFree(tmp);
 	}
 	int endIndex = 0;
 	if(q->frontIndex + q->size < q->capacity)
