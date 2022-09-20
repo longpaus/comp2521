@@ -51,17 +51,8 @@ void QueueFree(Queue q) {
  */
 void QueueEnqueue(Queue q, Item it) {
 	if(q->size == q->capacity){
-		Queue newQ = malloc(sizeof(*newQ));
-		newQ->items = malloc((q->capacity + 1) * sizeof(Item));
-		for(int i = 0; i < q->capacity;i++)
-			newQ->items[i] = q->items[i];
-		newQ->frontIndex = q->frontIndex;
-		newQ->size = q->size;
-		newQ->capacity = q->capacity + 1;
-		Queue tmp = q;
-		q = newQ;
-		q->items = newQ->items;
-		QueueFree(tmp);
+		q->capacity *= 2;
+		q->items = realloc(q->items, q->capacity * sizeof(Item));
 	}
 	int endIndex = 0;
 	if(q->frontIndex + q->size < q->capacity)
