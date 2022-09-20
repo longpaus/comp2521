@@ -50,13 +50,23 @@ void QueueFree(Queue q) {
  * Adds an item to the end of the queue
  */
 void QueueEnqueue(Queue q, Item it) {
-	// TODO
+	if(q->size == q->capacity){
+		Queue newQ = malloc(sizeof(*newQ));
+		newQ->items = malloc((q->capacity + 1) * sizeof(Item));
+		for(int i = 0; i < q->capacity;i++)
+			q->items[i] = newQ->items[i];
+		newQ->frontIndex = q->frontIndex;
+		newQ->size = q->size;
+		q = newQ;
+	}
 	int endIndex = 0;
 	if(q->frontIndex + q->size < q->capacity)
 		endIndex = q->frontIndex + q->size;
 	else
 		endIndex = (q->frontIndex + q->size ) - q->capacity;
 	q->items[endIndex] = it;
+	q->size += 1;
+	
 }
 
 /**
