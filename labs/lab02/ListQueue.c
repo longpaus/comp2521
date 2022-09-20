@@ -74,7 +74,7 @@ Item QueueDequeue(Queue q) {
 	q->head = q->head->next;
 	free(tmp);
 	q->size -= 1;
-	if(q->size == 0){
+	if (q->size == 0) {
 		q->tail = NULL;
 	}
 	return v;
