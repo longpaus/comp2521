@@ -54,7 +54,7 @@ void QueueEnqueue(Queue q, Item it) {
 		Queue newQ = malloc(sizeof(struct queue));
 		newQ->items = malloc((q->capacity + 1) * sizeof(Item));
 		for(int i = 0; i < q->capacity;i++)
-			q->items[i] = newQ->items[i];
+			newQ->items[i] = q->items[i];
 		newQ->frontIndex = q->frontIndex;
 		newQ->size = q->size;
 		q = newQ;
