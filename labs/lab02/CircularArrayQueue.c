@@ -51,7 +51,7 @@ void QueueFree(Queue q) {
  */
 void QueueEnqueue(Queue q, Item it) {
 	if(q->size == q->capacity){
-		Queue newQ = malloc(sizeof(struct queue));
+		Queue newQ = malloc(sizeof(sizeof(*newQ)));
 		newQ->items = malloc((q->capacity + 1) * sizeof(Item));
 		for(int i = 0; i < q->capacity;i++)
 			newQ->items[i] = q->items[i];
