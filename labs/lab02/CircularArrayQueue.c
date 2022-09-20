@@ -79,6 +79,7 @@ Item QueueDequeue(Queue q){
 		q->frontIndex = 0;
 	else
 		q->frontIndex += 1;
+	q->size -= 1;
 	return v;
 }
 
