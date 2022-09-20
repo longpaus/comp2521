@@ -57,7 +57,9 @@ void QueueEnqueue(Queue q, Item it) {
 			newQ->items[i] = q->items[i];
 		newQ->frontIndex = q->frontIndex;
 		newQ->size = q->size;
+		Queue tmp = q;
 		q = newQ;
+		QueueFree(tmp);
 		q->items = newQ->items;
 	}
 	int endIndex = 0;
