@@ -51,15 +51,25 @@ void QueueFree(Queue q) {
  */
 void QueueEnqueue(Queue q, Item it) {
 	// TODO
+	int endIndex = 0;
+	if(q->frontIndex + q->size < q->capacity)
+		endIndex = q->frontIndex + q->size;
+	else
+		endIndex = (q->frontIndex + q->size ) - q->capacity;
+	q->items[endIndex] = it;
 }
 
 /**
  * Removes an item from the front of the queue and returns it
  * Assumes that the queue is not empty
  */
-Item QueueDequeue(Queue q) {
-	// TODO
-	return 0;
+Item QueueDequeue(Queue q){ 
+	Item v = q->items[q->frontIndex];
+	if(q->frontIndex == q->capacity - 1)
+		q->frontIndex = 0;
+	else
+		q->frontIndex += 1;
+	return v;
 }
 
 /**
@@ -100,6 +110,15 @@ void QueueDump(Queue q, FILE *fp) {
  * Prints out information for debugging
  */
 void QueueDebugPrint(Queue q) {
+	if(q->frontIndex + q->size < q->capacity){
+		for(int i = q->frontIndex; i < q->size; i++)
+			printf("%d\n",q->items[i]);
+	} else{
+		for(int i = q->frontIndex; i < q->capacity; i++)
+			printf("%d\n",q->items[i]);
+		for(int j = 0; j < (q->frontIndex + q->size ) - q->capacity; j++)
+			printf("%d\n",q->items[j]);
+	}
 
 }
 
