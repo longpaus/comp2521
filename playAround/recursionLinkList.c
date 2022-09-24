@@ -52,20 +52,21 @@ struct node *delete (int value, struct node *head) {
 
 //insert number in sorted list
 struct node *insert(int val, struct node *head) {
-	if (val <= head->data || head == NULL)
+	if (head == NULL||val <= head->data)
 		return createNode(val, head);
 	head->next = insert(val, head-> next);
 	
 	return head;
 }
-
 int main() {
-	struct node *n = NULL;
+	struct node *listA = NULL;
 	
+	listA = append(3,listA);
+	listA = append(7,listA);
+	listA = append(5,listA);
+	listA = append(3,listA);
+	listA = append(2,listA);
 
-	n = append(6, n);
-	n = append(8, n);
-    n = insert(2,n);
-    insert(7,n);
-	printList(n);
+	struct node *listB = function(listA);
+	printList(listB);
 }
