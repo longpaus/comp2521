@@ -51,8 +51,13 @@ void QueueFree(Queue q) {
  */
 void QueueEnqueue(Queue q, Item it) {
 	if (q->size == q->capacity) {
+		int oldCap = q -> capacity;
 		q->capacity *= 2;
 		q->items = realloc(q->items, q->capacity * sizeof(Item));
+		for(int i = 0; i < oldCap - q->frontIndex;i++)
+			q->items[q->capacity - 1 - i] = q->items[oldCap - 1 - i];
+		
+		q->frontIndex = q->capacity - (oldCap - q->frontIndex);
 	}
 	int endIndex = 0;
 	if (q->frontIndex + q->size < q->capacity)
