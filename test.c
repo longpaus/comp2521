@@ -17,3 +17,4 @@ int main(){
     fib(4,count);
     printf("%d\n",*count);
 }
+seq 100 | sort -R | /usr/bin/time -f "%U" ./sortIntList > /dev/null

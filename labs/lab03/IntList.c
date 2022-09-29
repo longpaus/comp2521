@@ -23,7 +23,6 @@ struct IntListRep {
 };
 
 static struct IntListNode *newIntListNode(int v);
-static void insertNodeAtIndex(IntList l, int v, int insertIndex);
 
 /**
  * Creates a new, empty IntList.
@@ -151,13 +150,12 @@ int IntListLength(IntList l) {
 /**
  * Creates a copy of an IntList.
  */
-IntList IntListSortedCopy(IntList l) {
-	IntList sorted = IntListNew();
-	for (struct IntListNode *curr = l->first;
-			curr != NULL; curr = curr->next) {
-		IntListInsertInOrder(sorted, curr->data);
+IntList IntListCopy(IntList l) {
+	IntList copy = IntListNew();
+	for (struct IntListNode *curr = l->first; curr != NULL; curr = curr->next) {
+		IntListAppend(copy, curr->data);
 	}
-	return sorted;
+	return copy;
 }
 
 /**
