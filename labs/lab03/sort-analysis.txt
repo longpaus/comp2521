@@ -1,20 +1,24 @@
 Input      Initial    Number     Avg Time           Avg Time
 Size       Order      of Runs    for sortIntList    for sort
-10000      random     N          T1sec              T2sec
-10000      sorted     N          T1sec              T2sec
-10000      reverse    N          T1sec              T2sec
-20000      random     N          T1sec              T2sec
-20000      sorted     N          T1sec              T2sec
-20000      reverse    N          T1sec              T2sec
-40000      random     N          T1sec              T2sec
-40000      sorted     N          T1sec              T2sec
-40000      reverse    N          T1sec              T2sec
-100000     random     N          T1sec              T2sec
-100000     sorted     N          T1sec              T2sec
-100000     reverse    N          T1sec              T2sec
+10000      random     5          0.27              0.00
+10000      sorted     5          0.01              0.00
+10000      reverse    5          0.15              0.00
+20000      random     5          1.19              0.00
+20000      sorted     5          0.25              0.00
+20000      reverse    5         0.025              0.00
+40000      random     5          5.486              0.015
+40000      sorted     5          0.045              0.005
+40000      reverse    5          0.045              0.005
+100000     random     5          38.1              0.045
+100000     sorted     5          0.105              0.035
+100000     reverse    5          0.1              0.02
 TODO: add rows for larger input sizes
 
 Explanation of timing results:
-
+the time complexity of the IntListSortedCopy function is O(n^2),as can see when the input
+size is increasing the the time taken for the program to run is increase by a large amount.
+However the time taken to sort a sorted list and a reverse sorted list is much faster than
+the time of a randomly sorted list, this is due to the implementation of the program where
+for a sorted or reverse sorted list,the time complexity is O(n). Hence the time is seen to be increasing linearly.
 
 
