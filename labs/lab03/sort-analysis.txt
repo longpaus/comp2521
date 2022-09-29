@@ -13,12 +13,15 @@ Size       Order      of Runs    for sortIntList    for sort
 100000     sorted     5          0.105              0.035
 100000     reverse    5          0.1              0.02
 TODO: add rows for larger input sizes
-
+200000     random     5          260                0.1
+200000     reverse    5          0.18              0.06
+200000     sorted     5          0.18              0.06
 Explanation of timing results:
 the time complexity of the IntListSortedCopy function is O(n^2),as can see when the input
 size is increasing the the time taken for the program to run is increase by a large amount.
 However the time taken to sort a sorted list and a reverse sorted list is much faster than
 the time of a randomly sorted list, this is due to the implementation of the program where
 for a sorted or reverse sorted list,the time complexity is O(n). Hence the time is seen to be increasing linearly.
-
+We also can see from the sort -n command that the sorting the sorted and reverse sorted list is
+similiar in timne while sorting the random sorted list is a little longer.
 
