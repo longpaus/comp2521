@@ -108,50 +108,38 @@ static struct IntListNode *newIntListNode(int v) {
  * Assumes that the given list is sorted.
  */
 void IntListInsertInOrder(IntList l, int v) {
+	struct IntListNode *n = newIntListNode(v);
+
+	// empty list
 	if (l->size == 0) {
-		struct IntListNode *newNode = malloc(sizeof(struct IntListNode));
-		newNode->data = v;
-		newNode->next = NULL;
-		l->first = newNode;
-		l->last = newNode;
-		l->size += 1;
-		return;
-	}
-	int insertIndex = l->size;
-	struct IntListNode *curr = l->first;
-	for (int i = 0; i < l->size; i++) {
-		if (curr->data > v) {
-			insertIndex = i;
-			break;
-		}
-		curr = curr->next;
-	}
-	insertNodeAtIndex(l, v, insertIndex);
-}
-static void insertNodeAtIndex(IntList l, int v, int insertIndex) {
-	if (insertIndex == 0) {
-		struct IntListNode *newHead = malloc(sizeof(struct IntListNode));
-		newHead->data = v;
-		newHead->next = l->first;
-		l->first = newHead;
-	} else if (insertIndex == l->size) {
-		struct IntListNode *newTail = malloc(sizeof(struct IntListNode));
-		newTail->data = v;
-		newTail->next = NULL;
-		l->last->next = newTail;
-		l->last = newTail;
+		l->first = n;
+		l->last = n;
+
+	// smallest value
+	} else if (v <= l->first->data) {
+		n->next = l->first;
+		l->first = n;
+
+	// largest value
+	} else if (v >= l->last->data) {
+		l->last->next = n;
+		l->last = n;
+
+	// value somewhere in the middle
 	} else {
-		struct IntListNode *curr = l->first;
-		for (int i = 0; i < insertIndex - 1; i++) {
-			curr = curr->next;
+		struct IntListNode *curr;
+		for (curr = l->first; curr != NULL; curr = curr->next) {
+			if (v <= curr->next->data) {
+				n->next = curr->next;
+				curr->next = n;
+				break;
+			}
 		}
-		struct IntListNode *newNode = malloc(sizeof(struct IntListNode));
-		newNode->data = v;
-		newNode->next = curr->next;
-		curr->next = newNode;
 	}
-	l->size += 1;
+
+	l->size++;
 }
+
 
 /**
  * Returns the number of elements in an IntList.
@@ -163,12 +151,13 @@ int IntListLength(IntList l) {
 /**
  * Creates a copy of an IntList.
  */
-IntList IntListCopy(IntList l) {
-	IntList copy = IntListNew();
-	for (struct IntListNode *curr = l->first; curr != NULL; curr = curr->next) {
-		IntListAppend(copy, curr->data);
+IntList IntListSortedCopy(IntList l) {
+	IntList sorted = IntListNew();
+	for (struct IntListNode *curr = l->first;
+			curr != NULL; curr = curr->next) {
+		IntListInsertInOrder(sorted, curr->data);
 	}
-	return copy;
+	return sorted;
 }
 
 /**
