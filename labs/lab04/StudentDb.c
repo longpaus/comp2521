@@ -36,10 +36,10 @@ int compareByZid(Record r1, Record r2) {
  */
 int compareByName(Record r1, Record r2) {
     if(strcmp(RecordGetFamilyName(r1),RecordGetFamilyName(r2)) != 0){
-        return (strcmp(RecordGetFamilyName(r1),RecordGetFamilyName(r2) > 0)) ? 1 : -1;
+        return (strcmp(RecordGetFamilyName(r1),RecordGetFamilyName(r2)) > 0) ? 1 : -1;
     }
     if(strcmp(RecordGetGivenName(r1),RecordGetGivenName(r2)) != 0){
-        return (strcmp(RecordGetGivenName(r1),RecordGetGivenName(r2) > 0)) ? 1 : -1;
+        return (strcmp(RecordGetGivenName(r1),RecordGetGivenName(r2)) > 0) ? 1 : -1;
     }
     return (compareByZid(r1,r2) > 0) ? 1 : compareByZid(r1,r2) < 0 ? -1 : 0;
 }

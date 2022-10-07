@@ -1,20 +1,45 @@
 #include<stdio.h>
 #include <stdlib.h>
-int fib(int num,int *count){
-    *count += 1;
-    if(num == 0)
-        return 0;
-    if(num == 1)
-        return 1;
+struct node{
+    struct node *left;
+    struct node *right;
+    int data;
+};
 
-    return fib(num - 1,count) + fib(num - 2,count);
-
+void printPreorder(struct node* node)
+{
+    if (node == NULL)
+        return;
+ 
+    /* first print data of node */
+    printf("%d ", node->data);
+ 
+    /* then recur on left subtree */
+    printPreorder(node->left);
+ 
+    /* now recur on right subtree */
+    printPreorder(node->right);
 }
-int main(){
 
-    int *count = malloc(sizeof(int));
-    *count = 0;
-    fib(4,count);
-    printf("%d\n",*count);
+void printInOrder(struct node *node){
+    if(node == NULL)
+        return;
+    printInOrder(node -> left);
+    printf("%d ",node->data);
+    printInOrder(node -> right);
 }
-seq 100 | sort -R | /usr/bin/time -f "%U" ./sortIntList > /dev/null
+
+void printPostorder(struct node* node)
+{
+    if (node == NULL)
+        return;
+ 
+    // first recur on left subtree
+    printPostorder(node->left);
+ 
+    // then recur on right subtree
+    printPostorder(node->right);
+ 
+    // now deal with the node
+    printf("%d ", node->data);
+}
