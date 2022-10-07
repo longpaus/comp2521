@@ -35,7 +35,10 @@ int compareByZid(Record r1, Record r2) {
  * - A positive number if the first record is greater than the second
  */
 int compareByName(Record r1, Record r2) {
-    // TODO: Complete this function
+    if(strcmp(r1.familyName,r2.familyName) != 0){
+        return (strcmp(r1.familyName,r2.familyName) > 0) ? 1 : -1;
+    }
+    
     return 0;
 }
 
