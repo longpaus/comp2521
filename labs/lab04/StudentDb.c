@@ -56,7 +56,7 @@ StudentDb DbNew(void) {
     db->byZid = TreeNew(compareByZid);
     // TODO: Modify this line to use compareByName once you have
     //       implemented it
-    db->byName = TreeNew(compareByZid);
+    db->byName = TreeNew(compareByName);
     return db;
 }
 
