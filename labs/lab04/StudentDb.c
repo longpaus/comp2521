@@ -119,5 +119,5 @@ void DbListByZid(StudentDb db) {
 }
 
 void DbListByName(StudentDb db) {
-    // TODO: Complete this function
+    TreeListInOrder(db->byName);
 }
