@@ -6,6 +6,7 @@ struct node{
     int data;
 };
 
+
 struct node *createNode(int value) {
 	struct node *newNode = malloc(sizeof(struct node));
 	newNode->data = value;
@@ -26,6 +27,8 @@ struct node *insert(struct node *root,int val){
     return root;
 
 }
+
+
 
 void printPreorder(struct node* node)
 {
@@ -63,4 +66,36 @@ void printPostorder(struct node* node)
  
     // now deal with the node
     printf("%d ", node->data);
+}
+
+void printDataInRange(struct node *root,int low,int high){
+    /* base case */
+   if ( NULL == root )
+      return;
+ 
+   /* Since the desired o/p is sorted, recurse for left subtree first
+      If root->data is greater than k1, then only we can get o/p keys
+      in left subtree */
+   if ( low < root->data )
+        printDataInRange(root->left, low, high);
+ 
+   /* if root's data lies in range, then prints root's data */
+   if ( low <= root->data && high >= root->data )
+        printf("%d\n", root->data );
+ 
+    if(high > root->data)
+        printDataInRange(root->right, low, high);
+}
+int main(){
+    struct node *t = createNode(8);
+    t = insert(t,3);
+    t = insert(t,10);
+    t = insert(t,1);
+    t = insert(t,6);
+    t = insert(t,14);
+    t = insert(t,13);
+    t = insert(t,4);
+    t = insert(t,7);
+
+    printDataInRange(t,0,20);
 }

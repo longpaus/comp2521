@@ -29,8 +29,7 @@ static Node newNode(Record rec);
 static Node doTreeDelete(Tree t, Node n, Record rec, bool *res);
 static Node joinTrees(Node t1, Node t2);
 static Record doTreeSearch(Tree t, Node n, Record rec);
-//static void doTreeSearchBetween(Tree t, Node n, Record lower,
-//                                Record upper, List l);
+void doTreeSearchBetween(Tree t, Node n, Record lower,Record upper, List l);
 static void doTreeListInOrder(Node n);
 
 ////////////////////////////////////////////////////////////////////////
@@ -180,18 +179,29 @@ static Record doTreeSearch(Tree t, Node n, Record rec) {
 ////////////////////////////////////////////////////////////////////////
 
 List TreeSearchBetween(Tree t, Record lower, Record upper) {
-    // TODO: Complete this function
-    return ListNew();
+    List l =  ListNew();
+    doTreeSearchBetween(t,t->root,lower,upper,l);
+    return l;
 }
 
-/*
+
 // n - the current node
 // l - a list to accumulate results
-static void doTreeSearchBetween(Tree t, Node n, Record lower,
-                                Record upper, List l) {
-    // TODO: Complete this function
+void doTreeSearchBetween(Tree t, Node n, Record lower,Record upper, List l) {
+    if(n == NULL){
+        return;
+    }
+    if(t->compare(n->rec,lower) > 0){
+        doTreeSearchBetween(t,n -> left,lower,upper,l);
+    }
+    if(t->compare(n->rec,lower) >= 0 && t -> compare(n -> rec,upper) <= 0){
+        ListAppend(l,n->rec);
+    }
+    if(t->compare(n->rec,upper) < 0){
+        doTreeSearchBetween(t,n->right,lower,upper,l);
+    }
 }
-*/
+
 
 ////////////////////////////////////////////////////////////////////////
 
