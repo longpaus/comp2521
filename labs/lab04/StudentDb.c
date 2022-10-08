@@ -107,8 +107,9 @@ Record DbFindByZid(StudentDb db, int zid) {
 ////////////////////////////////////////////////////////////////////////
 
 List DbFindByName(StudentDb db, char *familyName, char *givenName) {
-    // TODO: Complete this function
-    return ListNew();
+    Record low = RecordNew(1,familyName,givenName);
+    Record upper = RecordNew(9999999,familyName,givenName);
+    return TreeSearchBetween(db->byName,low,upper);
 }
 
 ////////////////////////////////////////////////////////////////////////
