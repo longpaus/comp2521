@@ -24,3 +24,5 @@ then
 else
     echo "pass task2"
 fi
+
+rm task2Output
