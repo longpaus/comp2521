@@ -35,6 +35,7 @@ static int max(int x, int y);
 static Node rotateRight(Node n1);
 static Node rotateLeft(Node n2);
 static Node avlInsert(Tree t, Record rec, Node n);
+static bool isInTree(Tree t,Record rec,Node n);
 
 ////////////////////////////////////////////////////////////////////////
 // Provided functions
@@ -162,7 +163,23 @@ static Node avlInsert(Tree t, Record rec, Node n) {
 }
 
 Record TreeSearch(Tree t, Record rec) {
-	return NULL;
+    return (isInTree(t,rec,t->root)) ? rec : NULL;
+}
+
+//return true if rec is in tree, false if rec is not in the tree
+static bool isInTree(Tree t,Record rec,Node n){
+    if(n == NULL){
+        return false;
+    }
+    else if(t -> compare(rec,n-> rec) == -1){
+        isInTree(t,rec,n -> left);
+    }
+    else if(t -> compare(rec,n -> rec) == 1){
+        isInTree(t,rec,n -> right);
+    }
+    else{
+        return true;
+    }
 }
 
 List TreeSearchBetween(Tree t, Record lower, Record upper) {
