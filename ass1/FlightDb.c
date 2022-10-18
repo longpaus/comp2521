@@ -33,7 +33,9 @@ List DbFindByFlightNumber(FlightDb db, char *flightNumber) {
     Record low = RecordNew(flightNumber,"","",0,0,0,90);
     Record high = RecordNew(flightNumber,"","",6,23,59,90);
     List l = TreeSearchBetween(db->byFlightNum,low,high);
-    
+    RecordFree(low);
+    RecordFree(high);
+    return l;
 }
 
 List DbFindByDepartureAirportDay(FlightDb db, char *departureAirport, int day) {
