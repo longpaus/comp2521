@@ -21,7 +21,7 @@ FlightDb DbNew(void) {
 	return db;
 }
 void DbFree(FlightDb db) {
-    TreeFree(db->byFlightNum,false);
+    TreeFree(db->byFlightNum,true);
     free(db);
 }
 
