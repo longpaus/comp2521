@@ -37,6 +37,9 @@ static Node rotateLeft(Node n2);
 static Node avlInsert(Tree t, Record rec, Node n,bool *inserted);
 static bool isInTree(Tree t,Record rec,Node n);
 Record TreeNextHelper(Tree t,Record rec,Node n);
+static void doTreeSearchBetween(Tree t, Node n, Record lower, Record upper,
+                                List l);
+
 
 ////////////////////////////////////////////////////////////////////////
 // Provided functions
@@ -187,9 +190,9 @@ static bool isInTree(Tree t,Record rec,Node n){
     else if(t -> compare(rec,n -> rec) == 1){
         isInTree(t,rec,n -> right);
     }
-    else{
-        return true;
-    }
+
+    return true;
+    
 }
 
 List TreeSearchBetween(Tree t, Record lower, Record upper) {

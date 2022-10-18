@@ -12,7 +12,7 @@
 int compareByFlightNum(Record r1, Record r2);
 
 struct flightDb {
-    Tree byFlightNum
+    Tree byFlightNum;
 };
 
 FlightDb DbNew(void) {
