@@ -20,7 +20,10 @@ FlightDb DbNew(void) {
     db ->byFlightNum = TreeNew(compareByFlightNum);
 	return db;
 }
-void DbFree(FlightDb db) {}
+void DbFree(FlightDb db) {
+    TreeFree(db->byFlightNum,true);
+    free(db);
+}
 
 bool DbInsertRecord(FlightDb db, Record r) {
 	return TreeInsert(db ->byFlightNum,r);
