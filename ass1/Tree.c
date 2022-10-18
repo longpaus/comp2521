@@ -34,7 +34,7 @@ static Node newNode(Record rec);
 static int max(int x, int y);
 static Node rotateRight(Node n1);
 static Node rotateLeft(Node n2);
-static Node avlInsert(Tree t, Record rec, Node n);
+static Node avlInsert(Tree t, Record rec, Node n,bool *inserted);
 static bool isInTree(Tree t,Record rec,Node n);
 Record TreeNextHelper(Tree t,Record rec,Node n);
 
@@ -74,11 +74,16 @@ static void doTreeFree(Node n, bool freeRecords) {
 // Functions you need to implement
 
 bool TreeInsert(Tree t, Record rec) {
-	if (TreeSearch(t, rec) == NULL) {
-		return false;
+	bool *inserted = malloc(sizeof(bool));
+    *inserted = false;
+    t -> root = avlInsert(t,rec,t -> root,inserted);
+	if(*inserted){
+		free(inserted);
+		return true;
 	}
-    t -> root = avlInsert(t,rec,t -> root);
-    return true;
+	free(inserted);
+	return false;
+
 }
 static int getHeight(Node n) {
 	if (n == NULL) {
@@ -138,14 +143,15 @@ static Node rotateLeft(Node n2) {
 	return n1;
 }
 
-static Node avlInsert(Tree t, Record rec, Node n) {
+static Node avlInsert(Tree t, Record rec, Node n,bool *inserted) {
 	if (n == NULL) {
 		return newNode(rec);
+		*inserted = true;
 	}
 	if (t->compare(rec, n->rec) == -1) {
-		n->left = avlInsert(t, rec, n->left);
+		n->left = avlInsert(t, rec, n->left,inserted);
 	} else if (t->compare(rec, n->rec) == 1) {
-		n->right = avlInsert(t, rec, n->right);
+		n->right = avlInsert(t, rec, n->right,inserted);
 	} else {
 		return n;
 	}
