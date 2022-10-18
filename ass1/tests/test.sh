@@ -28,3 +28,18 @@ else
 fi
 
 rm task2Output
+
+# test 3
+
+.././testFlightDb 3 > task3Output
+
+diff task3Output 3.exp
+
+if test $? -eq 1 
+then
+    echo "Fail task3"
+else
+    echo "pass task3"
+fi
+
+rm task3Output

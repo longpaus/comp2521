@@ -10,6 +10,7 @@
 
 
 int compareByFlightNum(Record r1, Record r2);
+int compareByDepartAp(Record r1, Record r2);
 
 struct flightDb {
     Tree byFlightNum;
@@ -19,11 +20,12 @@ struct flightDb {
 FlightDb DbNew(void) {
     FlightDb db = malloc(sizeof(*db));
     db ->byFlightNum = TreeNew(compareByFlightNum);
+    db -> byDepartAp = TreeNew(compareByDepartAp);
 	return db;
 }
 void DbFree(FlightDb db) {
     TreeFree(db->byFlightNum,true);
-    TreeFree(db->byDepartAp,true);
+    TreeFree(db->byDepartAp,false);
     free(db);
 }
 
