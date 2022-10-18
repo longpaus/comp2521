@@ -77,15 +77,9 @@ static void doTreeFree(Node n, bool freeRecords) {
 // Functions you need to implement
 
 bool TreeInsert(Tree t, Record rec) {
-	bool *inserted = malloc(sizeof(bool));
-    *inserted = false;
-    t -> root = avlInsert(t,rec,t -> root,inserted);
-	if(*inserted){
-		free(inserted);
-		return true;
-	}
-	free(inserted);
-	return false;
+	bool inserted = false;
+    t -> root = avlInsert(t,rec,t -> root,&inserted);
+	return inserted;
 
 }
 static int getHeight(Node n) {
@@ -148,8 +142,8 @@ static Node rotateLeft(Node n2) {
 
 static Node avlInsert(Tree t, Record rec, Node n,bool *inserted) {
 	if (n == NULL) {
-		return newNode(rec);
 		*inserted = true;
+		return newNode(rec);
 	}
 	if (t->compare(rec, n->rec) == -1) {
 		n->left = avlInsert(t, rec, n->left,inserted);
