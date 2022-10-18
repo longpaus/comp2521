@@ -8,7 +8,6 @@ diff task1Output 1.exp
 
 if test $? -eq 1 
 then
-    cat difference
     echo "Fail task1"
 else
     echo "pass task1"
