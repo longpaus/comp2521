@@ -32,8 +32,8 @@ bool DbInsertRecord(FlightDb db, Record r) {
 List DbFindByFlightNumber(FlightDb db, char *flightNumber) {
     Record low = RecordNew(flightNumber,"","",0,0,0,90);
     Record high = RecordNew(flightNumber,"","",6,23,59,90);
-	List l = ListNew();
-    return TreeSearchBetween(db->byFlightNum,low,high);
+    List l = TreeSearchBetween(db->byFlightNum,low,high);
+    
 }
 
 List DbFindByDepartureAirportDay(FlightDb db, char *departureAirport, int day) {
