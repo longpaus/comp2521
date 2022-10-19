@@ -40,7 +40,7 @@ static AdjList adjListInsert(AdjList l, int v);
 static AdjList newAdjNode(int v);
 static bool inAdjList(AdjList l, int v);
 static void freeAdjList(AdjList l);
-static void removeId(Fb fb,int id1,int id2);
+static bool removeId(Fb fb,int id1,int id2);
 
 ////////////////////////////////////////////////////////////////////////
 
@@ -178,24 +178,27 @@ bool FbUnfriend(Fb fb, char *name1, char *name2) {
     if(!FbIsFriend(fb,name1,name2)){
         return false;
     }
-    removeId(fb,name1Id,name2Id);
-    removeId(fb,name2Id,name1Id);
-    return true;
+    
+    
+    return removeId(fb,name1Id,name2Id) && removeId(fb,name2Id,name1Id);
 }
 //remove the node with vertex id2 from the list of id1
-static void removeId(Fb fb,int id1,int id2){
+static bool removeId(Fb fb,int id1,int id2){
     for (AdjList curr = fb->adj[id1]; curr -> next != NULL; curr = curr->next) {
         if(curr ->next -> v == id2){
             AdjList tmp = curr -> next;
             curr -> next = curr -> next -> next;
             free(tmp); // free the deleted node
-            break;
+            return true;
         }
     }
+    return false;
 }
 
 List FbMutualFriends(Fb fb, char *name1, char *name2) {
-    // TODO: Complete this function
+    int id1 = nameToId(fb,name1);
+    int id2 = nameToId(fb,name2);
+
     List l = ListNew();
     return l;
 }
