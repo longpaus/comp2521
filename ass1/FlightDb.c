@@ -8,48 +8,54 @@
 #include "List.h"
 #include "Tree.h"
 
-
 int compareByFlightNum(Record r1, Record r2);
 int compareByDepartAp(Record r1, Record r2);
+int compareByDepartTime(Record r1, Record r2);
+static int compareTime(int day1, int hour1, int min1, int day2, int hour2,
+                       int min2);
 
 struct flightDb {
-    Tree byFlightNum;
-    Tree byDepartAp;
+	Tree byFlightNum;
+	Tree byDepartAp;
+	Tree byDepartTime;
 };
 
 FlightDb DbNew(void) {
-    FlightDb db = malloc(sizeof(*db));
-    db ->byFlightNum = TreeNew(compareByFlightNum);
-    db -> byDepartAp = TreeNew(compareByDepartAp);
+	FlightDb db = malloc(sizeof(*db));
+	db->byFlightNum = TreeNew(compareByFlightNum);
+	db->byDepartAp = TreeNew(compareByDepartAp);
+	db->byDepartTime = TreeNew(compareByDepartTime);
 	return db;
 }
 void DbFree(FlightDb db) {
-    TreeFree(db->byFlightNum,true);
-    TreeFree(db->byDepartAp,false);
-    free(db);
+	TreeFree(db->byFlightNum, true);
+	TreeFree(db->byDepartAp, false);
+	TreeFree(db->byDepartTime, false);
+	free(db);
 }
 
 bool DbInsertRecord(FlightDb db, Record r) {
-    TreeInsert(db->byDepartAp,r);
-	return TreeInsert(db ->byFlightNum,r);
+	TreeInsert(db->byDepartAp, r);
+	TreeInsert(db->byDepartTime, r);
+	return TreeInsert(db->byFlightNum, r);
 }
 
 List DbFindByFlightNumber(FlightDb db, char *flightNumber) {
-    Record low = RecordNew(flightNumber,"","",0,0,0,90);
-    Record high = RecordNew(flightNumber,"","",6,23,59,90);
-    List l = TreeSearchBetween(db->byFlightNum,low,high);
-    RecordFree(low);
-    RecordFree(high);
-    return l;
+	Record low = RecordNew(flightNumber, "", "", 0, 0, 0, 90);
+	Record high = RecordNew(flightNumber, "", "", 6, 23, 59, 90);
+	List l = TreeSearchBetween(db->byFlightNum, low, high);
+	RecordFree(low);
+	RecordFree(high);
+	return l;
 }
 
 List DbFindByDepartureAirportDay(FlightDb db, char *departureAirport, int day) {
-    Record low = RecordNew("",departureAirport,"",day,0,0,0);
-    Record high = RecordNew("ZZZZZZZZ",departureAirport,"",day,23,59,0);
-    List l = TreeSearchBetween(db->byDepartAp,low,high);
-    RecordFree(low);
-    RecordFree(high);
-    return l;
+	Record low = RecordNew("", departureAirport, "", day, 0, 0, 0);
+	Record high = RecordNew("ZZZZZZZZ", departureAirport, "", day, 23, 59, 0);
+	List l = TreeSearchBetween(db->byDepartAp, low, high);
+	RecordFree(low);
+	RecordFree(high);
+	return l;
 }
 
 List DbFindBetweenTimes(FlightDb db, int day1, int hour1, int min1, int day2,
@@ -74,17 +80,15 @@ int compareByFlightNum(Record r1, Record r2) {
 	if (flightNumCompare != 0) {
 		return (flightNumCompare > 0) ? 1 : -1;
 	}
-    if(RecordGetDepartureDay(r1) != RecordGetDepartureDay(r2)){
-        return(RecordGetDepartureDay(r1) > RecordGetDepartureDay(r2)) ? 1 : -1;
-    }
-    if(RecordGetDepartureHour(r1) != RecordGetDepartureHour(r2)){
-        return (RecordGetDepartureHour(r1) > RecordGetDepartureHour(r2)) ? 1 : -1;
-    }
-    if(RecordGetDepartureMinute(r1) != RecordGetDepartureMinute(r2)){
-        return (RecordGetDepartureMinute(r1) > RecordGetDepartureMinute(r2)) ? 1 : -1;
-    }
-    
-    return 0;
+    int r1Day = RecordGetDepartureDay(r1);
+	int r2Day = RecordGetDepartureDay(r2);
+	int r1Hour = RecordGetDepartureHour(r1);
+	int r2Hour = RecordGetDepartureHour(r2);
+	int r1Minute = RecordGetDepartureMinute(r1);
+	int r2Minute = RecordGetDepartureMinute(r2);
+
+    return compareTime(r1Day, r1Hour, r1Minute, r2Day, r2Hour, r2Minute);;
+	
 }
 
 /*
@@ -92,25 +96,52 @@ compare two records r1 and r2.
 comparing by departure airport then day then hour and then minute then flight number.
 returns 1 if r1 > r2, 0 if r1 == r2 and -1 if r1 < r2.
 */
-int compareByDepartAp(Record r1, Record r2){
-    int departAp = strcmp(RecordGetDepartureAirport(r1),RecordGetDepartureAirport(r2));
-    if(departAp != 0){
-        return (departAp > 0) ? 1 : -1;
-    }
-    if(RecordGetDepartureDay(r1) != RecordGetDepartureDay(r2)){
-        return(RecordGetDepartureDay(r1) > RecordGetDepartureDay(r2)) ? 1 : -1;
-    }
-    if(RecordGetDepartureHour(r1) != RecordGetDepartureHour(r2)){
-        return (RecordGetDepartureHour(r1) > RecordGetDepartureHour(r2)) ? 1 : -1;
-    }
-    if(RecordGetDepartureMinute(r1) != RecordGetDepartureMinute(r2)){
-        return (RecordGetDepartureMinute(r1) > RecordGetDepartureMinute(r2)) ? 1 : -1;
-    }
-    int flightNumCompare =
-	    strcmp(RecordGetFlightNumber(r1), RecordGetFlightNumber(r2));
-	if (flightNumCompare != 0) {
-		return (flightNumCompare > 0) ? 1 : -1;
+int compareByDepartAp(Record r1, Record r2) {
+	int departAp =
+	    strcmp(RecordGetDepartureAirport(r1), RecordGetDepartureAirport(r2));
+	if (departAp != 0) {
+		return (departAp > 0) ? 1 : -1;
 	}
-    return 0;
+	return compareByDepartTime(r1, r2);
+}
 
+/*
+compare two records r1 and r2.
+compare by depart day,hour, minute then by flight number
+returns 1 if r1 > r2, 0 if r1 == r2 and -1 if r1 < r2.
+*/
+
+int compareByDepartTime(Record r1, Record r2) {
+	int r1Day = RecordGetDepartureDay(r1);
+	int r2Day = RecordGetDepartureDay(r2);
+	int r1Hour = RecordGetDepartureHour(r1);
+	int r2Hour = RecordGetDepartureHour(r2);
+	int r1Minute = RecordGetDepartureMinute(r1);
+	int r2Minute = RecordGetDepartureMinute(r2);
+	if (compareTime(r1Day, r1Hour, r1Minute, r2Day, r2Hour, r2Minute) != 0) {
+		return compareTime(r1Day, r1Hour, r1Minute, r2Day, r2Hour, r2Minute);
+	}
+	int flightNum = strcmp(RecordGetFlightNumber(r1),RecordGetFlightNumber(r2));
+	if (flightNum != 0) {
+		return (flightNum > 0) ? 1 : -1;
+	}
+	return 0;
+}
+/*
+compare two times by day, hour then minute.
+return 1 if time1 > time 2, -1 if time1 < time2 else 0.
+*/
+
+static int compareTime(int day1, int hour1, int min1, int day2, int hour2,
+                       int min2) {
+	if (day1 != day2) {
+		return (day1 > day2) ? 1 : -1;
+	}
+	if (hour1 != hour2) {
+		return (hour1 > hour2) ? 1 : -1;
+	}
+	if (min1 != min2) {
+		return (min1 > min2) ? 1 : -1;
+	}
+	return 0;
 }
