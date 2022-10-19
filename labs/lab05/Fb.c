@@ -171,8 +171,27 @@ int  FbNumFriends(Fb fb, char *name) {
 // Your tasks
 
 bool FbUnfriend(Fb fb, char *name1, char *name2) {
-    // TODO: Complete this function
-    return false;
+    int name1Id = nameToId(fb,name1);
+    int name2Id = nameToId(fb,name2);
+    if(!FbIsFriend(fb,name1,name2)){
+        return false;
+    }
+    AdjList curr = fb->adj[name1Id];
+    while(curr ->next -> v != name2Id){
+        curr = curr->next;
+    }
+    AdjList tmp = curr -> next;
+    curr -> next = curr -> next -> next;
+    free(tmp); // free the deleted node
+
+    AdjList curr = fb->adj[name2Id];
+    while(curr ->next -> v != name1Id){
+        curr = curr->next;
+    }
+    AdjList tmp = curr -> next;
+    curr -> next = curr -> next -> next;
+    free(tmp); // free the deleted node
+    return true;
 }
 
 List FbMutualFriends(Fb fb, char *name1, char *name2) {
