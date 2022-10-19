@@ -77,8 +77,10 @@ List DbFindBetweenTimes(FlightDb db, int day1, int hour1, int min1, int day2,
 
 Record DbFindNextFlight(FlightDb db, char *flightNumber, int day, int hour,
                         int min) {
-    
-	return TreeNext(db->byFlightNum,RecordNew(flightNumber,"","",day,hour,min,0));
+    Record dummy = RecordNew(flightNumber,"","",day,hour,min,0);
+	Record next = TreeNext(db->byFlightNum,dummy);
+    RecordFree(dummy);
+    return next;
 }
 
 /*
