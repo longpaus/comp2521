@@ -4,7 +4,7 @@
 
 .././testFlightDb 1 > task1Output
 
-diff task1Output 1.exp
+diff -u task1Output 1.exp
 
 if test $? -eq 1 
 then
@@ -18,7 +18,7 @@ rm task1Output
 # test 2
 .././testFlightDb 2 > task2Output
 
-diff task2Output 2.exp
+diff -u task2Output 2.exp
 
 if test $? -eq 1 
 then
@@ -33,7 +33,7 @@ rm task2Output
 
 .././testFlightDb 3 > task3Output
 
-diff task3Output 3.exp
+diff -u task3Output 3.exp
 
 if test $? -eq 1 
 then
@@ -43,3 +43,17 @@ else
 fi
 
 rm task3Output
+
+# test 4
+.././testFlightDb 4 > task4Output
+
+diff -u task4Output 4.exp
+
+if test $? -eq 1 
+then
+    echo "Fail task4"
+else
+    echo "pass task4"
+fi
+
+rm task4Output

@@ -184,11 +184,11 @@ bool FbUnfriend(Fb fb, char *name1, char *name2) {
     curr -> next = curr -> next -> next;
     free(tmp); // free the deleted node
 
-    AdjList curr = fb->adj[name2Id];
+    curr = fb->adj[name2Id];
     while(curr ->next -> v != name1Id){
         curr = curr->next;
     }
-    AdjList tmp = curr -> next;
+    tmp = curr -> next;
     curr -> next = curr -> next -> next;
     free(tmp); // free the deleted node
     return true;
