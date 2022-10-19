@@ -12,6 +12,7 @@
 
 #define DEFAULT_CAPACITY 1 // DO NOT change this line
 
+
 typedef struct adjNode *AdjList;
 struct adjNode {
     int v;
@@ -39,6 +40,7 @@ static AdjList adjListInsert(AdjList l, int v);
 static AdjList newAdjNode(int v);
 static bool inAdjList(AdjList l, int v);
 static void freeAdjList(AdjList l);
+static void removeId(Fb fb,int id1,int id2);
 
 ////////////////////////////////////////////////////////////////////////
 
@@ -176,22 +178,20 @@ bool FbUnfriend(Fb fb, char *name1, char *name2) {
     if(!FbIsFriend(fb,name1,name2)){
         return false;
     }
-    AdjList curr = fb->adj[name1Id];
-    while(curr ->next -> v != name2Id){
-        curr = curr->next;
-    }
-    AdjList tmp = curr -> next;
-    curr -> next = curr -> next -> next;
-    free(tmp); // free the deleted node
-
-    curr = fb->adj[name2Id];
-    while(curr ->next -> v != name1Id){
-        curr = curr->next;
-    }
-    tmp = curr -> next;
-    curr -> next = curr -> next -> next;
-    free(tmp); // free the deleted node
+    removeId(fb,name1Id,name2Id);
+    removeId(fb,name2Id,name1Id);
     return true;
+}
+//remove the node with vertex id2 from the list of id1
+static void removeId(Fb fb,int id1,int id2){
+    for (AdjList curr = fb->adj[id1]; curr != NULL; curr = curr->next) {
+        if(curr ->next -> v == id2){
+            AdjList tmp = curr -> next;
+            curr -> next = curr -> next -> next;
+            free(tmp); // free the deleted node
+            break;
+        }
+    }
 }
 
 List FbMutualFriends(Fb fb, char *name1, char *name2) {
