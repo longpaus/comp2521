@@ -184,7 +184,7 @@ bool FbUnfriend(Fb fb, char *name1, char *name2) {
 }
 //remove the node with vertex id2 from the list of id1
 static void removeId(Fb fb,int id1,int id2){
-    for (AdjList curr = fb->adj[id1]; curr != NULL; curr = curr->next) {
+    for (AdjList curr = fb->adj[id1]; curr -> next != NULL; curr = curr->next) {
         if(curr ->next -> v == id2){
             AdjList tmp = curr -> next;
             curr -> next = curr -> next -> next;
