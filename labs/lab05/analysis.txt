@@ -8,23 +8,31 @@ NOTE:
   FbUnfriend
 ===============
 
-- Worst case time complexity: O(...)
+- Worst case time complexity: O(n)
 
-- Explanation: ...
+- Explanation: after finding the id of the two name which is O(logn)
+we use FbIsFriend to check if they are friends which is O(n). Then when removing a node
+from the adj list the worse case scenerio is that the node to be removed is not the head,
+hence making us travesrse through it which is O(n). Hence the function is O(n).
 
 ===============
 FbMutualFriends
 ===============
 
-- Worst case time complexity: O(...)
+- Worst case time complexity: O(n^2)
 
-- Explanation: ...
+- Explanation: in this function I used two for loops, a slow and a fast one.
+The slow one would loop through the adj list of name1 and inside the slow 
+loop the fast loop would iterate would the id of the name2 adj list. Hence it is 
+O(n^2).
 
 ===============
  FbFriendRecs1
 ===============
 
-- Worst case time complexity: O(...)
+- Worst case time complexity: O(n^3)
 
-- Explanation: ...
+- Explanation: While looping through the id if the id is not a friend of
+the input we will use FbMutualFriends which is O(n^2). Hence the loop overall
+is O(n^3).
 
