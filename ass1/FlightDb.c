@@ -60,7 +60,19 @@ List DbFindByDepartureAirportDay(FlightDb db, char *departureAirport, int day) {
 
 List DbFindBetweenTimes(FlightDb db, int day1, int hour1, int min1, int day2,
                         int hour2, int min2) {
-	return ListNew();
+    Record low;
+    Record high;
+    if(compareTime(day1, hour1, min1, day2, hour2, min2) > 0 ){
+        low = RecordNew("","","",day2,hour2,min2,0);
+        high = RecordNew("ZZZZZZZZ","","",day1,hour1,min1,0);
+    }else{
+        low = RecordNew("","","",day1,hour1,min1,0);
+        high = RecordNew("ZZZZZZZZ","","",day2,hour2,min2,0);
+    }
+    List l = TreeSearchBetween(db->byDepartTime, low, high);
+	RecordFree(low);
+	RecordFree(high);
+	return l;
 }
 
 Record DbFindNextFlight(FlightDb db, char *flightNumber, int day, int hour,
@@ -87,7 +99,7 @@ int compareByFlightNum(Record r1, Record r2) {
 	int r1Minute = RecordGetDepartureMinute(r1);
 	int r2Minute = RecordGetDepartureMinute(r2);
 
-    return compareTime(r1Day, r1Hour, r1Minute, r2Day, r2Hour, r2Minute);;
+    return compareTime(r1Day, r1Hour, r1Minute, r2Day, r2Hour, r2Minute);
 	
 }
 
