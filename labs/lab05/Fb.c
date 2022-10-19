@@ -202,8 +202,8 @@ static void removeId(Fb fb,int id1,int id2){
 }
 
 List FbMutualFriends(Fb fb, char *name1, char *name2) {
-    int id1 = nameToId(fb,name1);
-    int id2 = nameToId(fb,name2);
+    // int id1 = nameToId(fb,name1);
+    // int id2 = nameToId(fb,name2);
     List l = ListNew();
     return l;
 }
