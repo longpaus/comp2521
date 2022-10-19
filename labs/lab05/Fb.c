@@ -5,7 +5,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-
+# include "List.h"
 #include "Fb.h"
 #include "Map.h"
 #include "Queue.h"
@@ -41,6 +41,7 @@ static AdjList newAdjNode(int v);
 static bool inAdjList(AdjList l, int v);
 static void freeAdjList(AdjList l);
 static void removeId(Fb fb,int id1,int id2);
+static void sort(int *arr,int length);
 
 ////////////////////////////////////////////////////////////////////////
 
@@ -216,8 +217,45 @@ List FbMutualFriends(Fb fb, char *name1, char *name2) {
     return l;
 }
 
+//sort array in descending order
+static void sort(int *arr,int length){
+    int temp;
+    for (int i = 0; i < length; i++) {     
+        for (int j = i+1; j < length; j++) {     
+           if(arr[i] < arr[j]) {    
+               temp = arr[i];    
+               arr[i] = arr[j];    
+               arr[j] = temp;    
+           }     
+        }     
+    }    
+}
+
 void FbFriendRecs1(Fb fb, char *name) {
-    // TODO: Complete this function
+    // mutualFriends: each index represents the id, the 
+    // the value at each index is the number of mutual friends
+    int mutualFriends[fb->numPeople];
+    int mutual[fb->numPeople];
+    int nameId = nameToId(fb, name);
+    for(int id = 0; id < fb->numPeople;id++){
+        if(id != nameId && !FbIsFriend(fb,name,fb->names[id])){
+            List l = FbMutualFriends(fb,name,fb->names[id]);
+            mutualFriends[id] = l->size;
+            mutual[id] = l -> size;
+        }else{
+            mutual[id] = 0;
+        }
+    }
+    sort(mutual,fb -> numPeople);
+    for(int i = 0; i < fb -> numPeople; i++){
+        if(mutual[i] != 0){
+            for(int j = 0; j < fb->numPeople; j++){
+                if(mutualFriends[j] == mutual[i]){
+                    printf("\t%-20s%4d mutual friends\n",fb->names[j],mutual[i]);
+                }
+            }
+        }
+    }
 }
 
 ////////////////////////////////////////////////////////////////////////
