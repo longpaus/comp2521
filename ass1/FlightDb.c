@@ -79,6 +79,10 @@ Record DbFindNextFlight(FlightDb db, char *flightNumber, int day, int hour,
                         int min) {
     Record dummy = RecordNew(flightNumber,"","",day,hour,min,0);
 	Record next = TreeNext(db->byFlightNum,dummy);
+	if(next == NULL){
+		dummy = RecordNew(flightNumber,"","",0,0,0,0);
+		next = TreeNext(db->byFlightNum,dummy);
+	}
     RecordFree(dummy);
     return next;
 }
