@@ -67,9 +67,13 @@ List DbFindBetweenTimes(FlightDb db, int day1, int hour1, int min1, int day2,
 		//day1 is in a later week.
         low = RecordNew("","","",day1,hour1,min1,0);
         high = RecordNew("ZZZZZZZZ","","",6,23,59,0);
+		RecordFree(low);
+		RecordFree(high);
 		l = TreeSearchBetween(db->byDepartTime, low, high);
 		low = RecordNew("","","",0,0,0,0);
         high = RecordNew("ZZZZZZZZ","","",day2,hour2,min2,0);
+		RecordFree(low);
+		RecordFree(high);
 		List l2 = TreeSearchBetween(db->byDepartTime, low, high);
 		ListExtend(l,l2);
 		ListFree(l2);
@@ -77,9 +81,10 @@ List DbFindBetweenTimes(FlightDb db, int day1, int hour1, int min1, int day2,
         low = RecordNew("","","",day1,hour1,min1,0);
         high = RecordNew("ZZZZZZZZ","","",day2,hour2,min2,0);
     	l = TreeSearchBetween(db->byDepartTime, low, high);
+		RecordFree(low);
+		RecordFree(high);
 	}
-    RecordFree(low);
-	RecordFree(high);
+   
 	return l;
 }
 
