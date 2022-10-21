@@ -62,15 +62,22 @@ List DbFindBetweenTimes(FlightDb db, int day1, int hour1, int min1, int day2,
                         int hour2, int min2) {
     Record low;
     Record high;
+	List l;
     if(compareTime(day1, hour1, min1, day2, hour2, min2) > 0 ){
-        low = RecordNew("","","",day2,hour2,min2,0);
-        high = RecordNew("ZZZZZZZZ","","",day1,hour1,min1,0);
-    }else{
+		//day1 is in a later week.
+        low = RecordNew("","","",day1,hour1,min1,0);
+        high = RecordNew("ZZZZZZZZ","","",6,23,59,0);
+		l = TreeSearchBetween(db->byDepartTime, low, high);
+		low = RecordNew("","","",0,0,0,0);
+        high = RecordNew("ZZZZZZZZ","","",day2,hour2,min2,0);
+		List l2 = TreeSearchBetween(db->byDepartTime, low, high);
+		ListExtend(l,l2);
+	} else{
         low = RecordNew("","","",day1,hour1,min1,0);
         high = RecordNew("ZZZZZZZZ","","",day2,hour2,min2,0);
-    }
-    List l = TreeSearchBetween(db->byDepartTime, low, high);
-	RecordFree(low);
+    	l = TreeSearchBetween(db->byDepartTime, low, high);
+	}
+    RecordFree(low);
 	RecordFree(high);
 	return l;
 }
@@ -140,11 +147,7 @@ int compareByDepartTime(Record r1, Record r2) {
 	if (compareTime(r1Day, r1Hour, r1Minute, r2Day, r2Hour, r2Minute) != 0) {
 		return compareTime(r1Day, r1Hour, r1Minute, r2Day, r2Hour, r2Minute);
 	}
-	int flightNum = strcmp(RecordGetFlightNumber(r1),RecordGetFlightNumber(r2));
-	if (flightNum != 0) {
-		return (flightNum > 0) ? 1 : -1;
-	}
-	return 0;
+	return strcmp(RecordGetFlightNumber(r1),RecordGetFlightNumber(r2));
 }
 /*
 compare two times by day, hour then minute.
