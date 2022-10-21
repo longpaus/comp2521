@@ -72,6 +72,7 @@ List DbFindBetweenTimes(FlightDb db, int day1, int hour1, int min1, int day2,
         high = RecordNew("ZZZZZZZZ","","",day2,hour2,min2,0);
 		List l2 = TreeSearchBetween(db->byDepartTime, low, high);
 		ListExtend(l,l2);
+		ListFree(l2);
 	} else{
         low = RecordNew("","","",day1,hour1,min1,0);
         high = RecordNew("ZZZZZZZZ","","",day2,hour2,min2,0);
