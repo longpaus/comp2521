@@ -60,46 +60,46 @@ List DbFindByDepartureAirportDay(FlightDb db, char *departureAirport, int day) {
 
 List DbFindBetweenTimes(FlightDb db, int day1, int hour1, int min1, int day2,
                         int hour2, int min2) {
-    Record low;
-    Record high;
+	Record low;
+	Record high;
 	List l;
-    if(compareTime(day1, hour1, min1, day2, hour2, min2) > 0 ){
+	if (compareTime(day1, hour1, min1, day2, hour2, min2) > 0) {
 		//day1 is in a later week.
-        low = RecordNew("","","",day1,hour1,min1,0);
-        high = RecordNew("ZZZZZZZZ","","",6,23,59,0);
-		
+		low = RecordNew("", "", "", day1, hour1, min1, 0);
+		high = RecordNew("ZZZZZZZZ", "", "", 6, 23, 59, 0);
+
 		l = TreeSearchBetween(db->byDepartTime, low, high);
 		RecordFree(low);
 		RecordFree(high);
-		low = RecordNew("","","",0,0,0,0);
-        high = RecordNew("ZZZZZZZZ","","",day2,hour2,min2,0);
-		
+		low = RecordNew("", "", "", 0, 0, 0, 0);
+		high = RecordNew("ZZZZZZZZ", "", "", day2, hour2, min2, 0);
+
 		List l2 = TreeSearchBetween(db->byDepartTime, low, high);
 		RecordFree(low);
 		RecordFree(high);
-		ListExtend(l,l2);
+		ListExtend(l, l2);
 		ListFree(l2);
-	} else{
-        low = RecordNew("","","",day1,hour1,min1,0);
-        high = RecordNew("ZZZZZZZZ","","",day2,hour2,min2,0);
-    	l = TreeSearchBetween(db->byDepartTime, low, high);
+	} else {
+		low = RecordNew("", "", "", day1, hour1, min1, 0);
+		high = RecordNew("ZZZZZZZZ", "", "", day2, hour2, min2, 0);
+		l = TreeSearchBetween(db->byDepartTime, low, high);
 		RecordFree(low);
 		RecordFree(high);
 	}
-   
+
 	return l;
 }
 
 Record DbFindNextFlight(FlightDb db, char *flightNumber, int day, int hour,
                         int min) {
-    Record dummy = RecordNew(flightNumber,"","",day,hour,min,0);
-	Record next = TreeNext(db->byFlightNum,dummy);
-	if(next == NULL){
-		dummy = RecordNew(flightNumber,"","",0,0,0,0);
-		next = TreeNext(db->byFlightNum,dummy);
+	Record dummy = RecordNew(flightNumber, "", "", day, hour, min, 0);
+	Record next = TreeNext(db->byFlightNum, dummy);
+	if (next == NULL) {
+		dummy = RecordNew(flightNumber, "", "", 0, 0, 0, 0);
+		next = TreeNext(db->byFlightNum, dummy);
 	}
-    RecordFree(dummy);
-    return next;
+	RecordFree(dummy);
+	return next;
 }
 
 /*
@@ -114,15 +114,14 @@ int compareByFlightNum(Record r1, Record r2) {
 	if (flightNumCompare != 0) {
 		return (flightNumCompare > 0) ? 1 : -1;
 	}
-    int r1Day = RecordGetDepartureDay(r1);
+	int r1Day = RecordGetDepartureDay(r1);
 	int r2Day = RecordGetDepartureDay(r2);
 	int r1Hour = RecordGetDepartureHour(r1);
 	int r2Hour = RecordGetDepartureHour(r2);
 	int r1Minute = RecordGetDepartureMinute(r1);
 	int r2Minute = RecordGetDepartureMinute(r2);
 
-    return compareTime(r1Day, r1Hour, r1Minute, r2Day, r2Hour, r2Minute);
-	
+	return compareTime(r1Day, r1Hour, r1Minute, r2Day, r2Hour, r2Minute);
 }
 
 /*
@@ -155,7 +154,7 @@ int compareByDepartTime(Record r1, Record r2) {
 	if (compareTime(r1Day, r1Hour, r1Minute, r2Day, r2Hour, r2Minute) != 0) {
 		return compareTime(r1Day, r1Hour, r1Minute, r2Day, r2Hour, r2Minute);
 	}
-	return strcmp(RecordGetFlightNumber(r1),RecordGetFlightNumber(r2));
+	return strcmp(RecordGetFlightNumber(r1), RecordGetFlightNumber(r2));
 }
 /*
 compare two times by day, hour then minute.

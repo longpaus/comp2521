@@ -158,7 +158,7 @@ int main() {
 	t = insert(t,90);
 	t = insert(t,85);
 
-	printf("%d\n",findMinforN(t,28));
+	printf("%d\n",findMinforN(t,91));
 	printInOrder(t);
 
 }
