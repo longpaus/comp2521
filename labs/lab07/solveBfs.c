@@ -102,7 +102,7 @@ static bool checkSurrounding(Maze m,Queue q,bool **visted,Cell **predecessor,Cel
 static void markPath(Maze m,Cell **predecessor,Cell end){
     int row = end.row;
     int col = end.col;
-    MazeMarkPath(m,predecessor[row][col]);
+    MazeMarkPath(m,end);
     while(!isCellEqual(predecessor[row][col],MazeGetStart(m))){
         MazeMarkPath(m,predecessor[row][col]);
         int temp = predecessor[row][col].row;
