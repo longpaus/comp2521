@@ -30,8 +30,8 @@ bool solve(Maze m) {
         }
         
     }
-    
-    
+    freeBoolMatrix(visted);
+    freeCellMatrix(predecessor);
     return false;
 }
 /*
