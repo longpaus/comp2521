@@ -12,6 +12,7 @@
 
 static bool checkSurrounding(Maze m,Queue q,bool **visted,Cell **predecessor,Cell v);
 static bool isCellEqual(Cell c1,Cell c2);
+static void markPath(Maze m,Cell **predecessor,Cell end);
 
 bool solve(Maze m) {
     bool **visted = createBoolMatrix(MazeHeight(m),MazeWidth(m));
@@ -29,6 +30,7 @@ bool solve(Maze m) {
         }
         
     }
+    
     
     return false;
 }
