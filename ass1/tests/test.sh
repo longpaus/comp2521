@@ -57,3 +57,17 @@ else
 fi
 
 rm task4Output
+
+# test 5
+.././testFlightDb 5 > task5Output
+
+diff -u task5Output 5.exp
+
+if test $? -eq 1 
+then
+    echo "Fail task5"
+else
+    echo "pass task5"
+fi
+
+rm task5Output
