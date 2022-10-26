@@ -27,9 +27,6 @@ bool solve(Maze m) {
     
     while(!QueueIsEmpty(queue)){
         Cell v = QueueDequeue(queue);
-        if(visted[v.row][v.col]){
-            continue;
-        }
         visted[v.row][v.col] = true;
         if(checkSurrounding(m,queue,visted,predecessor,v)){
             solved = true;
