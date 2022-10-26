@@ -33,6 +33,7 @@ bool solve(Maze m) {
         visted[v.row][v.col] = true;
         if(checkSurrounding(m,queue,visted,predecessor,v)){
             solved = true;
+            break;
         }
     }
     freeBoolMatrix(visted);
