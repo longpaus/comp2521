@@ -81,7 +81,6 @@ static bool checkSurrounding(Maze m,Queue q,bool **visted,Cell **predecessor,Cel
             return true;
         }
     }
-    return false;
     //check left
     Cell left;
     left.row = v.row;
@@ -94,7 +93,7 @@ static bool checkSurrounding(Maze m,Queue q,bool **visted,Cell **predecessor,Cel
             return true;
         }
     }
-   
+    return false;
 }
 
 static void markPath(Maze m,Cell **predecessor,Cell end){
