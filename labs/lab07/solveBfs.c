@@ -35,6 +35,7 @@ bool solve(Maze m) {
     }
     freeBoolMatrix(visted);
     freeCellMatrix(predecessor);
+    QueueFree(queue);
     return false;
 }
 /*
@@ -68,19 +69,7 @@ static bool checkSurrounding(Maze m,Queue q,bool **visted,Cell **predecessor,Cel
             return true;
         }
     }
-    //check left
-    Cell left;
-    left.row = v.row;
-    left.col = v.col -1;
-    if(left.col >= 0 && !visted[left.row][left.col] && !MazeIsWall(m,left)){
-        QueueEnqueue(q,left);
-        predecessor[left.row][left.col] = v;
-        if(MazeVisit(m,left)){
-            markPath(m,predecessor,left);
-            return true;
-        }
-    }
-    // check right
+     // check right
     Cell right;
     right.row = v.row;
     right.col = v.col + 1;
@@ -93,6 +82,19 @@ static bool checkSurrounding(Maze m,Queue q,bool **visted,Cell **predecessor,Cel
         }
     }
     return false;
+    //check left
+    Cell left;
+    left.row = v.row;
+    left.col = v.col -1;
+    if(left.col >= 0 && !visted[left.row][left.col] && !MazeIsWall(m,left)){
+        QueueEnqueue(q,left);
+        predecessor[left.row][left.col] = v;
+        if(MazeVisit(m,left)){
+            markPath(m,predecessor,left);
+            return true;
+        }
+    }
+   
 }
 
 static void markPath(Maze m,Cell **predecessor,Cell end){
