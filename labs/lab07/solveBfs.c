@@ -19,6 +19,9 @@ bool solve(Maze m) {
     Cell **predecessor = createCellMatrix(MazeHeight(m),MazeWidth(m));
     Queue queue = QueueNew();
     QueueEnqueue(queue,MazeGetStart(m));
+    if(MazeVisit(m,MazeGetStart(m))){
+        return true;
+    }
     while(!QueueIsEmpty(queue)){
         Cell v = QueueDequeue(queue);
         if(visted[v.row][v.col]){
