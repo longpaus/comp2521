@@ -20,6 +20,9 @@ bool solve(Maze m) {
     Queue queue = QueueNew();
     QueueEnqueue(queue,MazeGetStart(m));
     if(MazeVisit(m,MazeGetStart(m))){
+        freeBoolMatrix(visted);
+        freeCellMatrix(predecessor);
+        QueueFree(queue);
         return true;
     }
     while(!QueueIsEmpty(queue)){
@@ -29,6 +32,9 @@ bool solve(Maze m) {
         }
         visted[v.row][v.col] = true;
         if(checkSurrounding(m,queue,visted,predecessor,v)){
+            freeBoolMatrix(visted);
+            freeCellMatrix(predecessor);
+            QueueFree(queue);
             return true;
         }
         
