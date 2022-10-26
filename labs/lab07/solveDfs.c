@@ -58,6 +58,19 @@ static bool checkSurrounding(Maze m,Stack s,bool **visted,Cell **predecessor,Cel
             return true;
         }
     }
+    // check right
+    Cell right;
+    right.row = v.row;
+    right.col = v.col + 1;
+    if(right.col < MazeWidth(m) && !visted[right.row][right.col] && ! MazeIsWall(m,right)){
+        StackPush(s,right);
+        predecessor[right.row][right.col] = v;
+        if(MazeVisit(m,right)){
+            markPath(m,predecessor,right);
+            return true;
+        }
+    }
+    
     //check upwards
     Cell up;
     up.row = v.row - 1;
@@ -67,18 +80,6 @@ static bool checkSurrounding(Maze m,Stack s,bool **visted,Cell **predecessor,Cel
         predecessor[up.row][up.col] = v;
         if(MazeVisit(m,up)){
             markPath(m,predecessor,up);
-            return true;
-        }
-    }
-     // check right
-    Cell right;
-    right.row = v.row;
-    right.col = v.col + 1;
-    if(right.col < MazeWidth(m) && !visted[right.row][right.col] && ! MazeIsWall(m,right)){
-        StackPush(s,right);
-        predecessor[right.row][right.col] = v;
-        if(MazeVisit(m,right)){
-            markPath(m,predecessor,right);
             return true;
         }
     }
