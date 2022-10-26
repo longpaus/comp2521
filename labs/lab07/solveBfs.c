@@ -15,16 +15,16 @@ static bool isCellEqual(Cell c1,Cell c2);
 static void markPath(Maze m,Cell **predecessor,Cell end);
 
 bool solve(Maze m) {
+    // if start is the end point
+    if(MazeVisit(m,MazeGetStart(m))){
+        return true;
+    }
     bool **visted = createBoolMatrix(MazeHeight(m),MazeWidth(m));
     Cell **predecessor = createCellMatrix(MazeHeight(m),MazeWidth(m));
     Queue queue = QueueNew();
+    bool solved = false;
     QueueEnqueue(queue,MazeGetStart(m));
-    if(MazeVisit(m,MazeGetStart(m))){
-        freeBoolMatrix(visted);
-        freeCellMatrix(predecessor);
-        QueueFree(queue);
-        return true;
-    }
+    
     while(!QueueIsEmpty(queue)){
         Cell v = QueueDequeue(queue);
         if(visted[v.row][v.col]){
@@ -32,17 +32,13 @@ bool solve(Maze m) {
         }
         visted[v.row][v.col] = true;
         if(checkSurrounding(m,queue,visted,predecessor,v)){
-            freeBoolMatrix(visted);
-            freeCellMatrix(predecessor);
-            QueueFree(queue);
-            return true;
+            solved = true;
         }
-        
     }
     freeBoolMatrix(visted);
     freeCellMatrix(predecessor);
     QueueFree(queue);
-    return false;
+    return solved;
 }
 /*
 add all the surrounding path around v to the queue
