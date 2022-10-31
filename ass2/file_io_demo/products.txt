@@ -1,0 +1,4 @@
+apple 150 0.86
+banana 300 0.63
+orange 200 0.96
+pear 250 0.67

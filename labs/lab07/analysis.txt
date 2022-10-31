@@ -7,15 +7,15 @@ NOTE:
   solveBfs
 ============
 
-- Worst case time complexity: O(...)
+- Worst case time complexity: O(n)
 
-- Explanation: ...
+- Explanation: since we have to check every cell in the owrst case scenario.
 
 ============
   solveDfs
 ============
 
-- Worst case time complexity: O(...)
+- Worst case time complexity: O(n)
 
-- Explanation: ...
+- Explanation: same as bfs
 

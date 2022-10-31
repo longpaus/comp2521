@@ -40,7 +40,7 @@ bool solve(Maze m) {
 
 
 /*
-add all the surrounding path around v to the queue
+add all the surrounding path around v to the stack
 and update the visted and predecessor matrix
 return true if the exit is reached.
 If exit is reached call MazeMarkPath() to mark the path to the exit.
@@ -70,7 +70,7 @@ static bool checkSurrounding(Maze m,Stack s,bool **visted,Cell **predecessor,Cel
             return true;
         }
     }
-    
+
     //check upwards
     Cell up;
     up.row = v.row - 1;
