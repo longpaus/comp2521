@@ -1,16 +1,36 @@
-Vertex *visited;
+#define MAX_NODES 100
+bool visited[MAX_NODES];
 
-bool hasCycle(Graph g, Vertex s) {
-   bool result = false;
-   visited = calloc(g->nV,sizeof(int));
-   for (int v = 0; v < g->nV; v++) {
-      for (int i = 0; i < g->nV; i++)
-         visited[i] = -1;
-      if dfsCycleCheck(g, v, v)) {
-         result = true;
-         break;
+bool dfsCycleCheck(Graph g, int nV, Vertex v, Vertex u) {
+   visited[v] = true;
+   Vertex w;
+   for (w = 0; w < nV; w++) {
+      if (adjacent(g, v, w)) {
+         if (!visited[w])
+            return dfsCycleCheck(g, nV, w, v);
+         else if (w != u)
+            return true;
       }
    }
-   free(visited);
-   return result;
+   return false;
+}
+
+Graph kruskal(Graph g, Edge sortedEdges[], int nV, int nE) {
+   Graph mst = newGraph(nV);
+   
+   int n = 0;
+   int i;
+   for (i = 0; i < nE && n < nV-1; i++) {
+      Edge e = sortedEdges[i];
+      insertEdge(mst, e);
+      n++;
+      Vertex v;
+      for (v = 0; v < nV; v++)
+	 visited[v] = false;
+      if (dfsCycleCheck(mst, nV, e.v, e.v)) {    // cycle through node e.v?
+	 removeEdge(mst, e);
+	 n--;
+      }
+   }
+   return mst;
 }
