@@ -19,7 +19,7 @@ struct graph {
 static bool doHasCycle(Graph g, Vertex v, Vertex prev, bool *visited);
 static int  validVertex(Graph g, Vertex v);
 static void addAdjacentNodeToPQ(Graph g,PQ pq,Vertex v);
-static void dfs(Graph g,Vertex v,bool *visted);
+static void dfs(Graph g,Vertex v,bool *visited);
 static int countNumComponents(Graph g);
 
 ////////////////////////////////////////////////////////////////////////
@@ -155,18 +155,18 @@ Graph GraphMST(Graph g) {
     }
     Graph mst =  GraphNew(g->nV);
     PQ pq = PQNew();
-    bool visted[g ->nV];
+    bool visited[g ->nV];
     for(int i = 0; i < g->nV; i++){
-        visted[i] = false;
+        visited[i] = false;
     }
     addAdjacentNodeToPQ(g,pq,0);
-    visted[0] = true;
+    visited[0] = true;
     while(!PQIsEmpty(pq) ){
         Edge e = PQExtract(pq);
-        if(visted[e.w]){
+        if(visited[e.w]){
             continue;
         }
-        visted[e.w] = true;
+        visited[e.w] = true;
         GraphInsertEdge(mst,e);
         addAdjacentNodeToPQ(g,pq,e.w);
     }
@@ -185,13 +185,13 @@ static void addAdjacentNodeToPQ(Graph g,PQ pq,Vertex v){
 
 static int countNumComponents(Graph g){
     int numComponents = 0;
-    bool visted[g ->nV];
+    bool visited[g ->nV];
     for(int i = 0; i < g->nV; i++){
-        visted[i] = false;
+        visited[i] = false;
     }
     for(Vertex v = 0; v < g->nV; v++){
-        if(!visted[v]){
-            dfs(g,v,visted);
+        if(!visited[v]){
+            dfs(g,v,visited);
             numComponents++;
         }
 
@@ -199,11 +199,11 @@ static int countNumComponents(Graph g){
     return numComponents;
 }
 
-static void dfs(Graph g,Vertex v,bool *visted){
+static void dfs(Graph g,Vertex v,bool *visited){
     for(Vertex w = 0; w < g->nV; w++){
-        if(GraphIsAdjacent(g,v,w) != 0.0 && visted[w] == false){
-            visted[w] = true;
-            dfs(g,w,visted);
+        if(GraphIsAdjacent(g,v,w) != 0.0 && visited[w] == false){
+            visited[w] = true;
+            dfs(g,w,visited);
         }
     }
 }
