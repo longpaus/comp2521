@@ -157,9 +157,16 @@ Graph GraphMST(Graph g) {
     }
     addAdjacentNodeToPQ(g,pq,0,visted);
     visted[0] = true;
-    while(!PQIsEmpty(pq)){
+    // int numVisted = 1;
+    while(!PQIsEmpty(pq) ){
         Edge e = PQExtract(pq);
+        // numVisted++;
+        if(visted[e.w]){
+            continue;
+        }
         visted[e.w] = true;
+        
+
         GraphInsertEdge(mst,e);
         addAdjacentNodeToPQ(g,pq,e.w,visted);
     }
@@ -169,7 +176,7 @@ Graph GraphMST(Graph g) {
 
 static void addAdjacentNodeToPQ(Graph g,PQ pq,Vertex v,bool *visted){
     for(int w = 0; w < g->nV; w++){
-        if(GraphIsAdjacent(g,v,w) != 0.0 && !visted[w]){
+        if(GraphIsAdjacent(g,v,w) != 0.0){
             Edge e = {v,w,g->edges[v][w]};
             PQInsert(pq,e);
         }
