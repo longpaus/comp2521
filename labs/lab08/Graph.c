@@ -18,7 +18,9 @@ struct graph {
 
 static bool doHasCycle(Graph g, Vertex v, Vertex prev, bool *visited);
 static int  validVertex(Graph g, Vertex v);
-static void addAdjacentNodeToPQ(Graph g,PQ pq,Vertex v,bool *visted);
+static void addAdjacentNodeToPQ(Graph g,PQ pq,Vertex v);
+static void dfs(Graph g,Vertex v,bool *visted);
+static int countNumComponents(Graph g);
 
 ////////////////////////////////////////////////////////////////////////
 
@@ -148,34 +150,32 @@ static bool doHasCycle(Graph g, Vertex v, Vertex prev, bool *visited) {
 // Your task
 
 Graph GraphMST(Graph g) {
-    // TODO: Complete this function
+    if(countNumComponents(g) != 1){
+        return NULL;
+    }
     Graph mst =  GraphNew(g->nV);
     PQ pq = PQNew();
     bool visted[g ->nV];
     for(int i = 0; i < g->nV; i++){
         visted[i] = false;
     }
-    addAdjacentNodeToPQ(g,pq,0,visted);
+    addAdjacentNodeToPQ(g,pq,0);
     visted[0] = true;
-    // int numVisted = 1;
     while(!PQIsEmpty(pq) ){
         Edge e = PQExtract(pq);
-        // numVisted++;
         if(visted[e.w]){
             continue;
         }
         visted[e.w] = true;
-        
-
         GraphInsertEdge(mst,e);
-        addAdjacentNodeToPQ(g,pq,e.w,visted);
+        addAdjacentNodeToPQ(g,pq,e.w);
     }
     PQFree(pq);
     return (mst->nE != 0) ? mst : NULL;
 }
 
-static void addAdjacentNodeToPQ(Graph g,PQ pq,Vertex v,bool *visted){
-    for(int w = 0; w < g->nV; w++){
+static void addAdjacentNodeToPQ(Graph g,PQ pq,Vertex v){
+    for(Vertex w = 0; w < g->nV; w++){
         if(GraphIsAdjacent(g,v,w) != 0.0){
             Edge e = {v,w,g->edges[v][w]};
             PQInsert(pq,e);
@@ -183,6 +183,29 @@ static void addAdjacentNodeToPQ(Graph g,PQ pq,Vertex v,bool *visted){
     }
 }
 
+static int countNumComponents(Graph g){
+    int numComponents = 0;
+    bool visted[g ->nV];
+    for(int i = 0; i < g->nV; i++){
+        visted[i] = false;
+    }
+    for(Vertex v = 0; v < g->nE; v++){
+        if(!visted[v]){
+            numComponents++;
+        }
+
+    }
+    return numComponents;
+}
+
+static void dfs(Graph g,Vertex v,bool *visted){
+    for(Vertex w = 0; w < g->nE; w++){
+        if(GraphIsAdjacent(g,v,w) != 0.0 && visted[w] == false){
+            visted[w] = true;
+            dfs(g,w,visted);
+        }
+    }
+}
 ////////////////////////////////////////////////////////////////////////
 
 static int validVertex(Graph g, Vertex v) {
