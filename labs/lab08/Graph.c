@@ -155,8 +155,8 @@ Graph GraphMST(Graph g) {
     for(int i = 0; i < g->nV; i++){
         visted[i] = false;
     }
-    visted[0] = true;
     addAdjacentNodeToPQ(g,pq,0,visted);
+    visted[0] = true;
     while(!PQIsEmpty(pq)){
         Edge e = PQExtract(pq);
         visted[e.w] = true;
