@@ -189,8 +189,9 @@ static int countNumComponents(Graph g){
     for(int i = 0; i < g->nV; i++){
         visted[i] = false;
     }
-    for(Vertex v = 0; v < g->nE; v++){
+    for(Vertex v = 0; v < g->nV; v++){
         if(!visted[v]){
+            dfs(g,v,visted);
             numComponents++;
         }
 
@@ -199,7 +200,7 @@ static int countNumComponents(Graph g){
 }
 
 static void dfs(Graph g,Vertex v,bool *visted){
-    for(Vertex w = 0; w < g->nE; w++){
+    for(Vertex w = 0; w < g->nV; w++){
         if(GraphIsAdjacent(g,v,w) != 0.0 && visted[w] == false){
             visted[w] = true;
             dfs(g,w,visted);
