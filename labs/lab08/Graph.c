@@ -160,8 +160,7 @@ Graph GraphMST(Graph g) {
     while(!PQIsEmpty(pq)){
         Edge e = PQExtract(pq);
         visted[e.w] = true;
-        mst->edges[e.v][e.w] = e.weight;
-        mst->nE += 1;
+        GraphInsertEdge(g,e);
         addAdjacentNodeToPQ(g,pq,e.w,visted);
     }
     PQFree(pq);
