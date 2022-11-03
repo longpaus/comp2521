@@ -18,6 +18,7 @@ struct graph {
 
 static bool doHasCycle(Graph g, Vertex v, Vertex prev, bool *visited);
 static int  validVertex(Graph g, Vertex v);
+static void addAdjacentNodeToPQ(Graph g,PQ pq,Vertex v,bool *visted);
 
 ////////////////////////////////////////////////////////////////////////
 
@@ -148,7 +149,30 @@ static bool doHasCycle(Graph g, Vertex v, Vertex prev, bool *visited) {
 
 Graph GraphMST(Graph g) {
     // TODO: Complete this function
-    return NULL;
+    Graph mst =  GraphNew(g->nV);
+    PQ pq = PQNew();
+    bool visted[g ->nV];
+    for(int i = 0; i < g->nV; i++){
+        visted[i] = false;
+    }
+    visted[0] = true;
+    addAdjacentNodeToPQ(g,pq,0,visted);
+    while(!PQIsEmpty(pq)){
+        Edge e = PQExtract(pq);
+        mst->edges[e.v][e.w] = e.weight;
+        mst->nE += 1;
+        addAdjacentNodeToPQ(g,pq,e.w,visted);
+    }
+    return (mst->nE != 0) ? mst : NULL;
+}
+
+static void addAdjacentNodeToPQ(Graph g,PQ pq,Vertex v,bool *visted){
+    for(int w = 0; w < g->nV; w++){
+        if(GraphIsAdjacent(g,v,w) && !visted[w]){
+            Edge e = {v,w,g->edges[v][w]};
+            PQInsert(pq,e);
+        }
+    }
 }
 
 ////////////////////////////////////////////////////////////////////////
