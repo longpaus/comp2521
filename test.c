@@ -1,6 +1,6 @@
 #include<stdio.h>
 int main(){
-   if(1.0){
-      printf("dfbjcbdh");
-   }
+   
+   double h = (double)(5-1)/(double)(3);
+   printf("%lf",h);
 }

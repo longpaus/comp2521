@@ -161,7 +161,7 @@ Graph GraphMST(Graph g) {
     }
     addAdjacentNodeToPQ(g,pq,0);
     visited[0] = true;
-    while(!PQIsEmpty(pq) ){
+    while(!PQIsEmpty(pq)){
         Edge e = PQExtract(pq);
         if(visited[e.w]){
             continue;
