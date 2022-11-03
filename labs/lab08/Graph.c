@@ -164,6 +164,7 @@ Graph GraphMST(Graph g) {
         mst->nE += 1;
         addAdjacentNodeToPQ(g,pq,e.w,visted);
     }
+    PQFree(pq);
     return (mst->nE != 0) ? mst : NULL;
 }
 
