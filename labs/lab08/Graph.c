@@ -169,7 +169,7 @@ Graph GraphMST(Graph g) {
 
 static void addAdjacentNodeToPQ(Graph g,PQ pq,Vertex v,bool *visted){
     for(int w = 0; w < g->nV; w++){
-        if(GraphIsAdjacent(g,v,w) && !visted[w]){
+        if(GraphIsAdjacent(g,v,w) != 0.0 && !visted[w]){
             Edge e = {v,w,g->edges[v][w]};
             PQInsert(pq,e);
         }
