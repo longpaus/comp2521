@@ -13,7 +13,7 @@
 // Your task
 static void addAdjacentNodeToPQ(Place cities[],int numCities,Vertex v,PQ pq,int *dist,Vertex *pred);
 static double getDistance(int x1,int y1,int x2,int y2);
-
+//
 /**
  * Designs  a minimal cost electrical grid that will deliver electricity
  * from a power plant to all the given cities. Power lines must be built
@@ -46,14 +46,14 @@ int planGrid1(Place cities[], int numCities, Place powerPlant,
     }
     for(int i = 0; i < numCities; i++){
         if(i != src){
-            Place p1 = {cities[i].x,cities[i].y};
-            Place p2 = {cities[pred[i]].x,cities[pred[i]].y};
+            Place p1 = {{cities[i].x,cities[i].y}};
+            Place p2 = {{cities[pred[i]].x,cities[pred[i]].y}};
             PowerLine pl = {p1,p2};
             powerLines[i] = pl;
         }
     }
 
-
+    PQFree(pq);
     return numCities;
 }
 static void addAdjacentNodeToPQ(Place cities[],int numCities,Vertex v,PQ pq,int *dist,Vertex *pred){
