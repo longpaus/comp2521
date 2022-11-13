@@ -55,7 +55,7 @@ Graph GetGraph(List urlList){
     Graph g = GraphNew(nV);
     Vertex v = 0;
     for(Node n = urlList->head; n != NULL; n = n -> next,v++){ 
-        char urlFile[strlen(n->s) + 1];
+        char urlFile[100];
         strcpy(urlFile,n -> s);
         strcat(urlFile,".txt");
         addOutGoingLinks(g,urlFile,urlList,v);
@@ -84,10 +84,13 @@ static void addOutGoingLinks(Graph g,char *urlFile,List urlList,Vertex v){
             }else{
                 reachEnd = false;
                 Edge e = {v,ListGetIndex(urlList,"#end")};
+                if(e.v != e.w)
                 GraphInsertEdge(g,e);
             }
         }
+
     Edge e = {v,ListGetIndex(urlList,x)};
+    if(e.v != e.w)
     GraphInsertEdge(g,e);
     }
     fclose(f);
