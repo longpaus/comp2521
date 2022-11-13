@@ -102,8 +102,8 @@ void GraphShow(Graph g) {
     printf("Number of edges: %d\n", g->nE);
     for (int v = 0; v < g->nV; v++) {
         for (int w = v + 1; w < g->nV; w++) {
-            if (g->edges[v][w] != 0.0) {
-                printf("Edge %d - %d: %lf\n", v, w, g->edges[v][w]);
+            if (g->edges[v][w]) {
+                printf("Edge %d -> %d: %d\n", v, w, g->edges[v][w]);
             }
         }
     }
@@ -138,4 +138,8 @@ static bool doHasCycle(Graph g, Vertex v, Vertex prev, bool *visited) {
         }
     }
     return false;
+}
+
+static int validVertex(Graph g, Vertex v) {
+    return v >= 0 && v < g->nV;
 }

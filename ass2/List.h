@@ -9,7 +9,7 @@
 
 struct node {
     char  *s;
-    Node   next;
+    struct node *next;
 };
 
 typedef struct node *Node;

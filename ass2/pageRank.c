@@ -17,7 +17,7 @@
 
 List getCollection();
 static void addOutGoingLinks(Graph g,char *urlFile,List urlList,Vertex v);
-
+Graph GetGraph(List urlList);
 
 int main(int argc, char *argv[]) {
     // argc is the number of command-line arguments, which includes the
@@ -50,7 +50,6 @@ List getCollection(){
 
 Graph GetGraph(List urlList){
     int nV = ListSize(urlList);
-    int count = 0;
     Graph g = GraphNew(nV);
     Vertex v = 0;
     for(Node n = urlList->head; n != NULL; n = n -> next,v++){ 
