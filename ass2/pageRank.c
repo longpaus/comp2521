@@ -58,6 +58,7 @@ Graph GetGraph(List urlList){
         strcat(urlFile,".txt");
         addOutGoingLinks(g,urlFile,urlList,v);
     }
+    ListFree(urlList);
     GraphShow(g);
     return g;
 }
