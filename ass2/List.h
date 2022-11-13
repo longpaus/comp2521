@@ -7,7 +7,22 @@
 
 #include <stdbool.h>
 
+struct node {
+    char  *s;
+    Node   next;
+};
+
+typedef struct node *Node;
+
+struct list {
+    Node    head;
+    Node   tail;
+    int    size;
+};
+
 typedef struct list *List;
+
+
 
 // Creates a new empty list
 // Complexity: O(1)
@@ -34,6 +49,9 @@ void ListSort(List l);
 // If the strings themselves contain newlines, too bad
 void ListPrint(List l);
 
+// search through a List and return 
+//the index the url s in in
+int ListGetIndex(List l,char *s);
 
 #endif
 

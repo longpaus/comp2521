@@ -11,10 +11,13 @@
 #include <stdlib.h>
 #include <string.h>
 #include "List.h"
-
-List getCollection();
+#include "Graph.h"
 
 #define MAX_URL_LEN 1024
+
+List getCollection();
+static void addOutGoingLinks(Graph g,char *urlFile,List urlList,Vertex v);
+
 
 int main(int argc, char *argv[]) {
     // argc is the number of command-line arguments, which includes the
@@ -31,7 +34,8 @@ int main(int argc, char *argv[]) {
     // double d = atof(argv[1]);
     // double diffPR = atof(argv[2]);
     // int maxIterations = atoi(argv[3]);
-    getCollection();
+    List urlList = getCollection();
+    GetGraph(urlList);
 }
 
 List getCollection(){
@@ -41,8 +45,49 @@ List getCollection(){
     while (fscanf(f, " %1023s", x) == 1) {
         ListAppend(l,x);
     }
-    ListPrint(l);
     return l;
+}
+
+Graph GetGraph(List urlList){
+    int nV = ListSize(urlList);
+    int count = 0;
+    Graph g = GraphNew(nV);
+    Vertex v = 0;
+    for(Node n = urlList->head; n != NULL; n = n -> next,v++){ 
+        char urlFile[strlen(n->s) + 1];
+        strcpy(urlFile,n -> s);
+        strcat(urlFile,".txt");
+        addOutGoingLinks(g,urlFile,urlList,v);
+    }
+    GraphShow(g);
+    return g;
+}
+/*
+given a urlfile the function seach for the out going links in the
+file and add them as edges to the Vertex v.
+*/
+static void addOutGoingLinks(Graph g,char *urlFile,List urlList,Vertex v){
+    FILE *f = fopen(urlFile,"r");
+    char x[1024];
+    fseek(f,16,SEEK_CUR);
+    bool reachEnd = false;
+    while (fscanf(f, " %1023s", x) == 1) {
+        if(strcmp(x,"#end") == 0){
+            reachEnd = true;
+            continue;
+        }
+        else if(reachEnd == true){
+            if(strcmp(x,"Section-1") == 0){
+                break;
+            }else{
+                reachEnd = false;
+                Edge e = {v,ListGetIndex(urlList,"#end")};
+                GraphInsertEdge(g,e);
+            }
+        }
+    Edge e = {v,ListGetIndex(urlList,x)};
+    GraphInsertEdge(g,e);
+    }
 }
 
 

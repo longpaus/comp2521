@@ -8,17 +8,8 @@
 
 #include "List.h"
 
-typedef struct node *Node;
-struct node {
-    char  *s;
-    Node   next;
-};
 
-struct list {
-    Node   head;
-    Node   tail;
-    int    size;
-};
+
 
 static Node newNode(char *s);
 static char *myStrdup(char *s);
@@ -121,4 +112,14 @@ void ListPrint(List l) {
     for (Node n = l->head; n != NULL; n = n->next) {
         printf("%s\n", n->s);
     }
+}
+
+int ListGetIndex(List l,char *s){
+    int count = 0;
+    for(Node n = l->head; n != NULL; n = n->next,count++){
+        if(strcmp(s,n -> s) == 0){
+            return count;
+        }
+    }
+    return -1;
 }
