@@ -35,7 +35,8 @@ int main(int argc, char *argv[]) {
     // double diffPR = atof(argv[2]);
     // int maxIterations = atoi(argv[3]);
     List urlList = getCollection();
-    GetGraph(urlList);
+    Graph g = GetGraph(urlList);
+    GraphFree(g);
 }
 
 List getCollection(){
@@ -45,6 +46,7 @@ List getCollection(){
     while (fscanf(f, " %1023s", x) == 1) {
         ListAppend(l,x);
     }
+    fclose(f);
     return l;
 }
 
@@ -88,6 +90,7 @@ static void addOutGoingLinks(Graph g,char *urlFile,List urlList,Vertex v){
     Edge e = {v,ListGetIndex(urlList,x)};
     GraphInsertEdge(g,e);
     }
+    fclose(f);
 }
 
 
