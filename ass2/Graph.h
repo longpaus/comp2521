@@ -11,6 +11,13 @@
 
 #include <stdbool.h>
 
+struct graph {
+    int nV;         // #vertices
+    int nE;         // #edges
+    int **edges; // adjacency matrix,1 if there is an directed edge
+                 // between v and w, 0 otherwise
+};
+
 typedef struct graph *Graph;
 
 typedef int Vertex;

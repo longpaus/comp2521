@@ -123,3 +123,13 @@ int ListGetIndex(List l,char *s){
     }
     return -1;
 }
+
+char *ListGetString(List l,int index){
+    int i = 0;
+    for(Node n = l->head; n != NULL; n = n->next,i++){
+        if(i == index){
+            return n->s;
+        }
+    }
+    return NULL;
+}

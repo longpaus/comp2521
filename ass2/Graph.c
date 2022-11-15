@@ -7,14 +7,9 @@
 #include <stdlib.h>
 
 #include "Graph.h"
+#include "List.h"
 
 
-struct graph {
-    int nV;         // #vertices
-    int nE;         // #edges
-    int **edges; // adjacency matrix,1 if there is an directed edge
-                 // between v and w, 0 otherwise
-};
 
 static bool doHasCycle(Graph g, Vertex v, Vertex prev, bool *visited);
 static int  validVertex(Graph g, Vertex v);

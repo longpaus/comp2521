@@ -53,5 +53,8 @@ void ListPrint(List l);
 //the index the url s in in
 int ListGetIndex(List l,char *s);
 
+//return the string in the node at index
+char *ListGetString(List l,int index);
+
 #endif
 
