@@ -31,6 +31,7 @@ static int countOutLinks(Graph g,Vertex v);
 static void copyPR(PR *pr1,PR *pr2,int n);
 static double caculateDiff(PR *pr1,PR *pr2,int n);
 void doPageRank(double d,double diffPR,int maxIterations,PR *pr1,int n,Graph g);
+static void order(PR *pr,int n);
 
 void debug(Graph g){
     for(Vertex v = 0; v < g->nV; v++){
@@ -59,9 +60,8 @@ int main(int argc, char *argv[]) {
         pr1[i].rank = (double)1/(double)n;
         pr1[i].vertex = i;
     }
-    // debug(g);
     doPageRank(d,diffPR,maxIterations,pr1,n,g);
-    
+    order(pr1,n);
     for(int i = 0; i < n; i++){
         char *s = ListGetString(urlList,pr1[i].vertex);
         int outLinks = countOutLinks(g,pr1[i].vertex);
@@ -73,9 +73,23 @@ int main(int argc, char *argv[]) {
     
 }
 
-// static void mergeSort(PR *pr){
+static void order(PR *pr,int n){
+    double tempRank;
+    int tempVertex;
+    for (int i = 0; i < n; i++) {     
+        for (int j = i+1; j < n; j++) {     
+           if(pr[i].rank < pr[j].rank) {    
+               tempRank = pr[i].rank;
+               tempVertex = pr[i].vertex;    
+               pr[i].rank = pr[j].rank;
+               pr[i].vertex = pr[j].vertex;    
+               pr[j].rank = tempRank;
+               pr[j].vertex = tempVertex;    
+           }     
+        }     
+    }    
 
-// }
+}
 
 void doPageRank(double d,double diffPR,int maxIterations,PR *pr1,int n,Graph g){
     int iteration = 0;
