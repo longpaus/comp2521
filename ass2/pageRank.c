@@ -156,13 +156,16 @@ static int countInLinks(Graph g,Vertex v){
 
 static double wOut(Graph g, Vertex v, Vertex u){
     double denominator = 0.0;
+    int outLinks;
     for(Vertex w = 0; w < g->nV; w++){
         if(g -> edges[v][w]){
-            int outLinks = countOutLinks(g,w);
+            outLinks = countOutLinks(g,w);
             denominator +=  (outLinks != 0) ? (double)outLinks : 0.5;
         }
     }
-    return (double)countOutLinks(g,u)/denominator;
+    outLinks = countOutLinks(g,u);
+    double numerator = (outLinks != 0) ? (double)outLinks : 0.5;
+    return numerator/denominator;
 }
 static int countOutLinks(Graph g,Vertex v){
     int count = 0;
@@ -173,7 +176,7 @@ static int countOutLinks(Graph g,Vertex v){
     }
     return count;
 }
-/////////////////////////////// for readData file
+/////////////////////////////// for readData 
 
 List getCollection(){
     FILE *f = fopen("collection.txt","r");
