@@ -12,6 +12,8 @@ else
     echo "pass 01"
 fi
 
+rm outPut
+
 cd ../02
 ./pageRank 0.85 0.000010 1000 > outPut
 
@@ -23,6 +25,8 @@ then
 else
     echo "pass 02"
 fi
+
+rm outPut
 
 cd ../03
 
