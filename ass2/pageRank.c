@@ -116,7 +116,7 @@ static double wIn(Graph g,Vertex v,Vertex u){
     for(Vertex w = 0; w < g->nV; w++){
         if(g -> edges[w][v]){
             int inLinks = countInLinks(g,w);
-            denominator += (inLinks != 0) ? inLinks : 0.5;
+            denominator += inLinks;
         }
     }
     return (double)countInLinks(g,u)/denominator;
