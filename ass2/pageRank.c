@@ -24,7 +24,7 @@ List getCollection();
 static void addOutGoingLinks(Graph g,char *urlFile,List urlList,Vertex v);
 static double caculatePR(double d,Graph g,int n,Vertex v,PR *pr1);
 Graph GetGraph(List urlList);
-static wIn(Graph g,Vertex v,Vertex u);
+static double wIn(Graph g,Vertex v,Vertex u);
 static int countInLinks(Graph g,Vertex v);
 static double wOut(Graph g, Vertex v, Vertex u);
 static int countOutLinks(Graph g,Vertex v);
@@ -58,21 +58,23 @@ int main(int argc, char *argv[]) {
     for(int i = 0; i < n; i++){
         char *s = ListGetString(urlList,pr1[i].vertex);
         int outLinks = countOutLinks(g,pr1[i].vertex);
-        printf("%s %d %.7lf",s,outLinks,pr1[i].rank);
+        printf("%s %d %.7lf\n",s,outLinks,pr1[i].rank);
     }
+    ListFree(urlList);
+    GraphFree(g);
 
     
 }
 
-static void mergeSort(PR *pr){
+// static void mergeSort(PR *pr){
 
-}
+// }
 
 void doPageRank(double d,double diffPR,int maxIterations,PR *pr1,int n,Graph g){
+    List urlList = getCollection();
     int iteration = 0;
     double diff = diffPR;
     while(iteration < maxIterations && diff >= diffPR){
-        int t = iteration;
         PR pr2[n]; // for iteration t + 1
         // get the vavlues for t + 1
         for(Vertex v = 0; v < n; v++){
@@ -85,9 +87,9 @@ void doPageRank(double d,double diffPR,int maxIterations,PR *pr1,int n,Graph g){
     }
 }
 static double caculateDiff(PR *pr1,PR *pr2,int n){
-    double diff;
+    double diff = 0.0;
     for(int i = 0; i < n; i++){
-        diff += abs(pr2[i].rank - pr1[i].rank);
+        diff += fabs(pr2[i].rank - pr1[i].rank);
     }
     return diff;
 }
@@ -100,7 +102,7 @@ static void copyPR(PR *pr1,PR *pr2,int n){
     }
 }
 static double caculatePR(double d,Graph g,int n,Vertex v,PR *pr1){
-    double summation;
+    double summation = 0.0;
     for(Vertex j = 0; j < g->nV; j++){
         if(g->edges[j][v]){
             summation += pr1[j].rank * wOut(g,j,v) * wIn(g,j,v);
@@ -109,15 +111,15 @@ static double caculatePR(double d,Graph g,int n,Vertex v,PR *pr1){
     return ((double)1 - d)/n + (d *summation);
 }
 
-static wIn(Graph g,Vertex v,Vertex u){
-    double denominator;
-    for(Vertex w = 0; w < g->nE; w++){
-        if(g -> edges[v][w]){
+static double wIn(Graph g,Vertex v,Vertex u){
+    double denominator = 0.0;
+    for(Vertex w = 0; w < g->nV; w++){
+        if(g -> edges[w][v]){
             int inLinks = countInLinks(g,w);
             denominator += (inLinks != 0) ? inLinks : 0.5;
         }
     }
-    return (double)countInLinks(g,u);
+    return (double)countInLinks(g,u)/denominator;
 }
 
 static int countInLinks(Graph g,Vertex v){
@@ -131,7 +133,7 @@ static int countInLinks(Graph g,Vertex v){
 }
 
 static double wOut(Graph g, Vertex v, Vertex u){
-    double denominator;
+    double denominator = 0.0;
     for(Vertex w = 0; w < g->nV; w++){
         if(g -> edges[v][w]){
             int outLinks = countOutLinks(g,w);
@@ -172,7 +174,7 @@ Graph GetGraph(List urlList){
         strcat(urlFile,".txt");
         addOutGoingLinks(g,urlFile,urlList,v);
     }
-    GraphShow(g);
+    // GraphShow(g);
     return g;
 }
 /*

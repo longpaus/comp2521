@@ -98,7 +98,7 @@ void GraphShow(Graph g) {
     for (int v = 0; v < g->nV; v++) {
         for (int w = v + 1; w < g->nV; w++) {
             if (g->edges[v][w]) {
-                printf("Edge %d -> %d", v, w);
+                printf("Edge %d -> %d\n", v, w);
             }
         }
     }
