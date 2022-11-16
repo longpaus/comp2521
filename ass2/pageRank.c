@@ -200,7 +200,7 @@ Graph GetGraph(List urlList){
     Graph g = GraphNew(nV);
     Vertex v = 0;
     for(Node n = urlList->head; n != NULL; n = n -> next,v++){ 
-        char urlFile[105];
+        char urlFile[MAX_URL_LEN];
         strcpy(urlFile,n -> s);
         strcat(urlFile,".txt");
         addOutGoingLinks(g,urlFile,urlList,v);
@@ -214,9 +214,9 @@ file and add them as edges to the Vertex v.
 static void addOutGoingLinks(Graph g,char *urlFile,List urlList,Vertex v){
     FILE *f = fopen(urlFile,"r");
     bool collectUrl = false;
-    char x[100];
+    char x[1024];
     while (fscanf(f, " %1023s", x) == 1) {
-        if(strcmp(x,"#Section-1") == 0){
+        if(strcmp(x,"Section-1") == 0){
            collectUrl = true;
            continue;
         }
