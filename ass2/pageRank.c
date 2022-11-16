@@ -215,7 +215,7 @@ static void addOutGoingLinks(Graph g,char *urlFile,List urlList,Vertex v){
     FILE *f = fopen(urlFile,"r");
     bool collectUrl = false;
     char x[100];
-    while (fscanf(f, " %99s", x) == 1) {
+    while (fscanf(f, " %1023s", x) == 1) {
         if(strcmp(x,"#Section-1") == 0){
            collectUrl = true;
            continue;
