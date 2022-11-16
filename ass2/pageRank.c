@@ -33,11 +33,6 @@ static double caculateDiff(PR *pr1,PR *pr2,int n);
 void doPageRank(double d,double diffPR,int maxIterations,PR *pr1,int n,Graph g);
 static void order(PR *pr,int n);
 
-void debug(Graph g){
-    for(Vertex v = 0; v < g->nV; v++){
-        printf("nodeid: %d, indegree: %d, outdegree: %d\n",v,countInLinks(g,v),countOutLinks(g,v));
-    }
-}
 
 int main(int argc, char *argv[]) {
     // argc is the number of command-line arguments, which includes the
@@ -72,7 +67,7 @@ int main(int argc, char *argv[]) {
 
     
 }
-
+//sort the given PR
 static void order(PR *pr,int n){
     double tempRank;
     int tempVertex;
@@ -91,6 +86,7 @@ static void order(PR *pr,int n){
 
 }
 
+//given a graph g return the pagerank for each vertex
 void doPageRank(double d,double diffPR,int maxIterations,PR *pr1,int n,Graph g){
     int iteration = 0;
     double diff = diffPR;
@@ -106,6 +102,7 @@ void doPageRank(double d,double diffPR,int maxIterations,PR *pr1,int n,Graph g){
         iteration++;
     }
 }
+//caculate diff given pr1 and pr2
 static double caculateDiff(PR *pr1,PR *pr2,int n){
     double diff = 0.0;
     for(int i = 0; i < n; i++){
@@ -113,6 +110,7 @@ static double caculateDiff(PR *pr1,PR *pr2,int n){
     }
     return diff;
 }
+//copy pr2 into pr1
 static void copyPR(PR *pr1,PR *pr2,int n){
     for(int i = 0; i < n; i++){
         double rank = pr2[i].rank;
@@ -121,6 +119,8 @@ static void copyPR(PR *pr1,PR *pr2,int n){
         pr1[i].vertex = vertex;
     }
 }
+
+//caculate the pagerank for a specific vertex
 static double caculatePR(double d,Graph g,int n,Vertex v,PR *pr1){
     double summation = 0.0;
     for(Vertex j = 0; j < g->nV; j++){
@@ -133,6 +133,7 @@ static double caculatePR(double d,Graph g,int n,Vertex v,PR *pr1){
     return ((double)1 - d)/(double)n + (d *summation);
 }
 
+//cacualte the Win from vertex v to u
 static double wIn(Graph g,Vertex v,Vertex u){
     double denominator = 0.0;
     for(Vertex w = 0; w < g->nV; w++){
@@ -144,6 +145,8 @@ static double wIn(Graph g,Vertex v,Vertex u){
     return (double)countInLinks(g,u)/denominator;
 }
 
+//given vertex v return how manny in going links it has 
+// in graph g
 static int countInLinks(Graph g,Vertex v){
     int count = 0;
     for(Vertex w = 0; w < g->nV; w++){
@@ -153,7 +156,7 @@ static int countInLinks(Graph g,Vertex v){
     }
     return count;
 }
-
+//caulate the Wout from vertex v to u
 static double wOut(Graph g, Vertex v, Vertex u){
     double denominator = 0.0;
     int outLinks;
@@ -167,6 +170,9 @@ static double wOut(Graph g, Vertex v, Vertex u){
     double numerator = (outLinks != 0) ? (double)outLinks : 0.5;
     return numerator/denominator;
 }
+
+//given vertex v return how manny out going links it has 
+// in graph g
 static int countOutLinks(Graph g,Vertex v){
     int count = 0;
     for(Vertex w = 0; w < g->nV; w++){
@@ -194,12 +200,11 @@ Graph GetGraph(List urlList){
     Graph g = GraphNew(nV);
     Vertex v = 0;
     for(Node n = urlList->head; n != NULL; n = n -> next,v++){ 
-        char urlFile[MAX_URL_LEN];
+        char urlFile[105];
         strcpy(urlFile,n -> s);
         strcat(urlFile,".txt");
         addOutGoingLinks(g,urlFile,urlList,v);
     }
-    // GraphShow(g);
     return g;
 }
 /*
@@ -208,29 +213,23 @@ file and add them as edges to the Vertex v.
 */
 static void addOutGoingLinks(Graph g,char *urlFile,List urlList,Vertex v){
     FILE *f = fopen(urlFile,"r");
-    char x[1024];
-    fseek(f,16,SEEK_CUR);
-    bool reachEnd = false;
-    while (fscanf(f, " %1023s", x) == 1) {
-        if(strcmp(x,"#end") == 0){
-            reachEnd = true;
-            continue;
+    bool collectUrl = false;
+    char x[100];
+    while (fscanf(f, " %99s", x) == 1) {
+        if(strcmp(x,"#Section-1") == 0){
+           collectUrl = true;
+           continue;
         }
-        else if(reachEnd == true){
-            if(strcmp(x,"Section-1") == 0){
-                break;
-            }else{
-                reachEnd = false;
-                Edge e = {v,ListGetIndex(urlList,"#end")};
-                if(e.v != e.w){
-                    GraphInsertEdge(g,e);
-                }
+        if(strcmp(x,"#end") == 0){
+            break;
+        }
+        if(collectUrl){
+            Edge e = {v,ListGetIndex(urlList,x)};
+            if(e.v != e.w){
+                GraphInsertEdge(g,e);
             }
         }
-        Edge e = {v,ListGetIndex(urlList,x)};
-        if(e.v != e.w){
-            GraphInsertEdge(g,e);
-        }
+       
     }
     fclose(f);
 }
