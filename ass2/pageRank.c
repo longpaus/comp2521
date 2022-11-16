@@ -59,7 +59,7 @@ int main(int argc, char *argv[]) {
         pr1[i].rank = (double)1/(double)n;
         pr1[i].vertex = i;
     }
-    debug(g);
+    // debug(g);
     doPageRank(d,diffPR,maxIterations,pr1,n,g);
     
     for(int i = 0; i < n; i++){
@@ -111,7 +111,9 @@ static double caculatePR(double d,Graph g,int n,Vertex v,PR *pr1){
     double summation = 0.0;
     for(Vertex j = 0; j < g->nV; j++){
         if(g->edges[j][v]){
-            summation += pr1[j].rank * wOut(g,j,v) * wIn(g,j,v);
+            double out =  wOut(g,j,v);
+            double in = wIn(g,j,v);
+            summation += pr1[j].rank * in * out;
         }
     }
     return ((double)1 - d)/(double)n + (d *summation);
@@ -120,7 +122,7 @@ static double caculatePR(double d,Graph g,int n,Vertex v,PR *pr1){
 static double wIn(Graph g,Vertex v,Vertex u){
     double denominator = 0.0;
     for(Vertex w = 0; w < g->nV; w++){
-        if(g -> edges[w][v]){
+        if(g -> edges[v][w]){
             int inLinks = countInLinks(g,w);
             denominator += (double)inLinks;
         }
