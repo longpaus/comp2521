@@ -71,7 +71,6 @@ int main(int argc, char *argv[]) {
 // }
 
 void doPageRank(double d,double diffPR,int maxIterations,PR *pr1,int n,Graph g){
-    List urlList = getCollection();
     int iteration = 0;
     double diff = diffPR;
     while(iteration < maxIterations && diff >= diffPR){
@@ -108,7 +107,7 @@ static double caculatePR(double d,Graph g,int n,Vertex v,PR *pr1){
             summation += pr1[j].rank * wOut(g,j,v) * wIn(g,j,v);
         }
     }
-    return ((double)1 - d)/n + (d *summation);
+    return ((double)1 - d)/(double)n + (d *summation);
 }
 
 static double wIn(Graph g,Vertex v,Vertex u){
@@ -116,7 +115,7 @@ static double wIn(Graph g,Vertex v,Vertex u){
     for(Vertex w = 0; w < g->nV; w++){
         if(g -> edges[w][v]){
             int inLinks = countInLinks(g,w);
-            denominator += inLinks;
+            denominator += (double)inLinks;
         }
     }
     return (double)countInLinks(g,u)/denominator;
@@ -137,7 +136,7 @@ static double wOut(Graph g, Vertex v, Vertex u){
     for(Vertex w = 0; w < g->nV; w++){
         if(g -> edges[v][w]){
             int outLinks = countOutLinks(g,w);
-            denominator +=  (outLinks != 0) ? outLinks : 0.5;
+            denominator +=  (outLinks != 0) ? (double)outLinks : 0.5;
         }
     }
     return (double)countOutLinks(g,u)/denominator;
