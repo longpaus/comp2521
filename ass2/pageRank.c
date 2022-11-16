@@ -32,6 +32,12 @@ static void copyPR(PR *pr1,PR *pr2,int n);
 static double caculateDiff(PR *pr1,PR *pr2,int n);
 void doPageRank(double d,double diffPR,int maxIterations,PR *pr1,int n,Graph g);
 
+void debug(Graph g){
+    for(Vertex v = 0; v < g->nV; v++){
+        printf("nodeid: %d, indegree: %d, outdegree: %d\n",v,countInLinks(g,v),countOutLinks(g,v));
+    }
+}
+
 int main(int argc, char *argv[]) {
     // argc is the number of command-line arguments, which includes the
     // program name
@@ -53,6 +59,7 @@ int main(int argc, char *argv[]) {
         pr1[i].rank = (double)1/(double)n;
         pr1[i].vertex = i;
     }
+    debug(g);
     doPageRank(d,diffPR,maxIterations,pr1,n,g);
     
     for(int i = 0; i < n; i++){
