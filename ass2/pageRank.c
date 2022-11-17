@@ -34,6 +34,8 @@ static double caculateDiff(PR *pr1, PR *pr2, int n);
 void doPageRank(double d, double diffPR, int maxIterations, PR *pr1, int n,
                 Graph g);
 static void sortByWeight(PR *pr, int n);
+static void sortByName(PR *pr, int lo, int hi,List urlList);
+static void order(PR *pr, int n,List urlList);
 
 int main(int argc, char *argv[]) {
 	// argc is the number of command-line arguments, which includes the
@@ -57,7 +59,7 @@ int main(int argc, char *argv[]) {
 		pr1[i].vertex = i;
 	}
 	doPageRank(d, diffPR, maxIterations, pr1, n, g);
-	sortByWeight(pr1, n);
+	order(pr1,n,urlList);
 	for (int i = 0; i < n; i++) {
 		char *s = ListGetString(urlList, pr1[i].vertex);
 		int outLinks = countOutLinks(g, pr1[i].vertex);
@@ -66,19 +68,42 @@ int main(int argc, char *argv[]) {
 	ListFree(urlList);
 	GraphFree(g);
 }
-//sort the given PR
+static void order(PR *pr, int n,List urlList){
+	sortByWeight(pr, n);
+	int hi = 0;
+	int lo = 0;
+	while (hi < n) {
+		while (hi < n && pr[lo].rank == pr[hi].rank) {
+			hi++;
+		}
+		sortByName(pr,lo, hi - 1,urlList);
+		lo = hi;
+	}
+}
+
+static void sortByName(PR *pr, int lo, int hi,List urlList) {
+	for (int i = lo; i <= hi; ++i) {
+		for (int j = i + 1; j <= hi; ++j) {
+			char *s1 = ListGetString(urlList, pr[i].vertex);
+			char *s2 = ListGetString(urlList, pr[j].vertex);
+			if (strcmp(s1,s2) > 0) {
+				PR tmp = pr[i];
+				pr[i] = pr[j];
+				pr[j] = tmp;
+			}
+		}
+	}
+}
+//sort the given PR by their weight
 static void sortByWeight(PR *pr, int n) {
 	double tempRank;
 	int tempVertex;
 	for (int i = 0; i < n; i++) {
 		for (int j = i + 1; j < n; j++) {
 			if (pr[i].rank < pr[j].rank) {
-				tempRank = pr[i].rank;
-				tempVertex = pr[i].vertex;
-				pr[i].rank = pr[j].rank;
-				pr[i].vertex = pr[j].vertex;
-				pr[j].rank = tempRank;
-				pr[j].vertex = tempVertex;
+				PR tmp = pr[i];
+				pr[i] = pr[j];
+				pr[j] = tmp;
 			}
 		}
 	}
