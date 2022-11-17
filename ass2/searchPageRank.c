@@ -59,7 +59,7 @@ static void order(Info *urls,int numUrl){
     int hi = 0;
     int lo = 0;
     while(hi < numUrl){
-        while(hi < numUrl && urls[lo].weight == urls[hi].weight){
+        while(hi < numUrl && urls[lo].numMatchTerms == urls[hi].numMatchTerms){
             hi++;
         }
         sortByWeight(urls,lo,hi - 1);
