@@ -24,7 +24,7 @@ static int getNumUrl();
 void initInfoArr(Info *urls, int numUrl);
 void updateMatchedTerms(Info *urls, int numUrl, int numWords, char *argv[]);
 static List getMatchedUrls(char *s,Info *urls,int numUrl);
-static isUrl(char *s,Info *urls,int numUrl);
+static bool isUrl(char *s,Info *urls,int numUrl);
 
 int main(int argc, char *argv[]) {
 	int numUrl = getNumUrl();
@@ -39,12 +39,12 @@ void updateMatchedTerms(Info *urls, int numUrl, int numWords, char *argv[]) {
         List l = getMatchedUrls(argv[i],urls,numUrl);
         ListPrint(l);
         printf("\n");
+		ListFree(l);
     }
 }
 
 // given a word s return a List of urls that contain s in its section2
 static List getMatchedUrls(char *s,Info *urls,int numUrl) {
-	char word[MAX_WORD_LEN];
 	FILE *f = fopen("invertedIndex.txt", "r");
     List matchedUrl = ListNew();
 	char x[1024];
@@ -66,7 +66,7 @@ static List getMatchedUrls(char *s,Info *urls,int numUrl) {
     return matchedUrl;
 }
 
-static isUrl(char *s,Info *urls,int numUrl){
+static bool isUrl(char *s,Info *urls,int numUrl){
     for(int i = 0; i < numUrl; i++){
         if(strcmp(s,urls[i].url) == 0){
             return true;
