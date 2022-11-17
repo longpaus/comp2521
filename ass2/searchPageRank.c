@@ -30,13 +30,7 @@ static void sortByMatchedTerms(Info *urls, int numUrl);
 static void sortByWeight(Info *urls, int lo, int hi);
 static void order(Info *urls, int numUrl);
 static void sortByName(Info *urls, int lo, int hi);
-void print(Info *urls, int numUrl) {
-	for (int i = 0; i < numUrl; i++) {
-		printf("url: %s, matchTerms: %d, weight: %.7lf\n", urls[i].url,
-		       urls[i].numMatchTerms, urls[i].weight);
-		free(urls[i].url);
-	}
-}
+
 
 int main(int argc, char *argv[]) {
 	int numUrl = getNumUrl();
@@ -46,6 +40,14 @@ int main(int argc, char *argv[]) {
 	updateMatchedTerms(urls, numUrl, argc, argv);
 	order(urls, numUrl);
 	print(urls, numUrl);
+}
+
+static void print(Info *urls, int numUrl) {
+    numUrl = (numUrl > 30) ? 30 : numUrl;
+	for (int i = 0; i < numUrl; i++) {
+		printf("%s\n",urls[i].url);
+		free(urls[i].url);
+	}
 }
 
 static void updateMatchedTerms(Info *urls, int numUrl, int numWords,
