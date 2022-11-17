@@ -28,7 +28,7 @@ static bool isUrl(char *url,Info *urls,int numUrl);
 
 void print(Info *urls,int numUrl){
     for(int i = 0; i < numUrl; i++){
-        printf("url: %s, matchTerms: %d, pr: %d",urls[i].url,urls[i].numMatchTerms,urls[i].pageRank);
+        printf("url: %s, matchTerms: %d, pr: %d\n",urls[i].url,urls[i].numMatchTerms,urls[i].pageRank);
         free(urls[i].url);
     }
 }
