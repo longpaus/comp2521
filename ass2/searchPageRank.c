@@ -23,8 +23,14 @@ typedef struct info {
 static int getNumUrl();
 void initInfoArr(Info *urls, int numUrl);
 void updateMatchedTerms(Info *urls, int numUrl, int numWords, char *argv[]);
-static List getMatchedUrls(char *s,Info *urls,int numUrl);
-static bool isUrl(char *s,Info *urls,int numUrl);
+static void getMatchedUrls(char *s,Info *urls,int numUrl);
+static bool isUrl(char *url,Info *urls,int numUrl);
+
+void print(Info *urls,int numUrl){
+    for(int i = 0; i < numUrl; i++){
+        printf("url: %s, matchTerms: %d, pr: %d",urls[i].url,urls[i].numMatchTerms,urls[i].pageRank);
+    }
+}
 
 int main(int argc, char *argv[]) {
 	int numUrl = getNumUrl();
@@ -32,21 +38,18 @@ int main(int argc, char *argv[]) {
 	initInfoArr(urls, numUrl);
 
 	updateMatchedTerms(urls, numUrl, argc, argv);
+    print(urls,numUrl);
 }
 
 void updateMatchedTerms(Info *urls, int numUrl, int numWords, char *argv[]) {
 	for (int i = 1; i < numWords; i++) {
-        List l = getMatchedUrls(argv[i],urls,numUrl);
-        ListPrint(l);
-        printf("\n");
-		ListFree(l);
+        getMatchedUrls(argv[i],urls,numUrl);
     }
 }
 
-// given a word s return a List of urls that contain s in its section2
-static List getMatchedUrls(char *s,Info *urls,int numUrl) {
+// given a word s update the numMatchTerms for any url that matches it
+static void getMatchedUrls(char *s,Info *urls,int numUrl) {
 	FILE *f = fopen("invertedIndex.txt", "r");
-    List matchedUrl = ListNew();
 	char x[1024];
     bool collectUrl = false;
 	while (fscanf(f, " %1023s", x) == 1) {
@@ -56,19 +59,21 @@ static List getMatchedUrls(char *s,Info *urls,int numUrl) {
         }
         if(collectUrl){
             if(isUrl(x,urls,numUrl)){
-                ListAppend(matchedUrl,x);
+                continue;
             }else{
                 break;
             }
         }
 	}
 	fclose(f);
-    return matchedUrl;
 }
 
-static bool isUrl(char *s,Info *urls,int numUrl){
+//given a url check if it exist, if it does increase that
+// url numMatchTerms by one and return true, returns false otherwise
+static bool isUrl(char *url,Info *urls,int numUrl){
     for(int i = 0; i < numUrl; i++){
-        if(strcmp(s,urls[i].url) == 0){
+        if(strcmp(url,urls[i].url) == 0){
+            urls[i].numMatchTerms++;
             return true;
         }
     }
