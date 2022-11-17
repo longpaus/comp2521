@@ -30,7 +30,7 @@ static void sortByMatchedTerms(Info *urls, int numUrl);
 static void sortByWeight(Info *urls, int lo, int hi);
 static void order(Info *urls, int numUrl);
 static void sortByName(Info *urls, int lo, int hi);
-
+static void print(Info *urls, int numUrl);
 
 int main(int argc, char *argv[]) {
 	int numUrl = getNumUrl();
