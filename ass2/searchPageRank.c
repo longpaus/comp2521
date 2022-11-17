@@ -22,15 +22,18 @@ typedef struct info {
 } Info;
 static int getNumUrl();
 void initInfoArr(Info *urls, int numUrl);
-static void updateMatchedTerms(Info *urls, int numUrl, int numWords, char *argv[]);
-static void getMatchedUrls(char *s,Info *urls,int numUrl);
-static bool isUrl(char *url,Info *urls,int numUrl);
+static void updateMatchedTerms(Info *urls, int numUrl, int numWords,
+                               char *argv[]);
+static void getMatchedUrls(char *s, Info *urls, int numUrl);
+static bool isUrl(char *url, Info *urls, int numUrl);
+static void sortByMatchedTerms(Info *urls, int numUrl);
 
-void print(Info *urls,int numUrl){
-    for(int i = 0; i < numUrl; i++){
-        printf("url: %s, matchTerms: %d, weight: %.7lf\n",urls[i].url,urls[i].numMatchTerms,urls[i].weight);
-        free(urls[i].url);
-    }
+void print(Info *urls, int numUrl) {
+	for (int i = 0; i < numUrl; i++) {
+		printf("url: %s, matchTerms: %d, weight: %.7lf\n", urls[i].url,
+		       urls[i].numMatchTerms, urls[i].weight);
+		free(urls[i].url);
+	}
 }
 
 int main(int argc, char *argv[]) {
@@ -39,69 +42,79 @@ int main(int argc, char *argv[]) {
 	initInfoArr(urls, numUrl);
 
 	updateMatchedTerms(urls, numUrl, argc, argv);
-    print(urls,numUrl);
+    sortByMatchedTerms(urls,numUrl);
+	print(urls, numUrl);
 }
 
-static void updateMatchedTerms(Info *urls, int numUrl, int numWords, char *argv[]) {
+static void updateMatchedTerms(Info *urls, int numUrl, int numWords,
+                               char *argv[]) {
 	for (int i = 1; i < numWords; i++) {
-        getMatchedUrls(argv[i],urls,numUrl);
-    }
+		getMatchedUrls(argv[i], urls, numUrl);
+	}
 }
 
-// static void sortByMatchedTerms(Info *urls,int numUrl){
-
-// }
+static void sortByMatchedTerms(Info *urls, int numUrl) {
+	for (int i = 0; i < numUrl; ++i) {
+		for (int j = i + 1; j < numUrl; ++j) {
+			if (urls[i].numMatchTerms < urls[j].numMatchTerms) {
+                Info tmp = urls[i];
+				urls[i] = urls[j];
+				urls[j] = tmp;
+			}
+		}
+	}
+}
 
 // given a word s update the numMatchTerms for any url that matches it
-static void getMatchedUrls(char *s,Info *urls,int numUrl) {
+static void getMatchedUrls(char *s, Info *urls, int numUrl) {
 	FILE *f = fopen("invertedIndex.txt", "r");
 	char x[1024];
-    bool collectUrl = false;
+	bool collectUrl = false;
 	while (fscanf(f, " %1023s", x) == 1) {
-		if(strcmp(x,s) == 0){
-            collectUrl = true;
-            continue;
-        }
-        if(collectUrl){
-            if(isUrl(x,urls,numUrl)){
-                continue;
-            }else{
-                break;
-            }
-        }
+		if (strcmp(x, s) == 0) {
+			collectUrl = true;
+			continue;
+		}
+		if (collectUrl) {
+			if (isUrl(x, urls, numUrl)) {
+				continue;
+			} else {
+				break;
+			}
+		}
 	}
 	fclose(f);
 }
 
 //given a url check if it exist, if it does increase that
 // url numMatchTerms by one and return true, returns false otherwise
-static bool isUrl(char *url,Info *urls,int numUrl){
-    for(int i = 0; i < numUrl; i++){
-        if(strcmp(url,urls[i].url) == 0){
-            urls[i].numMatchTerms++;
-            return true;
-        }
-    }
-    return false;
+static bool isUrl(char *url, Info *urls, int numUrl) {
+	for (int i = 0; i < numUrl; i++) {
+		if (strcmp(url, urls[i].url) == 0) {
+			urls[i].numMatchTerms++;
+			return true;
+		}
+	}
+	return false;
 }
 
 void initInfoArr(Info *urls, int numUrl) {
 	FILE *f = fopen("pageRankList.txt", "r");
-    char x[MAX_URL_LEN];
-    int i = 0;
-    int count = 1;
+	char x[MAX_URL_LEN];
+	int i = 0;
+	int count = 1;
 	while (fscanf(f, "%99s", x) == 1) {
-		if(count == 1){
-            urls[i].url = malloc(MAX_URL_LEN * sizeof(char));
-		    strcpy(urls[i].url, x);
-            urls[i].numMatchTerms = 0;
-        }
-        if(count == 3){
+		if (count == 1) {
+			urls[i].url = malloc(MAX_URL_LEN * sizeof(char));
+			strcpy(urls[i].url, x);
+			urls[i].numMatchTerms = 0;
+		}
+		if (count == 3) {
 			urls[i].weight = atof(x);
-            count = 0;
+			count = 0;
 			i++;
-        }
-        count++;
+		}
+		count++;
 	}
 	fclose(f);
 }
