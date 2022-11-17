@@ -40,13 +40,17 @@ int main(int argc, char *argv[]) {
 	updateMatchedTerms(urls, numUrl, argc, argv);
 	order(urls, numUrl);
 	print(urls, numUrl);
+    for(int i = 0; i < numUrl; i++){
+        free(urls[i].url);
+    }
 }
 
 static void print(Info *urls, int numUrl) {
     numUrl = (numUrl > 30) ? 30 : numUrl;
 	for (int i = 0; i < numUrl; i++) {
-		printf("%s\n",urls[i].url);
-		free(urls[i].url);
+        if(urls[i].numMatchTerms > 0){
+		    printf("%s\n",urls[i].url);
+        }
 	}
 }
 
