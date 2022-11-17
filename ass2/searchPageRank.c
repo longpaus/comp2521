@@ -27,8 +27,9 @@ static void updateMatchedTerms(Info *urls, int numUrl, int numWords,
 static void getMatchedUrls(char *s, Info *urls, int numUrl);
 static bool isUrl(char *url, Info *urls, int numUrl);
 static void sortByMatchedTerms(Info *urls, int numUrl);
-static void sortByWeight(Info *urls,int lo,int hi);
-static void order(Info *urls,int numUrl);
+static void sortByWeight(Info *urls, int lo, int hi);
+static void order(Info *urls, int numUrl);
+static void sortByName(Info *urls, int lo, int hi);
 void print(Info *urls, int numUrl) {
 	for (int i = 0; i < numUrl; i++) {
 		printf("url: %s, matchTerms: %d, weight: %.7lf\n", urls[i].url,
@@ -43,7 +44,7 @@ int main(int argc, char *argv[]) {
 	initInfoArr(urls, numUrl);
 
 	updateMatchedTerms(urls, numUrl, argc, argv);
-    order(urls,numUrl);
+	order(urls, numUrl);
 	print(urls, numUrl);
 }
 
@@ -54,24 +55,48 @@ static void updateMatchedTerms(Info *urls, int numUrl, int numWords,
 	}
 }
 
-static void order(Info *urls,int numUrl){
-    sortByMatchedTerms(urls,numUrl);
-    int hi = 0;
-    int lo = 0;
-    while(hi < numUrl){
-        while(hi < numUrl && urls[lo].numMatchTerms == urls[hi].numMatchTerms){
-            hi++;
-        }
-        sortByWeight(urls,lo,hi - 1);
-        lo = hi;
-    }
+static void order(Info *urls, int numUrl) {
+	sortByMatchedTerms(urls, numUrl);
+	int hi = 0;
+	int lo = 0;
+	while (hi < numUrl) {
+		while (hi < numUrl &&
+		       urls[lo].numMatchTerms == urls[hi].numMatchTerms) {
+			hi++;
+		}
+		sortByWeight(urls, lo, hi - 1);
+		lo = hi;
+	}
+	hi = 0;
+	lo = 0;
+	while (hi < numUrl) {
+		while (hi < numUrl &&
+		       urls[lo].numMatchTerms == urls[hi].numMatchTerms &&
+		       urls[lo].weight == urls[hi].weight) {
+			hi++;
+		}
+		sortByName(urls, lo, hi - 1);
+		lo = hi;
+	}
 }
 
-static void sortByWeight(Info *urls,int lo,int hi){
-    for (int i = lo; i <= hi; ++i) {
+static void sortByName(Info *urls, int lo, int hi) {
+	for (int i = lo; i <= hi; ++i) {
+		for (int j = i + 1; j <= hi; ++j) {
+			if (strcmp(urls[i].url,urls[j].url) > 0) {
+				Info tmp = urls[i];
+				urls[i] = urls[j];
+				urls[j] = tmp;
+			}
+		}
+	}
+}
+
+static void sortByWeight(Info *urls, int lo, int hi) {
+	for (int i = lo; i <= hi; ++i) {
 		for (int j = i + 1; j <= hi; ++j) {
 			if (urls[i].weight < urls[j].weight) {
-                Info tmp = urls[i];
+				Info tmp = urls[i];
 				urls[i] = urls[j];
 				urls[j] = tmp;
 			}
@@ -83,7 +108,7 @@ static void sortByMatchedTerms(Info *urls, int numUrl) {
 	for (int i = 0; i < numUrl; ++i) {
 		for (int j = i + 1; j < numUrl; ++j) {
 			if (urls[i].numMatchTerms < urls[j].numMatchTerms) {
-                Info tmp = urls[i];
+				Info tmp = urls[i];
 				urls[i] = urls[j];
 				urls[j] = tmp;
 			}
