@@ -38,8 +38,8 @@ int main(int argc, char *argv[]) {
 	Info urls[numUrl];
 	initInfoArr(urls, numUrl);
 
-    print(urls,numUrl);
 	updateMatchedTerms(urls, numUrl, argc, argv);
+    print(urls,numUrl);
 }
 
 static void updateMatchedTerms(Info *urls, int numUrl, int numWords, char *argv[]) {
@@ -98,7 +98,6 @@ void initInfoArr(Info *urls, int numUrl) {
         }
         if(count == 3){
 			urls[i].weight = atof(x);
-			printf("weight: %lf\n",urls[i].weight);
             count = 0;
 			i++;
         }
