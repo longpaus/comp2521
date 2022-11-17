@@ -23,7 +23,8 @@ typedef struct info {
 static int getNumUrl();
 void initInfoArr(Info *urls, int numUrl);
 void updateMatchedTerms(Info *urls, int numUrl, int numWords, char *argv[]);
-static List getMatchedUrls(char *s);
+static List getMatchedUrls(char *s,Info *urls,int numUrl);
+static isUrl(char *s,Info *urls,int numUrl);
 
 int main(int argc, char *argv[]) {
 	int numUrl = getNumUrl();
@@ -35,39 +36,43 @@ int main(int argc, char *argv[]) {
 
 void updateMatchedTerms(Info *urls, int numUrl, int numWords, char *argv[]) {
 	for (int i = 1; i < numWords; i++) {
-        List l = getMatchedUrls(argv[i]);
+        List l = getMatchedUrls(argv[i],urls,numUrl);
         ListPrint(l);
+        printf("\n");
     }
 }
 
 // given a word s return a List of urls that contain s in its section2
-static List getMatchedUrls(char *s) {
+static List getMatchedUrls(char *s,Info *urls,int numUrl) {
 	char word[MAX_WORD_LEN];
 	FILE *f = fopen("invertedIndex.txt", "r");
     List matchedUrl = ListNew();
-	while (!feof(f)) {
-		fscanf(f, "%s%*[^\n]", word);
-		if (strcmp(word, s) != 0) {
-			char url[MAX_URL_LEN];
-            int c,n = 0;
-			while ((c = fgetc(f)) != '\n') {
-                if(c == ' '){
-                    url[n++] = '\0';
-                    if(strlen(url) > 0){
-                        ListAppend(matchedUrl,url);
-                        strcpy(url, "");
-                        n = 0;
-                    }
-                }else{
-				    url[n++] = (char)c;
-                }
-			}
-            break;
-		}
-	    strcpy(word, "");
+	char x[1024];
+    bool collectUrl = false;
+	while (fscanf(f, " %1023s", x) == 1) {
+		if(strcmp(x,s) == 0){
+            collectUrl = true;
+            continue;
+        }
+        if(collectUrl){
+            if(isUrl(x,urls,numUrl)){
+                ListAppend(matchedUrl,x);
+            }else{
+                break;
+            }
+        }
 	}
 	fclose(f);
     return matchedUrl;
+}
+
+static isUrl(char *s,Info *urls,int numUrl){
+    for(int i = 0; i < numUrl; i++){
+        if(strcmp(s,urls[i].url) == 0){
+            return true;
+        }
+    }
+    return false;
 }
 
 void initInfoArr(Info *urls, int numUrl) {
