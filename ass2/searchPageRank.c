@@ -28,7 +28,7 @@ static bool isUrl(char *url,Info *urls,int numUrl);
 
 void print(Info *urls,int numUrl){
     for(int i = 0; i < numUrl; i++){
-        printf("url: %s, matchTerms: %d, pr: %d\n",urls[i].url,urls[i].numMatchTerms,urls[i].weight);
+        printf("url: %s, matchTerms: %d, weight: %.7lf\n",urls[i].url,urls[i].numMatchTerms,urls[i].weight);
         free(urls[i].url);
     }
 }
@@ -38,8 +38,8 @@ int main(int argc, char *argv[]) {
 	Info urls[numUrl];
 	initInfoArr(urls, numUrl);
 
-	// updateMatchedTerms(urls, numUrl, argc, argv);
     print(urls,numUrl);
+	updateMatchedTerms(urls, numUrl, argc, argv);
 }
 
 static void updateMatchedTerms(Info *urls, int numUrl, int numWords, char *argv[]) {
@@ -48,9 +48,9 @@ static void updateMatchedTerms(Info *urls, int numUrl, int numWords, char *argv[
     }
 }
 
-static void sortByMatchedTerms(Info *urls,int numUrl){
+// static void sortByMatchedTerms(Info *urls,int numUrl){
 
-}
+// }
 
 // given a word s update the numMatchTerms for any url that matches it
 static void getMatchedUrls(char *s,Info *urls,int numUrl) {
@@ -86,24 +86,23 @@ static bool isUrl(char *url,Info *urls,int numUrl){
 }
 
 void initInfoArr(Info *urls, int numUrl) {
-	char url[MAX_URL_LEN];
 	FILE *f = fopen("pageRankList.txt", "r");
-    char x[1024];
-    bool collectUrl = false;
+    char x[MAX_URL_LEN];
     int i = 0;
     int count = 1;
-	while (fscanf(f, " %1023s", x) == 1) {
+	while (fscanf(f, "%99s", x) == 1) {
 		if(count == 1){
             urls[i].url = malloc(MAX_URL_LEN * sizeof(char));
-		    strcpy(urls[i].url, url);
+		    strcpy(urls[i].url, x);
             urls[i].numMatchTerms = 0;
         }
-        else if(count == 3){
-            urls[i].weight = atof(x);
+        if(count == 3){
+			urls[i].weight = atof(x);
+			printf("weight: %lf\n",urls[i].weight);
             count = 0;
+			i++;
         }
         count++;
-        i++;
 	}
 	fclose(f);
 }
