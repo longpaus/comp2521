@@ -17,18 +17,18 @@
 #define MAX_WORD_LEN 1000
 typedef struct info {
 	int numMatchTerms;  //the number of mathcing terms a url have
-	int pageRank;
+	double weight;
 	char *url;
 } Info;
 static int getNumUrl();
 void initInfoArr(Info *urls, int numUrl);
-void updateMatchedTerms(Info *urls, int numUrl, int numWords, char *argv[]);
+static void updateMatchedTerms(Info *urls, int numUrl, int numWords, char *argv[]);
 static void getMatchedUrls(char *s,Info *urls,int numUrl);
 static bool isUrl(char *url,Info *urls,int numUrl);
 
 void print(Info *urls,int numUrl){
     for(int i = 0; i < numUrl; i++){
-        printf("url: %s, matchTerms: %d, pr: %d\n",urls[i].url,urls[i].numMatchTerms,urls[i].pageRank);
+        printf("url: %s, matchTerms: %d, pr: %d\n",urls[i].url,urls[i].numMatchTerms,urls[i].weight);
         free(urls[i].url);
     }
 }
@@ -38,14 +38,18 @@ int main(int argc, char *argv[]) {
 	Info urls[numUrl];
 	initInfoArr(urls, numUrl);
 
-	updateMatchedTerms(urls, numUrl, argc, argv);
+	// updateMatchedTerms(urls, numUrl, argc, argv);
     print(urls,numUrl);
 }
 
-void updateMatchedTerms(Info *urls, int numUrl, int numWords, char *argv[]) {
+static void updateMatchedTerms(Info *urls, int numUrl, int numWords, char *argv[]) {
 	for (int i = 1; i < numWords; i++) {
         getMatchedUrls(argv[i],urls,numUrl);
     }
+}
+
+static void sortByMatchedTerms(Info *urls,int numUrl){
+
 }
 
 // given a word s update the numMatchTerms for any url that matches it
@@ -84,13 +88,22 @@ static bool isUrl(char *url,Info *urls,int numUrl){
 void initInfoArr(Info *urls, int numUrl) {
 	char url[MAX_URL_LEN];
 	FILE *f = fopen("pageRankList.txt", "r");
-	for (int i = 0; i < numUrl; i++) {
-		fscanf(f, "%s%*[^\n]", url);
-		urls[i].url = malloc(MAX_URL_LEN * sizeof(char));
-		strcpy(urls[i].url, url);
-		urls[i].numMatchTerms = 0;
-		urls[i].pageRank = i + 1;
-		strcpy(url, "");
+    char x[1024];
+    bool collectUrl = false;
+    int i = 0;
+    int count = 1;
+	while (fscanf(f, " %1023s", x) == 1) {
+		if(count == 1){
+            urls[i].url = malloc(MAX_URL_LEN * sizeof(char));
+		    strcpy(urls[i].url, url);
+            urls[i].numMatchTerms = 0;
+        }
+        else if(count == 3){
+            urls[i].weight = atof(x);
+            count = 0;
+        }
+        count++;
+        i++;
 	}
 	fclose(f);
 }

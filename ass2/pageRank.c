@@ -33,7 +33,7 @@ static void copyPR(PR *pr1, PR *pr2, int n);
 static double caculateDiff(PR *pr1, PR *pr2, int n);
 void doPageRank(double d, double diffPR, int maxIterations, PR *pr1, int n,
                 Graph g);
-static void order(PR *pr, int n);
+static void sortByWeight(PR *pr, int n);
 
 int main(int argc, char *argv[]) {
 	// argc is the number of command-line arguments, which includes the
@@ -57,7 +57,7 @@ int main(int argc, char *argv[]) {
 		pr1[i].vertex = i;
 	}
 	doPageRank(d, diffPR, maxIterations, pr1, n, g);
-	order(pr1, n);
+	sortByWeight(pr1, n);
 	for (int i = 0; i < n; i++) {
 		char *s = ListGetString(urlList, pr1[i].vertex);
 		int outLinks = countOutLinks(g, pr1[i].vertex);
@@ -67,7 +67,7 @@ int main(int argc, char *argv[]) {
 	GraphFree(g);
 }
 //sort the given PR
-static void order(PR *pr, int n) {
+static void sortByWeight(PR *pr, int n) {
 	double tempRank;
 	int tempVertex;
 	for (int i = 0; i < n; i++) {
