@@ -32,7 +32,7 @@ CFLAGS2 = -Wall -Werror -g -fsanitize=memory,undefined
 # Your scaledFootrule.c should have the main() function for Part 3
 # List all your C files that DON'T contain a main() function here
 # For example: SUPPORTING_FILES = hello.c world.c
-SUPPORTING_FILES = List.c Graph.c
+SUPPORTING_FILES = List.c Graph.c ReadData.c
 
 .PHONY: all
 all: pageRank searchPageRank scaledFootrule

@@ -13,11 +13,11 @@
 
 #include "Graph.h"
 #include "List.h"
+#include "ReadData.h"
 
-#define MAX_URL_LEN 1024
 
 typedef struct pageRank {
-	double rank;
+	double weight;
 	int vertex;
 } PR;
 
@@ -55,7 +55,7 @@ int main(int argc, char *argv[]) {
 	int n = ListSize(urlList);
 	PR pr1[n];
 	for (int i = 0; i < n; i++) {
-		pr1[i].rank = (double)1 / (double)n;
+		pr1[i].weight = (double)1 / (double)n;
 		pr1[i].vertex = i;
 	}
 	doPageRank(d, diffPR, maxIterations, pr1, n, g);
@@ -63,17 +63,18 @@ int main(int argc, char *argv[]) {
 	for (int i = 0; i < n; i++) {
 		char *s = ListGetString(urlList, pr1[i].vertex);
 		int outLinks = countOutLinks(g, pr1[i].vertex);
-		printf("%s %d %.7lf\n", s, outLinks, pr1[i].rank);
+		printf("%s %d %.7lf\n", s, outLinks, pr1[i].weight);
 	}
 	ListFree(urlList);
 	GraphFree(g);
+	return 0;
 }
 static void order(PR *pr, int n,List urlList){
 	sortByWeight(pr, n);
 	int hi = 0;
 	int lo = 0;
 	while (hi < n) {
-		while (hi < n && pr[lo].rank == pr[hi].rank) {
+		while (hi < n && pr[lo].weight == pr[hi].weight) {
 			hi++;
 		}
 		sortByName(pr,lo, hi - 1,urlList);
@@ -100,7 +101,7 @@ static void sortByWeight(PR *pr, int n) {
 	int tempVertex;
 	for (int i = 0; i < n; i++) {
 		for (int j = i + 1; j < n; j++) {
-			if (pr[i].rank < pr[j].rank) {
+			if (pr[i].weight < pr[j].weight) {
 				PR tmp = pr[i];
 				pr[i] = pr[j];
 				pr[j] = tmp;
@@ -118,7 +119,7 @@ void doPageRank(double d, double diffPR, int maxIterations, PR *pr1, int n,
 		PR pr2[n];  // for iteration t + 1
 		// get the vavlues for t + 1
 		for (Vertex v = 0; v < n; v++) {
-			pr2[v].rank = caculatePR(d, g, n, v, pr1);
+			pr2[v].weight = caculatePR(d, g, n, v, pr1);
 			pr2[v].vertex = v;
 		}
 		diff = caculateDiff(pr1, pr2, n);
@@ -130,15 +131,15 @@ void doPageRank(double d, double diffPR, int maxIterations, PR *pr1, int n,
 static double caculateDiff(PR *pr1, PR *pr2, int n) {
 	double diff = 0.0;
 	for (int i = 0; i < n; i++) {
-		diff += fabs(pr2[i].rank - pr1[i].rank);
+		diff += fabs(pr2[i].weight - pr1[i].weight);
 	}
 	return diff;
 }
 //copy pr2 into pr1
 static void copyPR(PR *pr1, PR *pr2, int n) {
 	for (int i = 0; i < n; i++) {
-		double rank = pr2[i].rank;
-		pr1[i].rank = rank;
+		double rank = pr2[i].weight;
+		pr1[i].weight = rank;
 		int vertex = pr2[i].vertex;
 		pr1[i].vertex = vertex;
 	}
@@ -151,7 +152,7 @@ static double caculatePR(double d, Graph g, int n, Vertex v, PR *pr1) {
 		if (g->edges[j][v]) {
 			double out = wOut(g, j, v);
 			double in = wIn(g, j, v);
-			summation += pr1[j].rank * in * out;
+			summation += pr1[j].weight * in * out;
 		}
 	}
 	return ((double)1 - d) / (double)n + (d * summation);
@@ -205,54 +206,4 @@ static int countOutLinks(Graph g, Vertex v) {
 		}
 	}
 	return count;
-}
-/////////////////////////////// for readData
-
-List getCollection() {
-	FILE *f = fopen("collection.txt", "r");
-	char x[MAX_URL_LEN];
-	List l = ListNew();
-	while (fscanf(f, " %1023s", x) == 1) {
-		ListAppend(l, x);
-	}
-	fclose(f);
-	return l;
-}
-
-Graph GetGraph(List urlList) {
-	int nV = ListSize(urlList);
-	Graph g = GraphNew(nV);
-	Vertex v = 0;
-	for (Node n = urlList->head; n != NULL; n = n->next, v++) {
-		char urlFile[MAX_URL_LEN];
-		strcpy(urlFile, n->s);
-		strcat(urlFile, ".txt");
-		addOutGoingLinks(g, urlFile, urlList, v);
-	}
-	return g;
-}
-/*
-given a urlfile the function seach for the out going links in the
-file and add them as edges to the Vertex v.
-*/
-static void addOutGoingLinks(Graph g, char *urlFile, List urlList, Vertex v) {
-	FILE *f = fopen(urlFile, "r");
-	bool collectUrl = false;
-	char x[1024];
-	while (fscanf(f, " %1023s", x) == 1) {
-		if (strcmp(x, "Section-1") == 0) {
-			collectUrl = true;
-			continue;
-		}
-		if (strcmp(x, "#end") == 0) {
-			break;
-		}
-		if (collectUrl) {
-			Edge e = {v, ListGetIndex(urlList, x)};
-			if (e.v != e.w) {
-				GraphInsertEdge(g, e);
-			}
-		}
-	}
-	fclose(f);
 }

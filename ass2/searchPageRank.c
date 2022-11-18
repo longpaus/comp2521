@@ -1,7 +1,7 @@
 // COMP2521 Assignment 2
 
-// Written by:
-// Date:
+// Written by:Long Hoang Pham
+// Date: 18/11/22
 
 #include <assert.h>
 #include <ctype.h>
@@ -16,7 +16,7 @@
 #define MAX_URL_LEN 100
 #define MAX_WORD_LEN 1000
 typedef struct info {
-	int numMatchTerms;  //the number of mathcing terms a url have
+	int matchTerms;  //the number of mathcing terms a url have
 	double weight;
 	char *url;
 } Info;
@@ -37,37 +37,34 @@ int main(int argc, char *argv[]) {
 	Info urls[numUrl];
 	initInfoArr(urls, numUrl);
 
-	updateMatchedTerms(urls, numUrl, argc, argv);
+	for (int i = 1; i < argc; i++) {
+		getMatchedUrls(argv[i], urls, numUrl);
+	}
 	order(urls, numUrl);
 	print(urls, numUrl);
-    for(int i = 0; i < numUrl; i++){
-        free(urls[i].url);
-    }
+	for (int i = 0; i < numUrl; i++) {
+		free(urls[i].url);
+	}
+    return 0;
 }
 
 static void print(Info *urls, int numUrl) {
-    numUrl = (numUrl > 30) ? 30 : numUrl;
+	numUrl = (numUrl > 30) ? 30 : numUrl;
 	for (int i = 0; i < numUrl; i++) {
-        if(urls[i].numMatchTerms > 0){
-		    printf("%s\n",urls[i].url);
-        }
+		if (urls[i].matchTerms > 0) {
+			printf("%s\n", urls[i].url);
+		}
 	}
 }
 
-static void updateMatchedTerms(Info *urls, int numUrl, int numWords,
-                               char *argv[]) {
-	for (int i = 1; i < numWords; i++) {
-		getMatchedUrls(argv[i], urls, numUrl);
-	}
-}
-
+//sort the urls by their number of matched terms then by their weight then
+//by their name.
 static void order(Info *urls, int numUrl) {
 	sortByMatchedTerms(urls, numUrl);
 	int hi = 0;
 	int lo = 0;
 	while (hi < numUrl) {
-		while (hi < numUrl &&
-		       urls[lo].numMatchTerms == urls[hi].numMatchTerms) {
+		while (hi < numUrl && urls[lo].matchTerms == urls[hi].matchTerms) {
 			hi++;
 		}
 		sortByWeight(urls, lo, hi - 1);
@@ -76,8 +73,7 @@ static void order(Info *urls, int numUrl) {
 	hi = 0;
 	lo = 0;
 	while (hi < numUrl) {
-		while (hi < numUrl &&
-		       urls[lo].numMatchTerms == urls[hi].numMatchTerms &&
+		while (hi < numUrl && urls[lo].matchTerms == urls[hi].matchTerms &&
 		       urls[lo].weight == urls[hi].weight) {
 			hi++;
 		}
@@ -89,7 +85,7 @@ static void order(Info *urls, int numUrl) {
 static void sortByName(Info *urls, int lo, int hi) {
 	for (int i = lo; i <= hi; ++i) {
 		for (int j = i + 1; j <= hi; ++j) {
-			if (strcmp(urls[i].url,urls[j].url) > 0) {
+			if (strcmp(urls[i].url, urls[j].url) > 0) {
 				Info tmp = urls[i];
 				urls[i] = urls[j];
 				urls[j] = tmp;
@@ -113,7 +109,7 @@ static void sortByWeight(Info *urls, int lo, int hi) {
 static void sortByMatchedTerms(Info *urls, int numUrl) {
 	for (int i = 0; i < numUrl; ++i) {
 		for (int j = i + 1; j < numUrl; ++j) {
-			if (urls[i].numMatchTerms < urls[j].numMatchTerms) {
+			if (urls[i].matchTerms < urls[j].matchTerms) {
 				Info tmp = urls[i];
 				urls[i] = urls[j];
 				urls[j] = tmp;
@@ -148,7 +144,7 @@ static void getMatchedUrls(char *s, Info *urls, int numUrl) {
 static bool isUrl(char *url, Info *urls, int numUrl) {
 	for (int i = 0; i < numUrl; i++) {
 		if (strcmp(url, urls[i].url) == 0) {
-			urls[i].numMatchTerms++;
+			urls[i].matchTerms++;
 			return true;
 		}
 	}
@@ -164,7 +160,7 @@ void initInfoArr(Info *urls, int numUrl) {
 		if (count == 1) {
 			urls[i].url = malloc(MAX_URL_LEN * sizeof(char));
 			strcpy(urls[i].url, x);
-			urls[i].numMatchTerms = 0;
+			urls[i].matchTerms = 0;
 		}
 		if (count == 3) {
 			urls[i].weight = atof(x);
