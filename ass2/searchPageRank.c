@@ -22,8 +22,6 @@ typedef struct info {
 } Info;
 static int getNumUrl();
 void initInfoArr(Info *urls, int numUrl);
-static void updateMatchedTerms(Info *urls, int numUrl, int numWords,
-                               char *argv[]);
 static void getMatchedUrls(char *s, Info *urls, int numUrl);
 static bool isUrl(char *url, Info *urls, int numUrl);
 static void sortByMatchedTerms(Info *urls, int numUrl);
@@ -47,7 +45,7 @@ int main(int argc, char *argv[]) {
 	}
     return 0;
 }
-
+//print ant element in Info array that has matchedTerms of over 0
 static void print(Info *urls, int numUrl) {
 	numUrl = (numUrl > 30) ? 30 : numUrl;
 	for (int i = 0; i < numUrl; i++) {
@@ -81,7 +79,7 @@ static void order(Info *urls, int numUrl) {
 		lo = hi;
 	}
 }
-
+//sort the Info array by name in ascending order from lo to hi
 static void sortByName(Info *urls, int lo, int hi) {
 	for (int i = lo; i <= hi; ++i) {
 		for (int j = i + 1; j <= hi; ++j) {
@@ -94,6 +92,7 @@ static void sortByName(Info *urls, int lo, int hi) {
 	}
 }
 
+//sort the Info array by weight in descending order from lo to hi
 static void sortByWeight(Info *urls, int lo, int hi) {
 	for (int i = lo; i <= hi; ++i) {
 		for (int j = i + 1; j <= hi; ++j) {
@@ -106,6 +105,7 @@ static void sortByWeight(Info *urls, int lo, int hi) {
 	}
 }
 
+// sort the given Info array by their matchedTerms
 static void sortByMatchedTerms(Info *urls, int numUrl) {
 	for (int i = 0; i < numUrl; ++i) {
 		for (int j = i + 1; j < numUrl; ++j) {
@@ -151,6 +151,7 @@ static bool isUrl(char *url, Info *urls, int numUrl) {
 	return false;
 }
 
+//get the weight and url of each url in pageRankList.txt
 void initInfoArr(Info *urls, int numUrl) {
 	FILE *f = fopen("pageRankList.txt", "r");
 	char x[MAX_URL_LEN];
