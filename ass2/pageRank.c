@@ -21,8 +21,7 @@ typedef struct pageRank {
 	int vertex;
 } PR;
 
-List getCollection();
-static void addOutGoingLinks(Graph g, char *urlFile, List urlList, Vertex v);
+
 static double caculatePR(double d, Graph g, int n, Vertex v, PR *pr1);
 Graph GetGraph(List urlList);
 static double wIn(Graph g, Vertex v, Vertex u);
@@ -97,8 +96,6 @@ static void sortByName(PR *pr, int lo, int hi,List urlList) {
 }
 //sort the given PR by their weight
 static void sortByWeight(PR *pr, int n) {
-	double tempRank;
-	int tempVertex;
 	for (int i = 0; i < n; i++) {
 		for (int j = i + 1; j < n; j++) {
 			if (pr[i].weight < pr[j].weight) {

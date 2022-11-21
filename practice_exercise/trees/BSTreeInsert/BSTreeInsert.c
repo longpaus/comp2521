@@ -14,10 +14,10 @@ BSTree BSTreeInsert(BSTree t, int val) {
 		return n;
 	}
 	if (val < t->value) {
-		t->left = BSTreeInsertR(t->left, val);
+		t->left = BSTreeInsert(t->left, val);
 	}
-	if (val > t->right) {
-		t->right = BSTreeInsertR(t->right, val);
+	if (val > t->value) {
+		t->right = BSTreeInsert(t->right, val);
 	}
 	return t;
 }
