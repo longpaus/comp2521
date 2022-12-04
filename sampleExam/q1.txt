@@ -1,0 +1,8 @@
+Question 1
+
+What is the time complexity of the algorithm? Justify your answer.
+
+O(nlogn)
+Since the algorithm breaks the size into n/2 repeatedly there will be 
+logn levels of recursion. To break each level in half is O(n) and to combine
+two recursive level is O(n). Hence the overall time complexity is O(nlogn).

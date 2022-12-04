@@ -1,0 +1,15 @@
+Question 2
+
+(a) What are the time complexities of fnA() and fnB() in terms of a and
+    b? Justify your answer.
+fnA:
+for each recursive stage the time complexities is O(1). And there are b - a
+stage. Hence the time complexities is O(b - a).
+fnB:
+for every recursive stage the function calls fnA so the time complexity is O((b - a)^2).
+
+(b) What does the function fn() do? Justify your answer.
+sort array in ascending order.This is a selction sort.
+
+
+  

@@ -1,0 +1,18 @@
+Question 8
+
+Describe in detail the steps you would perform to tell the sort programs apart.
+
+Refer to sorting algorithm lectures for more details
+
+- To distinguish merge sort from the others, use the fact that merge
+  sort is always O(n log n).
+
+- To distinguish naive quicksort from the others, use the fact that
+  naive quicksort is O(n log n) on average (e.g., if given a random
+  array), but is O(n^2) when given a sorted array.
+
+- To distinguish bubble sort from insertion sort, use arrays which are
+  sorted except that the largest element is at the beginning of the
+  array and the smallest element is at the end. Insertion sort will
+  be O(n), while bubble sort will be O(n^2).
+

@@ -1,0 +1,40 @@
+Question 6
+
+(a)
+
+Original state:
+
+[0] [1] [2] [3] [4] [5] [6] [7] [8] [9]
+---  Q   N   H   D   K   E  --- --- ---
+
+After performing join(pq, S):
+
+[0] [1] [2] [3] [4] [5] [6] [7] [8] [9]
+---  s   n   q   d   k   e   h  ---  ---
+
+After performing join(pq, P):
+
+[0] [1] [2] [3] [4] [5] [6] [7] [8] [9]
+---  s   p   q   n   k   e   h   d  ---
+
+(b)
+
+Original state:
+
+[0] [1] [2] [3] [4] [5] [6] [7] [8] [9]
+---  Q   N   H   D   K   E  --- --- ---
+
+After performing it1 = leave(pq):
+
+[0] [1] [2] [3] [4] [5] [6] [7] [8] [9]
+---  n   k   h   d   e  --- --- --- ---
+
+After performing it2 = leave(pq):
+
+[0] [1] [2] [3] [4] [5] [6] [7] [8] [9]
+---  k   e   h   d  --- --- --- --- ---
+
+The value of it1 is: q
+
+The value of it2 is: n
+

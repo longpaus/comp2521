@@ -1,0 +1,17 @@
+Question 1
+
+O(n log n)
+
+Since the algorithm recursively breaks a problem into two subproblems of
+half the size until the size of a subproblem is one or zero, there are
+log n levels of recursion, where on the first level, the main problem of
+size n is broken into two subproblems of size ~n/2, on the second level,
+each subproblem of size ~n/2 is broken into two smaller subproblems of
+size ~n/4 (four subproblems in total) and so on.
+
+Across each level, the work done to break the subproblems on that level
+into two smaller subproblems and to combine the results of subproblems
+is O(n).
+
+Hence the time complexity of the algorithm is O(n log n).
+

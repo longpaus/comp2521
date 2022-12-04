@@ -1,0 +1,69 @@
+Question 5
+
+(a) How many times is the statement in line 3 executed (initialization
+    of components) in terms of n and m?
+
+n
+
+(b) How many times is the statement in line 6 executed (deleting an edge
+    from the list of edges) in terms of n and m?
+
+m
+
+(c) What is the time complexity (in big-O notation) of testing whether
+    two nodes are in different components?
+
+O(1)
+
+(d) In the worst case, how many times is the statement in line 8
+    executed (merging two components) in terms of n and m? Justify your
+    answer.
+
+min(n - 1, m)
+
+Initially, there are n components, because each node is in its own
+separate component. Merging two components reduces the number of
+components by one, so this can be done at most n - 1 times (as merging
+will stop once there is only one component left).
+
+However, the number of times two components can be merged is also
+restricted by the number of edges, since a merge only occurs after an
+edge is removed from the edge list.
+
+So if the graph contains more than n - 1 edges, then at most n - 1
+merges are performed, and if the graph contains fewer than n - 1 edges,
+then at most m merges are performed.
+
+Hence, the statement in line 8 is executed min(n - 1, m) times in the
+worst case.
+
+(e) What is the worst case time complexity (in big-O notation) of
+    merging two components into a single component? Justify your answer.
+
+O(n)
+
+Merging two components i and j (where i < j) involves finding all
+nodes which are in component j and setting their component number to i.
+The simplest and most efficient way to achieve this is to iterate
+through the component[] array once, which is O(n).
+
+(f) What is the overall worst case time complexity (in big-O notation)
+    of this algorithm? Ignore the complexity of lines 1 and 4. Justify
+    your answer.
+
+O(n x min(n - 1, m))
+
+The time complexity of the for loop is O(n), as it simply iterates
+through each node.
+
+The time complexity of the while loop is O(m + n x min(n - 1, m)), where
+- the m comes from the fact that the loop repeatedly deletes edges until
+  the edge list is empty
+- the n x min(n - 1, m) comes from the fact that merging occurs at most
+  min(n - 1, m) times, and the time complexity of merging is O(n)
+
+However, n x min(n - 1, m) dominates both n and m, so this can be
+simplified to O(n x min(n - 1, m)).
+
+Note: This can be further simplified to O(n x min(n, m)).
+
