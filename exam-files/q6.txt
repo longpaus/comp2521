@@ -5,7 +5,7 @@ Question 6
 (Replace the underlines with the array elements)
 
 [0]  [1]  [2]  [3]  [4]  [5]  [6]  [7]  [8]  [9]  [10]  [11]
-___  ___  ___  ___  ___  ___  ___  ___  ___  ___  ____  ____
+4     5    14   15   98   26   71    96  41   55   100  46
 
 (b) Show the state of the array after each pass of the algorithm.
 
@@ -25,16 +25,18 @@ ___  ___  ___  ___  ___  ___  ___  ___  ___  ___  ____  ____
 
 (c) Identify two important differences between radix sort and merge
     sort.
-
+    -radix sort is a non comparative sort unlike merge sort where values are compared to each other.
+    -The complexity of radix sort is O(mn) whre n is the number of terms and m is the number of symbols.
+    While the time complexity of merge sort is O(nlogn)
 
 
     Give one situation where radix sort would be more suitable than
     merge sort.
-
+    radix sort would be best when the keys are short and the array is large.
 
 
     Give one situation where merge sort would be more suitable than
     radix sort.
-
+    when there are alot of differnt keys and the array is smaller
 
 

@@ -1,10 +1,10 @@
 Question 3
 
 Give the minimal sequence of rotations that would be required.
-
+rotate right on 13, then left on 13 and right on 13. So 3 rotations.
 
 
 Value in the left child of the root: 
-
+11
 Value in the right child of the root: 
-
+20

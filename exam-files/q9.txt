@@ -3,5 +3,8 @@ Question 9
 Which data structure and algorithm would you use to solve the task?
 Justify your answer.
 
-
+This represents a minimum spanning tree problem hence the algorithm i would use is Prim's
+algorithm and the data structure i would use is a priority queue. Prim's algorithm guarantee that 
+the minimum spanning tree will be found hence we are able to connect are the island together
+while keeping the cost as low as possible.  
 

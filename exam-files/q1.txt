@@ -2,5 +2,6 @@ Question 1
 
 What is the time complexity of the algorithm? Justify your answer.
 
-
+nlogn, it takes O(1) time to solve a sub problem but since that is a constant
+the one is not part of the time complexity.
 
