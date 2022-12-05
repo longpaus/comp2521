@@ -2,11 +2,12 @@ Question 8
 
 (a) What is the maximum number of words that could be contained in the
     trie? Justify your answer.
-
+    the maximum number of words is n. This is because at the end of every node can be a word, Hence there
+    are n words.
 
 
 (b) What is the minimum number of words that could be contained in the
     trie? Justify your answer.
-
+    there would be a minimum of m words. Since at the leaf nodes indicates the end of a word.
 
 

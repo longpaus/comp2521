@@ -2,6 +2,8 @@ Question 2
 
 What is the maximum input size that can be processed? Justify your
 answer.
-
+since the maximum of input the computer can proccess in a day is 10, that means
+it produce 10/24 input per hour. Hence a computer 1000 times faster can processed
+(10/24)*1000 inputs per hour. Hence the faster computer can handle 10000 inputs in a day.
 
 

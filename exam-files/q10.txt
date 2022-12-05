@@ -3,5 +3,15 @@ Question 10
 Which of the listed data structures is most suitable? Justify your
 answer. You must use time complexities as a basis for your justification.
 
+To do the push operation the ordered link list the time complexity would be O(nlogn) as
+it would require the value to be inserted and the link list to be sorted with merge sort
+or something similiar. The ordered array would also be O(nlogn) however with the array there is
+a limit of how many elements are allowed. The hash table would be O(1) and the heap would be O(logn).
 
+For the pop operation the heap would be the fastest as it do the operation in O(logn) time while the other
+data structures would take O(n) time.
+
+for the remove in range operation the heap would take O(nlogn) while the other data structures would take O(n).
+
+overall the hash table would be the fastest.
 
