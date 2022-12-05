@@ -1,0 +1,942 @@
+<!DOCTYPE html>
+<!-- saved from url=(0045)https://cgi.cse.unsw.edu.au/~cs2521/22T3/exam -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="stylesheet" href="./COMP2521 22T3 - Final Exam_files/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="./COMP2521 22T3 - Final Exam_files/bootstrap-toc.min.css">
+
+    <link rel="stylesheet" href="./COMP2521 22T3 - Final Exam_files/style.css">
+    
+    
+
+    <title>COMP2521 22T3 - 
+
+	Final Exam
+
+</title>
+  <script type="text/javascript" async="" src="./COMP2521 22T3 - Final Exam_files/MathJax.js"></script><style type="text/css">.MathJax_Hover_Frame {border-radius: .25em; -webkit-border-radius: .25em; -moz-border-radius: .25em; -khtml-border-radius: .25em; box-shadow: 0px 0px 15px #83A; -webkit-box-shadow: 0px 0px 15px #83A; -moz-box-shadow: 0px 0px 15px #83A; -khtml-box-shadow: 0px 0px 15px #83A; border: 1px solid #A6D ! important; display: inline-block; position: absolute}
+.MathJax_Menu_Button .MathJax_Hover_Arrow {position: absolute; cursor: pointer; display: inline-block; border: 2px solid #AAA; border-radius: 4px; -webkit-border-radius: 4px; -moz-border-radius: 4px; -khtml-border-radius: 4px; font-family: 'Courier New',Courier; font-size: 9px; color: #F0F0F0}
+.MathJax_Menu_Button .MathJax_Hover_Arrow span {display: block; background-color: #AAA; border: 1px solid; border-radius: 3px; line-height: 0; padding: 4px}
+.MathJax_Hover_Arrow:hover {color: white!important; border: 2px solid #CCC!important}
+.MathJax_Hover_Arrow:hover span {background-color: #CCC!important}
+</style><style type="text/css">#MathJax_About {position: fixed; left: 50%; width: auto; text-align: center; border: 3px outset; padding: 1em 2em; background-color: #DDDDDD; color: black; cursor: default; font-family: message-box; font-size: 120%; font-style: normal; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; border-radius: 15px; -webkit-border-radius: 15px; -moz-border-radius: 15px; -khtml-border-radius: 15px; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+#MathJax_About.MathJax_MousePost {outline: none}
+.MathJax_Menu {position: absolute; background-color: white; color: black; width: auto; padding: 5px 0px; border: 1px solid #CCCCCC; margin: 0; cursor: default; font: menu; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; border-radius: 5px; -webkit-border-radius: 5px; -moz-border-radius: 5px; -khtml-border-radius: 5px; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+.MathJax_MenuItem {padding: 1px 2em; background: transparent}
+.MathJax_MenuArrow {position: absolute; right: .5em; padding-top: .25em; color: #666666; font-size: .75em}
+.MathJax_MenuActive .MathJax_MenuArrow {color: white}
+.MathJax_MenuArrow.RTL {left: .5em; right: auto}
+.MathJax_MenuCheck {position: absolute; left: .7em}
+.MathJax_MenuCheck.RTL {right: .7em; left: auto}
+.MathJax_MenuRadioCheck {position: absolute; left: .7em}
+.MathJax_MenuRadioCheck.RTL {right: .7em; left: auto}
+.MathJax_MenuLabel {padding: 1px 2em 3px 1.33em; font-style: italic}
+.MathJax_MenuRule {border-top: 1px solid #DDDDDD; margin: 4px 3px}
+.MathJax_MenuDisabled {color: GrayText}
+.MathJax_MenuActive {background-color: #606872; color: white}
+.MathJax_MenuDisabled:focus, .MathJax_MenuLabel:focus {background-color: #E8E8E8}
+.MathJax_ContextMenu:focus {outline: none}
+.MathJax_ContextMenu .MathJax_MenuItem:focus {outline: none}
+#MathJax_AboutClose {top: .2em; right: .2em}
+.MathJax_Menu .MathJax_MenuClose {top: -10px; left: -10px}
+.MathJax_MenuClose {position: absolute; cursor: pointer; display: inline-block; border: 2px solid #AAA; border-radius: 18px; -webkit-border-radius: 18px; -moz-border-radius: 18px; -khtml-border-radius: 18px; font-family: 'Courier New',Courier; font-size: 24px; color: #F0F0F0}
+.MathJax_MenuClose span {display: block; background-color: #AAA; border: 1.5px solid; border-radius: 18px; -webkit-border-radius: 18px; -moz-border-radius: 18px; -khtml-border-radius: 18px; line-height: 0; padding: 8px 0 6px}
+.MathJax_MenuClose:hover {color: white!important; border: 2px solid #CCC!important}
+.MathJax_MenuClose:hover span {background-color: #CCC!important}
+.MathJax_MenuClose:hover:focus {outline: none}
+</style><style type="text/css">.MathJax_Preview .MJXf-math {color: inherit!important}
+</style><style type="text/css">.MJX_Assistive_MathML {position: absolute!important; top: 0; left: 0; clip: rect(1px, 1px, 1px, 1px); padding: 1px 0 0 0!important; border: 0!important; height: 1px!important; width: 1px!important; overflow: hidden!important; display: block!important; -webkit-touch-callout: none; -webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none}
+.MJX_Assistive_MathML.MJX_Assistive_MathML_Block {width: 100%!important}
+</style><style type="text/css">#MathJax_Zoom {position: absolute; background-color: #F0F0F0; overflow: auto; display: block; z-index: 301; padding: .5em; border: 1px solid black; margin: 0; font-weight: normal; font-style: normal; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; -webkit-box-sizing: content-box; -moz-box-sizing: content-box; box-sizing: content-box; box-shadow: 5px 5px 15px #AAAAAA; -webkit-box-shadow: 5px 5px 15px #AAAAAA; -moz-box-shadow: 5px 5px 15px #AAAAAA; -khtml-box-shadow: 5px 5px 15px #AAAAAA; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+#MathJax_ZoomOverlay {position: absolute; left: 0; top: 0; z-index: 300; display: inline-block; width: 100%; height: 100%; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+#MathJax_ZoomFrame {position: relative; display: inline-block; height: 0; width: 0}
+#MathJax_ZoomEventTrap {position: absolute; left: 0; top: 0; z-index: 302; display: inline-block; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+</style><style type="text/css">.MathJax_Preview {color: #888}
+#MathJax_Message {position: fixed; left: 1em; bottom: 1.5em; background-color: #E6E6E6; border: 1px solid #959595; margin: 0px; padding: 2px 8px; z-index: 102; color: black; font-size: 80%; width: auto; white-space: nowrap}
+#MathJax_MSIE_Frame {position: absolute; top: 0; left: 0; width: 0px; z-index: 101; border: 0px; margin: 0px; padding: 0px}
+.MathJax_Error {color: #CC0000; font-style: italic}
+</style><style type="text/css">.MJXp-script {font-size: .8em}
+.MJXp-right {-webkit-transform-origin: right; -moz-transform-origin: right; -ms-transform-origin: right; -o-transform-origin: right; transform-origin: right}
+.MJXp-bold {font-weight: bold}
+.MJXp-italic {font-style: italic}
+.MJXp-scr {font-family: MathJax_Script,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-frak {font-family: MathJax_Fraktur,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-sf {font-family: MathJax_SansSerif,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-cal {font-family: MathJax_Caligraphic,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-mono {font-family: MathJax_Typewriter,'Times New Roman',Times,STIXGeneral,serif}
+.MJXp-largeop {font-size: 150%}
+.MJXp-largeop.MJXp-int {vertical-align: -.2em}
+.MJXp-math {display: inline-block; line-height: 1.2; text-indent: 0; font-family: 'Times New Roman',Times,STIXGeneral,serif; white-space: nowrap; border-collapse: collapse}
+.MJXp-display {display: block; text-align: center; margin: 1em 0}
+.MJXp-math span {display: inline-block}
+.MJXp-box {display: block!important; text-align: center}
+.MJXp-box:after {content: " "}
+.MJXp-rule {display: block!important; margin-top: .1em}
+.MJXp-char {display: block!important}
+.MJXp-mo {margin: 0 .15em}
+.MJXp-mfrac {margin: 0 .125em; vertical-align: .25em}
+.MJXp-denom {display: inline-table!important; width: 100%}
+.MJXp-denom > * {display: table-row!important}
+.MJXp-surd {vertical-align: top}
+.MJXp-surd > * {display: block!important}
+.MJXp-script-box > *  {display: table!important; height: 50%}
+.MJXp-script-box > * > * {display: table-cell!important; vertical-align: top}
+.MJXp-script-box > *:last-child > * {vertical-align: bottom}
+.MJXp-script-box > * > * > * {display: block!important}
+.MJXp-mphantom {visibility: hidden}
+.MJXp-munderover, .MJXp-munder {display: inline-table!important}
+.MJXp-over {display: inline-block!important; text-align: center}
+.MJXp-over > * {display: block!important}
+.MJXp-munderover > *, .MJXp-munder > * {display: table-row!important}
+.MJXp-mtable {vertical-align: .25em; margin: 0 .125em}
+.MJXp-mtable > * {display: inline-table!important; vertical-align: middle}
+.MJXp-mtr {display: table-row!important}
+.MJXp-mtd {display: table-cell!important; text-align: center; padding: .5em 0 0 .5em}
+.MJXp-mtr > .MJXp-mtd:first-child {padding-left: 0}
+.MJXp-mtr:first-child > .MJXp-mtd {padding-top: 0}
+.MJXp-mlabeledtr {display: table-row!important}
+.MJXp-mlabeledtr > .MJXp-mtd:first-child {padding-left: 0}
+.MJXp-mlabeledtr:first-child > .MJXp-mtd {padding-top: 0}
+.MJXp-merror {background-color: #FFFF88; color: #CC0000; border: 1px solid #CC0000; padding: 1px 3px; font-style: normal; font-size: 90%}
+.MJXp-scale0 {-webkit-transform: scaleX(.0); -moz-transform: scaleX(.0); -ms-transform: scaleX(.0); -o-transform: scaleX(.0); transform: scaleX(.0)}
+.MJXp-scale1 {-webkit-transform: scaleX(.1); -moz-transform: scaleX(.1); -ms-transform: scaleX(.1); -o-transform: scaleX(.1); transform: scaleX(.1)}
+.MJXp-scale2 {-webkit-transform: scaleX(.2); -moz-transform: scaleX(.2); -ms-transform: scaleX(.2); -o-transform: scaleX(.2); transform: scaleX(.2)}
+.MJXp-scale3 {-webkit-transform: scaleX(.3); -moz-transform: scaleX(.3); -ms-transform: scaleX(.3); -o-transform: scaleX(.3); transform: scaleX(.3)}
+.MJXp-scale4 {-webkit-transform: scaleX(.4); -moz-transform: scaleX(.4); -ms-transform: scaleX(.4); -o-transform: scaleX(.4); transform: scaleX(.4)}
+.MJXp-scale5 {-webkit-transform: scaleX(.5); -moz-transform: scaleX(.5); -ms-transform: scaleX(.5); -o-transform: scaleX(.5); transform: scaleX(.5)}
+.MJXp-scale6 {-webkit-transform: scaleX(.6); -moz-transform: scaleX(.6); -ms-transform: scaleX(.6); -o-transform: scaleX(.6); transform: scaleX(.6)}
+.MJXp-scale7 {-webkit-transform: scaleX(.7); -moz-transform: scaleX(.7); -ms-transform: scaleX(.7); -o-transform: scaleX(.7); transform: scaleX(.7)}
+.MJXp-scale8 {-webkit-transform: scaleX(.8); -moz-transform: scaleX(.8); -ms-transform: scaleX(.8); -o-transform: scaleX(.8); transform: scaleX(.8)}
+.MJXp-scale9 {-webkit-transform: scaleX(.9); -moz-transform: scaleX(.9); -ms-transform: scaleX(.9); -o-transform: scaleX(.9); transform: scaleX(.9)}
+.MathJax_PHTML .noError {vertical-align: ; font-size: 90%; text-align: left; color: black; padding: 1px 3px; border: 1px solid}
+</style><style type="text/css">.mjx-chtml {display: inline-block; line-height: 0; text-indent: 0; text-align: left; text-transform: none; font-style: normal; font-weight: normal; font-size: 100%; font-size-adjust: none; letter-spacing: normal; word-wrap: normal; word-spacing: normal; white-space: nowrap; float: none; direction: ltr; max-width: none; max-height: none; min-width: 0; min-height: 0; border: 0; margin: 0; padding: 1px 0}
+.MJXc-display {display: block; text-align: center; margin: 1em 0; padding: 0}
+.mjx-chtml[tabindex]:focus, body :focus .mjx-chtml[tabindex] {display: inline-table}
+.mjx-full-width {text-align: center; display: table-cell!important; width: 10000em}
+.mjx-math {display: inline-block; border-collapse: separate; border-spacing: 0}
+.mjx-math * {display: inline-block; -webkit-box-sizing: content-box!important; -moz-box-sizing: content-box!important; box-sizing: content-box!important; text-align: left}
+.mjx-numerator {display: block; text-align: center}
+.mjx-denominator {display: block; text-align: center}
+.MJXc-stacked {height: 0; position: relative}
+.MJXc-stacked > * {position: absolute}
+.MJXc-bevelled > * {display: inline-block}
+.mjx-stack {display: inline-block}
+.mjx-op {display: block}
+.mjx-under {display: table-cell}
+.mjx-over {display: block}
+.mjx-over > * {padding-left: 0px!important; padding-right: 0px!important}
+.mjx-under > * {padding-left: 0px!important; padding-right: 0px!important}
+.mjx-stack > .mjx-sup {display: block}
+.mjx-stack > .mjx-sub {display: block}
+.mjx-prestack > .mjx-presup {display: block}
+.mjx-prestack > .mjx-presub {display: block}
+.mjx-delim-h > .mjx-char {display: inline-block}
+.mjx-surd {vertical-align: top}
+.mjx-mphantom * {visibility: hidden}
+.mjx-merror {background-color: #FFFF88; color: #CC0000; border: 1px solid #CC0000; padding: 2px 3px; font-style: normal; font-size: 90%}
+.mjx-annotation-xml {line-height: normal}
+.mjx-menclose > svg {fill: none; stroke: currentColor}
+.mjx-mtr {display: table-row}
+.mjx-mlabeledtr {display: table-row}
+.mjx-mtd {display: table-cell; text-align: center}
+.mjx-label {display: table-row}
+.mjx-box {display: inline-block}
+.mjx-block {display: block}
+.mjx-span {display: inline}
+.mjx-char {display: block; white-space: pre}
+.mjx-itable {display: inline-table; width: auto}
+.mjx-row {display: table-row}
+.mjx-cell {display: table-cell}
+.mjx-table {display: table; width: 100%}
+.mjx-line {display: block; height: 0}
+.mjx-strut {width: 0; padding-top: 1em}
+.mjx-vsize {width: 0}
+.MJXc-space1 {margin-left: .167em}
+.MJXc-space2 {margin-left: .222em}
+.MJXc-space3 {margin-left: .278em}
+.mjx-chartest {display: block; visibility: hidden; position: absolute; top: 0; line-height: normal; font-size: 500%}
+.mjx-chartest .mjx-char {display: inline}
+.mjx-chartest .mjx-box {padding-top: 1000px}
+.MJXc-processing {visibility: hidden; position: fixed; width: 0; height: 0; overflow: hidden}
+.MJXc-processed {display: none}
+.mjx-test {font-style: normal; font-weight: normal; font-size: 100%; font-size-adjust: none; text-indent: 0; text-transform: none; letter-spacing: normal; word-spacing: normal; overflow: hidden; height: 1px}
+.mjx-test.mjx-test-display {display: table!important}
+.mjx-test.mjx-test-inline {display: inline!important; margin-right: -1px}
+.mjx-test.mjx-test-default {display: block!important; clear: both}
+.mjx-ex-box {display: inline-block!important; position: absolute; overflow: hidden; min-height: 0; max-height: none; padding: 0; border: 0; margin: 0; width: 1px; height: 60ex}
+.mjx-test-inline .mjx-left-box {display: inline-block; width: 0; float: left}
+.mjx-test-inline .mjx-right-box {display: inline-block; width: 0; float: right}
+.mjx-test-display .mjx-right-box {display: table-cell!important; width: 10000em!important; min-width: 0; max-width: none; padding: 0; border: 0; margin: 0}
+#MathJax_CHTML_Tooltip {background-color: InfoBackground; color: InfoText; border: 1px solid black; box-shadow: 2px 2px 5px #AAAAAA; -webkit-box-shadow: 2px 2px 5px #AAAAAA; -moz-box-shadow: 2px 2px 5px #AAAAAA; -khtml-box-shadow: 2px 2px 5px #AAAAAA; padding: 3px 4px; z-index: 401; position: absolute; left: 0; top: 0; width: auto; height: auto; display: none}
+.mjx-chtml .mjx-noError {line-height: 1.2; vertical-align: ; font-size: 90%; text-align: left; color: black; padding: 1px 3px; border: 1px solid}
+.MJXc-TeX-unknown-R {font-family: STIXGeneral,'Cambria Math','Arial Unicode MS',serif; font-style: normal; font-weight: normal}
+.MJXc-TeX-unknown-I {font-family: STIXGeneral,'Cambria Math','Arial Unicode MS',serif; font-style: italic; font-weight: normal}
+.MJXc-TeX-unknown-B {font-family: STIXGeneral,'Cambria Math','Arial Unicode MS',serif; font-style: normal; font-weight: bold}
+.MJXc-TeX-unknown-BI {font-family: STIXGeneral,'Cambria Math','Arial Unicode MS',serif; font-style: italic; font-weight: bold}
+.MJXc-TeX-ams-R {font-family: MJXc-TeX-ams-R,MJXc-TeX-ams-Rw}
+.MJXc-TeX-cal-B {font-family: MJXc-TeX-cal-B,MJXc-TeX-cal-Bx,MJXc-TeX-cal-Bw}
+.MJXc-TeX-frak-R {font-family: MJXc-TeX-frak-R,MJXc-TeX-frak-Rw}
+.MJXc-TeX-frak-B {font-family: MJXc-TeX-frak-B,MJXc-TeX-frak-Bx,MJXc-TeX-frak-Bw}
+.MJXc-TeX-math-BI {font-family: MJXc-TeX-math-BI,MJXc-TeX-math-BIx,MJXc-TeX-math-BIw}
+.MJXc-TeX-sans-R {font-family: MJXc-TeX-sans-R,MJXc-TeX-sans-Rw}
+.MJXc-TeX-sans-B {font-family: MJXc-TeX-sans-B,MJXc-TeX-sans-Bx,MJXc-TeX-sans-Bw}
+.MJXc-TeX-sans-I {font-family: MJXc-TeX-sans-I,MJXc-TeX-sans-Ix,MJXc-TeX-sans-Iw}
+.MJXc-TeX-script-R {font-family: MJXc-TeX-script-R,MJXc-TeX-script-Rw}
+.MJXc-TeX-type-R {font-family: MJXc-TeX-type-R,MJXc-TeX-type-Rw}
+.MJXc-TeX-cal-R {font-family: MJXc-TeX-cal-R,MJXc-TeX-cal-Rw}
+.MJXc-TeX-main-B {font-family: MJXc-TeX-main-B,MJXc-TeX-main-Bx,MJXc-TeX-main-Bw}
+.MJXc-TeX-main-I {font-family: MJXc-TeX-main-I,MJXc-TeX-main-Ix,MJXc-TeX-main-Iw}
+.MJXc-TeX-main-R {font-family: MJXc-TeX-main-R,MJXc-TeX-main-Rw}
+.MJXc-TeX-math-I {font-family: MJXc-TeX-math-I,MJXc-TeX-math-Ix,MJXc-TeX-math-Iw}
+.MJXc-TeX-size1-R {font-family: MJXc-TeX-size1-R,MJXc-TeX-size1-Rw}
+.MJXc-TeX-size2-R {font-family: MJXc-TeX-size2-R,MJXc-TeX-size2-Rw}
+.MJXc-TeX-size3-R {font-family: MJXc-TeX-size3-R,MJXc-TeX-size3-Rw}
+.MJXc-TeX-size4-R {font-family: MJXc-TeX-size4-R,MJXc-TeX-size4-Rw}
+.MJXc-TeX-vec-R {font-family: MJXc-TeX-vec-R,MJXc-TeX-vec-Rw}
+.MJXc-TeX-vec-B {font-family: MJXc-TeX-vec-B,MJXc-TeX-vec-Bx,MJXc-TeX-vec-Bw}
+@font-face {font-family: MJXc-TeX-ams-R; src: local('MathJax_AMS'), local('MathJax_AMS-Regular')}
+@font-face {font-family: MJXc-TeX-ams-Rw; src /*1*/: url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/fonts/HTML-CSS/TeX/eot/MathJax_AMS-Regular.eot'); src /*2*/: url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/fonts/HTML-CSS/TeX/woff/MathJax_AMS-Regular.woff') format('woff'), url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/fonts/HTML-CSS/TeX/otf/MathJax_AMS-Regular.otf') format('opentype')}
+@font-face {font-family: MJXc-TeX-cal-B; src: local('MathJax_Caligraphic Bold'), local('MathJax_Caligraphic-Bold')}
+@font-face {font-family: MJXc-TeX-cal-Bx; src: local('MathJax_Caligraphic'); font-weight: bold}
+@font-face {font-family: MJXc-TeX-cal-Bw; src /*1*/: url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/fonts/HTML-CSS/TeX/eot/MathJax_Caligraphic-Bold.eot'); src /*2*/: url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/fonts/HTML-CSS/TeX/woff/MathJax_Caligraphic-Bold.woff') format('woff'), url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/fonts/HTML-CSS/TeX/otf/MathJax_Caligraphic-Bold.otf') format('opentype')}
+@font-face {font-family: MJXc-TeX-frak-R; src: local('MathJax_Fraktur'), local('MathJax_Fraktur-Regular')}
+@font-face {font-family: MJXc-TeX-frak-Rw; src /*1*/: url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/fonts/HTML-CSS/TeX/eot/MathJax_Fraktur-Regular.eot'); src /*2*/: url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/fonts/HTML-CSS/TeX/woff/MathJax_Fraktur-Regular.woff') format('woff'), url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/fonts/HTML-CSS/TeX/otf/MathJax_Fraktur-Regular.otf') format('opentype')}
+@font-face {font-family: MJXc-TeX-frak-B; src: local('MathJax_Fraktur Bold'), local('MathJax_Fraktur-Bold')}
+@font-face {font-family: MJXc-TeX-frak-Bx; src: local('MathJax_Fraktur'); font-weight: bold}
+@font-face {font-family: MJXc-TeX-frak-Bw; src /*1*/: url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/fonts/HTML-CSS/TeX/eot/MathJax_Fraktur-Bold.eot'); src /*2*/: url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/fonts/HTML-CSS/TeX/woff/MathJax_Fraktur-Bold.woff') format('woff'), url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/fonts/HTML-CSS/TeX/otf/MathJax_Fraktur-Bold.otf') format('opentype')}
+@font-face {font-family: MJXc-TeX-math-BI; src: local('MathJax_Math BoldItalic'), local('MathJax_Math-BoldItalic')}
+@font-face {font-family: MJXc-TeX-math-BIx; src: local('MathJax_Math'); font-weight: bold; font-style: italic}
+@font-face {font-family: MJXc-TeX-math-BIw; src /*1*/: url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/fonts/HTML-CSS/TeX/eot/MathJax_Math-BoldItalic.eot'); src /*2*/: url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/fonts/HTML-CSS/TeX/woff/MathJax_Math-BoldItalic.woff') format('woff'), url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/fonts/HTML-CSS/TeX/otf/MathJax_Math-BoldItalic.otf') format('opentype')}
+@font-face {font-family: MJXc-TeX-sans-R; src: local('MathJax_SansSerif'), local('MathJax_SansSerif-Regular')}
+@font-face {font-family: MJXc-TeX-sans-Rw; src /*1*/: url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/fonts/HTML-CSS/TeX/eot/MathJax_SansSerif-Regular.eot'); src /*2*/: url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/fonts/HTML-CSS/TeX/woff/MathJax_SansSerif-Regular.woff') format('woff'), url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/fonts/HTML-CSS/TeX/otf/MathJax_SansSerif-Regular.otf') format('opentype')}
+@font-face {font-family: MJXc-TeX-sans-B; src: local('MathJax_SansSerif Bold'), local('MathJax_SansSerif-Bold')}
+@font-face {font-family: MJXc-TeX-sans-Bx; src: local('MathJax_SansSerif'); font-weight: bold}
+@font-face {font-family: MJXc-TeX-sans-Bw; src /*1*/: url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/fonts/HTML-CSS/TeX/eot/MathJax_SansSerif-Bold.eot'); src /*2*/: url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/fonts/HTML-CSS/TeX/woff/MathJax_SansSerif-Bold.woff') format('woff'), url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/fonts/HTML-CSS/TeX/otf/MathJax_SansSerif-Bold.otf') format('opentype')}
+@font-face {font-family: MJXc-TeX-sans-I; src: local('MathJax_SansSerif Italic'), local('MathJax_SansSerif-Italic')}
+@font-face {font-family: MJXc-TeX-sans-Ix; src: local('MathJax_SansSerif'); font-style: italic}
+@font-face {font-family: MJXc-TeX-sans-Iw; src /*1*/: url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/fonts/HTML-CSS/TeX/eot/MathJax_SansSerif-Italic.eot'); src /*2*/: url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/fonts/HTML-CSS/TeX/woff/MathJax_SansSerif-Italic.woff') format('woff'), url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/fonts/HTML-CSS/TeX/otf/MathJax_SansSerif-Italic.otf') format('opentype')}
+@font-face {font-family: MJXc-TeX-script-R; src: local('MathJax_Script'), local('MathJax_Script-Regular')}
+@font-face {font-family: MJXc-TeX-script-Rw; src /*1*/: url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/fonts/HTML-CSS/TeX/eot/MathJax_Script-Regular.eot'); src /*2*/: url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/fonts/HTML-CSS/TeX/woff/MathJax_Script-Regular.woff') format('woff'), url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/fonts/HTML-CSS/TeX/otf/MathJax_Script-Regular.otf') format('opentype')}
+@font-face {font-family: MJXc-TeX-type-R; src: local('MathJax_Typewriter'), local('MathJax_Typewriter-Regular')}
+@font-face {font-family: MJXc-TeX-type-Rw; src /*1*/: url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/fonts/HTML-CSS/TeX/eot/MathJax_Typewriter-Regular.eot'); src /*2*/: url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/fonts/HTML-CSS/TeX/woff/MathJax_Typewriter-Regular.woff') format('woff'), url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/fonts/HTML-CSS/TeX/otf/MathJax_Typewriter-Regular.otf') format('opentype')}
+@font-face {font-family: MJXc-TeX-cal-R; src: local('MathJax_Caligraphic'), local('MathJax_Caligraphic-Regular')}
+@font-face {font-family: MJXc-TeX-cal-Rw; src /*1*/: url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/fonts/HTML-CSS/TeX/eot/MathJax_Caligraphic-Regular.eot'); src /*2*/: url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/fonts/HTML-CSS/TeX/woff/MathJax_Caligraphic-Regular.woff') format('woff'), url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/fonts/HTML-CSS/TeX/otf/MathJax_Caligraphic-Regular.otf') format('opentype')}
+@font-face {font-family: MJXc-TeX-main-B; src: local('MathJax_Main Bold'), local('MathJax_Main-Bold')}
+@font-face {font-family: MJXc-TeX-main-Bx; src: local('MathJax_Main'); font-weight: bold}
+@font-face {font-family: MJXc-TeX-main-Bw; src /*1*/: url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/fonts/HTML-CSS/TeX/eot/MathJax_Main-Bold.eot'); src /*2*/: url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/fonts/HTML-CSS/TeX/woff/MathJax_Main-Bold.woff') format('woff'), url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/fonts/HTML-CSS/TeX/otf/MathJax_Main-Bold.otf') format('opentype')}
+@font-face {font-family: MJXc-TeX-main-I; src: local('MathJax_Main Italic'), local('MathJax_Main-Italic')}
+@font-face {font-family: MJXc-TeX-main-Ix; src: local('MathJax_Main'); font-style: italic}
+@font-face {font-family: MJXc-TeX-main-Iw; src /*1*/: url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/fonts/HTML-CSS/TeX/eot/MathJax_Main-Italic.eot'); src /*2*/: url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/fonts/HTML-CSS/TeX/woff/MathJax_Main-Italic.woff') format('woff'), url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/fonts/HTML-CSS/TeX/otf/MathJax_Main-Italic.otf') format('opentype')}
+@font-face {font-family: MJXc-TeX-main-R; src: local('MathJax_Main'), local('MathJax_Main-Regular')}
+@font-face {font-family: MJXc-TeX-main-Rw; src /*1*/: url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/fonts/HTML-CSS/TeX/eot/MathJax_Main-Regular.eot'); src /*2*/: url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/fonts/HTML-CSS/TeX/woff/MathJax_Main-Regular.woff') format('woff'), url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/fonts/HTML-CSS/TeX/otf/MathJax_Main-Regular.otf') format('opentype')}
+@font-face {font-family: MJXc-TeX-math-I; src: local('MathJax_Math Italic'), local('MathJax_Math-Italic')}
+@font-face {font-family: MJXc-TeX-math-Ix; src: local('MathJax_Math'); font-style: italic}
+@font-face {font-family: MJXc-TeX-math-Iw; src /*1*/: url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/fonts/HTML-CSS/TeX/eot/MathJax_Math-Italic.eot'); src /*2*/: url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/fonts/HTML-CSS/TeX/woff/MathJax_Math-Italic.woff') format('woff'), url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/fonts/HTML-CSS/TeX/otf/MathJax_Math-Italic.otf') format('opentype')}
+@font-face {font-family: MJXc-TeX-size1-R; src: local('MathJax_Size1'), local('MathJax_Size1-Regular')}
+@font-face {font-family: MJXc-TeX-size1-Rw; src /*1*/: url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/fonts/HTML-CSS/TeX/eot/MathJax_Size1-Regular.eot'); src /*2*/: url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/fonts/HTML-CSS/TeX/woff/MathJax_Size1-Regular.woff') format('woff'), url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/fonts/HTML-CSS/TeX/otf/MathJax_Size1-Regular.otf') format('opentype')}
+@font-face {font-family: MJXc-TeX-size2-R; src: local('MathJax_Size2'), local('MathJax_Size2-Regular')}
+@font-face {font-family: MJXc-TeX-size2-Rw; src /*1*/: url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/fonts/HTML-CSS/TeX/eot/MathJax_Size2-Regular.eot'); src /*2*/: url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/fonts/HTML-CSS/TeX/woff/MathJax_Size2-Regular.woff') format('woff'), url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/fonts/HTML-CSS/TeX/otf/MathJax_Size2-Regular.otf') format('opentype')}
+@font-face {font-family: MJXc-TeX-size3-R; src: local('MathJax_Size3'), local('MathJax_Size3-Regular')}
+@font-face {font-family: MJXc-TeX-size3-Rw; src /*1*/: url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/fonts/HTML-CSS/TeX/eot/MathJax_Size3-Regular.eot'); src /*2*/: url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/fonts/HTML-CSS/TeX/woff/MathJax_Size3-Regular.woff') format('woff'), url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/fonts/HTML-CSS/TeX/otf/MathJax_Size3-Regular.otf') format('opentype')}
+@font-face {font-family: MJXc-TeX-size4-R; src: local('MathJax_Size4'), local('MathJax_Size4-Regular')}
+@font-face {font-family: MJXc-TeX-size4-Rw; src /*1*/: url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/fonts/HTML-CSS/TeX/eot/MathJax_Size4-Regular.eot'); src /*2*/: url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/fonts/HTML-CSS/TeX/woff/MathJax_Size4-Regular.woff') format('woff'), url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/fonts/HTML-CSS/TeX/otf/MathJax_Size4-Regular.otf') format('opentype')}
+@font-face {font-family: MJXc-TeX-vec-R; src: local('MathJax_Vector'), local('MathJax_Vector-Regular')}
+@font-face {font-family: MJXc-TeX-vec-Rw; src /*1*/: url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/fonts/HTML-CSS/TeX/eot/MathJax_Vector-Regular.eot'); src /*2*/: url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/fonts/HTML-CSS/TeX/woff/MathJax_Vector-Regular.woff') format('woff'), url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/fonts/HTML-CSS/TeX/otf/MathJax_Vector-Regular.otf') format('opentype')}
+@font-face {font-family: MJXc-TeX-vec-B; src: local('MathJax_Vector Bold'), local('MathJax_Vector-Bold')}
+@font-face {font-family: MJXc-TeX-vec-Bx; src: local('MathJax_Vector'); font-weight: bold}
+@font-face {font-family: MJXc-TeX-vec-Bw; src /*1*/: url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/fonts/HTML-CSS/TeX/eot/MathJax_Vector-Bold.eot'); src /*2*/: url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/fonts/HTML-CSS/TeX/woff/MathJax_Vector-Bold.woff') format('woff'), url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/fonts/HTML-CSS/TeX/otf/MathJax_Vector-Bold.otf') format('opentype')}
+</style></head>
+  <body class="d-flex flex-column" style="min-height: 100vh;"><div id="MathJax_Message" style="display: none;"></div>
+    <nav class="navbar fixed-top navbar-expand-lg navbar-light no-print" id="header-navbar">
+      <div class="container">
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navmenu" aria-controls="navmenu" aria-label="Toggle navigation" aria-expanded="false">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <a class="navbar-brand" href="https://www.cse.unsw.edu.au/~cs2521/22T3/" style="color: white;">COMP2521 22T3</a>
+
+        <div class="collapse navbar-collapse" id="navmenu">
+          <ul class="navbar-nav mr-auto">
+            <!--
+            <li class="nav-item active"><a class="nav-link" href="#">Outline</a></li>
+            <li class="nav-item active"><a class="nav-link" href="#">Forum</a></li>
+            <li class="navbar-text px-2">|</li>
+            -->
+
+            
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    
+    <main class="container" aria-label="Content" style="flex: 1; padding-top: 4rem;">
+      <header>
+        <h1 class="text-center">
+	Final Exam
+</h1>
+        <h3 class="text-center">
+Monday 5th December 2022
+</h3>
+        
+      </header>
+      <div class="text-justify mt-4">
+        
+
+<section class="exercise">
+<header><h3>Changelog</h3></header>
+<p>All changes to the exam paper and files will be listed here.</p>
+<ul class="text-left">
+	<li></li>
+</ul>
+</section>
+<section class="exercise">
+<header><h3>Exam Rules and Conditions</h3></header>
+
+<p>Please read these rules carefully. Note that <span class="red"><b>deliberate violation of exam conditions will be referred to Student Integrity as serious misconduct.</b></span></p>
+
+<h4>Duration</h4>
+<ul>
+	<li>You can start working as soon as you have access to this paper.</li>
+	<li>You have 3 hours* to complete this exam. You must stop working once your supervisor tells you to do so.</li>
+	<li><b>Online students:</b> Only submissions made before 5pm* will be marked.</li>
+	<li>* Students with extra exam time approved by Equitable Learning Services (ELS) will be given extra time to complete the exam.</li>
+</ul>
+
+<h4>Communication</h4>
+<ul>
+	<li>You are not permitted to communicate (email, phone, message, talk, social networks, etc.) with anyone during this exam except exam staff.</li>
+	<li>If you have any questions during the exam, you must raise your hand and ask a supervisor.</li>
+	<li><b>Online students:</b> If you have any questions during the exam, you must send your question to cs2521@cse.unsw.edu.au (online students only).</li>
+	<li>Even after you finish the exam, on the day of the exam, do not communicate your exam answers to anyone. Some students have extended time to complete the exam.</li>
+</ul>
+
+<h4>Resources</h4>
+<ul>
+	<li>The exam is open book. You may read any resources available on the web. However, you must not communicate with other students in any way, and you must not actively (i.e., via posting questions) request help from sites such as Chegg and StackOverflow.</li>
+	<li>You are not permitted to use code-synthesis tools such as GitHub Copilot and other similar tools.</li>
+	<li>Importantly, please make sure that you submit your original work and don't copy! We will use sophisticated plagiarism software/techniques to detect any possible breaches.</li>
+</ul>
+
+<h4>Privacy</h4>
+<ul>
+	<li>Do not place your exam work in any publicly accessible location, such as a public/shared Dropbox folder or Github repository.</li>
+	<li>Ensure that no other person in your household can access your exam work.</li>
+	<li>Your zpass should not be disclosed to any other person. If you have disclosed your zpass, you should change it immediately.</li>
+</ul>
+
+<h4>Special Consideration</h4>
+<ul>
+	<li><span class="red"><b>By starting this exam you have acknowledged that you are fit to sit the exam and cannot apply for Special Consideration for issues that existed prior to the exam.</b></span></li>
+	<li>If a circumstance arises during the exam that prevents you from completing the exam, please email cs2521@cse.unsw.edu.au immediately and apply for special consideration <b>within 3 days</b> of the exam, preferably as soon as possible.</li>
+	<li>Before your final exam, you should read the section "Important Information for Online Assessments" on the <a href="https://student.unsw.edu.au/special-consideration" target="_blank">Special Consideration webpage</a>. It contains information on what you should do if you experience a technical issue that is beyond your control and impacts your ability to complete an assessment - in particular, how and what to document for a special consideration application.</li>
+</ul>
+
+<h4>Submission</h4>
+<ul>
+	<li>All submissions must be done via the <code>give</code> command.</li>
+	<li>See the submission instructions under each question.</li>
+	<li>You can submit multiple times. Only your last submission will be marked.</li>
+	<li><b>Do not wait until just before the deadline to submit all your answers. Submit each question as soon as you finish working on it or submit incrementally throughout the exam.</b></li>
+	<li><b>Online students:</b> There will be a 5 minute buffer after the deadline (5pm) to allow students to resolve last-minute submission issues. <b>Do not use this buffer as an excuse to continue working on the exam until 5:05pm. You must attempt all submissions before 5pm. <span style="background-color: #FFFF00">Submissions will be disabled after 5:05pm (except for ELS students), and requests for leniency with respect to this deadline will be ignored. You have been warned.</span></b></li>
+	<li>To check your submission status for all the questions, use the command <code>2521 exam-check</code>. The command will show your latest submission time for each exam question.</li>
+</ul>
+
+<h4>Short-Answer Questions</h4>
+
+<ul>
+	<li>Justifications/explanations are only required when asked by the question.</li>
+</ul>
+
+<h4>Programming Questions</h4>
+<h5>General Assumptions and Constraints</h5>
+
+<ul>
+	<li>All inputs will be valid.</li>
+	<li>No error checking is necessary.</li>
+	<li>You may add your own <code>#defines</code> and define your own structs/enums.</li>
+	<li>You may define your own helper functions in the files to be submitted.</li>
+	<li>You may use any functions provided by the <code>#include</code>d libraries and files.</li>
+	<li>You <b>must not</b> <code>#include</code> any additional libraries.</li>
+	<li><span class="red">You must not use global variables or static variables. Solutions that do so will receive zero marks.</span></li>
+	<li><span class="red">Your solution must not start any new programs or communicate with external programs. Solutions that do so will receive zero marks.</span></li>
+</ul>
+
+<h5>Marking</h5>
+<ul>
+	<li><b>You should ensure that your code works on CSE machines.</b></li>
+	<li>Solutions which do not attempt to solve the question generally but instead only hardcode return values for specific tests will receive zero marks.</li>
+	<li>Code style is not marked (<i>except</i> that global variables and static variables are strictly forbidden). However, good style may help a marker understand your code better, which will give you a greater chance of being awarded partial marks if your code does not work.</li>
+	<li>Memory leaks/errors will not be penalised. <b>However</b>, we advise that you ensure there are no memory errors in your code, as programs containing memory errors are not guaranteed to behave correctly or consistently. A program that works when you test it during the exam but contains memory errors may not work during autotesting. There will be no chances to fix memory errors after the exam.</li>
+</ul>
+</section>
+
+<section class="exercise">
+<header><h3>Admin</h3></header>
+<dl class="dl-horizontal">
+	<dt>Marks</dt>
+	<dd>Contributes 40% towards your final mark</dd>
+	<dt>Submit</dt>
+	<dd>See the submission instructions for each question</dd>
+	<dt>Date</dt>
+	<dd>Monday 5 December 2022</dd>
+	<dt>Total Marks</dt>
+	<dd>100</dd>
+	<dt>Total number of questions</dt>
+	<dd>13<br>
+</dd></dl>
+</section>
+
+<section class="exercise">
+<header><h3>Structure</h3></header>
+<p>This exam consists of two parts:</p>
+<ul>
+	<li>Written short-answer questions (50 marks)</li>
+	<li>Programming questions (50 marks)</li>
+</ul>
+</section>
+
+
+<section class="exercise">
+<header><h3>Setting Up</h3></header>
+<p>Click <a href="https://cgi.cse.unsw.edu.au/~cs2521/22T3/exam/exam-files">here</a> to download the zip file.</p>
+
+<p>Navigate to the directory where you saved the zip file and unzip it:</p>
+
+<pre is="tty"><kbd is="sh">unzip exam-files.zip</kbd>
+</pre>
+
+<p>Then, change into the files directory and begin working.</p>
+
+<pre is="tty"><kbd is="sh">cd exam-files</kbd>
+</pre>
+
+</section>
+
+<section class="exercise with-self">
+<header><h3>Question 1 (4 marks)</h3></header>
+
+<p><i>Write your answers for this question in <b>q1.txt</b>.</i></p>
+
+<p>An algorithm solves a problem of size <span class="MathJax_Preview" style="color: inherit;"></span><span id="MathJax-Element-1-Frame" class="mjx-chtml MathJax_CHTML" tabindex="0" data-mathml="&lt;math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;&gt;&lt;mi&gt;n&lt;/mi&gt;&lt;/math&gt;" role="presentation" style="font-size: 119%; position: relative;"><span id="MJXc-Node-1" class="mjx-math" aria-hidden="true"><span id="MJXc-Node-2" class="mjx-mrow"><span id="MJXc-Node-3" class="mjx-mi"><span class="mjx-char MJXc-TeX-math-I" style="padding-top: 0.213em; padding-bottom: 0.265em;">n</span></span></span></span><span class="MJX_Assistive_MathML" role="presentation"><math xmlns="http://www.w3.org/1998/Math/MathML"><mi>n</mi></math></span></span><script type="math/tex" id="MathJax-Element-1"> n </script> recursively by breaking it down into two subproblems of sizes <span class="MathJax_Preview" style="color: inherit;"></span><span id="MathJax-Element-2-Frame" class="mjx-chtml MathJax_CHTML" tabindex="0" data-mathml="&lt;math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;&gt;&lt;mn&gt;4&lt;/mn&gt;&lt;/math&gt;" role="presentation" style="font-size: 119%; position: relative;"><span id="MJXc-Node-4" class="mjx-math" aria-hidden="true"><span id="MJXc-Node-5" class="mjx-mrow"><span id="MJXc-Node-6" class="mjx-mn"><span class="mjx-char MJXc-TeX-main-R" style="padding-top: 0.37em; padding-bottom: 0.318em;">4</span></span></span></span><span class="MJX_Assistive_MathML" role="presentation"><math xmlns="http://www.w3.org/1998/Math/MathML"><mn>4</mn></math></span></span><script type="math/tex" id="MathJax-Element-2"> 4 </script> and  <span class="MathJax_Preview" style="color: inherit;"></span><span id="MathJax-Element-3-Frame" class="mjx-chtml MathJax_CHTML" tabindex="0" data-mathml="&lt;math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;&gt;&lt;mi&gt;n&lt;/mi&gt;&lt;mo&gt;&amp;#x2212;&lt;/mo&gt;&lt;mn&gt;4&lt;/mn&gt;&lt;/math&gt;" role="presentation" style="font-size: 119%; position: relative;"><span id="MJXc-Node-7" class="mjx-math" aria-hidden="true"><span id="MJXc-Node-8" class="mjx-mrow"><span id="MJXc-Node-9" class="mjx-mi"><span class="mjx-char MJXc-TeX-math-I" style="padding-top: 0.213em; padding-bottom: 0.265em;">n</span></span><span id="MJXc-Node-10" class="mjx-mo MJXc-space2"><span class="mjx-char MJXc-TeX-main-R" style="padding-top: 0.318em; padding-bottom: 0.423em;">−</span></span><span id="MJXc-Node-11" class="mjx-mn MJXc-space2"><span class="mjx-char MJXc-TeX-main-R" style="padding-top: 0.37em; padding-bottom: 0.318em;">4</span></span></span></span><span class="MJX_Assistive_MathML" role="presentation"><math xmlns="http://www.w3.org/1998/Math/MathML"><mi>n</mi><mo>−</mo><mn>4</mn></math></span></span><script type="math/tex" id="MathJax-Element-3"> n - 4 </script> with the same structure, until the size of a subproblem is four or less. It takes <span class="MathJax_Preview" style="color: inherit;"></span><span id="MathJax-Element-4-Frame" class="mjx-chtml MathJax_CHTML" tabindex="0" data-mathml="&lt;math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;&gt;&lt;mi&gt;O&lt;/mi&gt;&lt;mo stretchy=&quot;false&quot;&gt;(&lt;/mo&gt;&lt;mn&gt;1&lt;/mn&gt;&lt;mo stretchy=&quot;false&quot;&gt;)&lt;/mo&gt;&lt;/math&gt;" role="presentation" style="font-size: 119%; position: relative;"><span id="MJXc-Node-12" class="mjx-math" aria-hidden="true"><span id="MJXc-Node-13" class="mjx-mrow"><span id="MJXc-Node-14" class="mjx-mi"><span class="mjx-char MJXc-TeX-math-I" style="padding-top: 0.475em; padding-bottom: 0.318em;">O</span></span><span id="MJXc-Node-15" class="mjx-mo"><span class="mjx-char MJXc-TeX-main-R" style="padding-top: 0.475em; padding-bottom: 0.58em;">(</span></span><span id="MJXc-Node-16" class="mjx-mn"><span class="mjx-char MJXc-TeX-main-R" style="padding-top: 0.37em; padding-bottom: 0.318em;">1</span></span><span id="MJXc-Node-17" class="mjx-mo"><span class="mjx-char MJXc-TeX-main-R" style="padding-top: 0.475em; padding-bottom: 0.58em;">)</span></span></span></span><span class="MJX_Assistive_MathML" role="presentation"><math xmlns="http://www.w3.org/1998/Math/MathML"><mi>O</mi><mo stretchy="false">(</mo><mn>1</mn><mo stretchy="false">)</mo></math></span></span><script type="math/tex" id="MathJax-Element-4"> O(1) </script> time to solve a (sub)problem of size up to four. It takes <span class="MathJax_Preview" style="color: inherit;"></span><span id="MathJax-Element-5-Frame" class="mjx-chtml MathJax_CHTML" tabindex="0" data-mathml="&lt;math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;&gt;&lt;mi&gt;O&lt;/mi&gt;&lt;mo stretchy=&quot;false&quot;&gt;(&lt;/mo&gt;&lt;mi&gt;n&lt;/mi&gt;&lt;mo stretchy=&quot;false&quot;&gt;)&lt;/mo&gt;&lt;/math&gt;" role="presentation" style="font-size: 119%; position: relative;"><span id="MJXc-Node-18" class="mjx-math" aria-hidden="true"><span id="MJXc-Node-19" class="mjx-mrow"><span id="MJXc-Node-20" class="mjx-mi"><span class="mjx-char MJXc-TeX-math-I" style="padding-top: 0.475em; padding-bottom: 0.318em;">O</span></span><span id="MJXc-Node-21" class="mjx-mo"><span class="mjx-char MJXc-TeX-main-R" style="padding-top: 0.475em; padding-bottom: 0.58em;">(</span></span><span id="MJXc-Node-22" class="mjx-mi"><span class="mjx-char MJXc-TeX-math-I" style="padding-top: 0.213em; padding-bottom: 0.265em;">n</span></span><span id="MJXc-Node-23" class="mjx-mo"><span class="mjx-char MJXc-TeX-main-R" style="padding-top: 0.475em; padding-bottom: 0.58em;">)</span></span></span></span><span class="MJX_Assistive_MathML" role="presentation"><math xmlns="http://www.w3.org/1998/Math/MathML"><mi>O</mi><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></math></span></span><script type="math/tex" id="MathJax-Element-5"> O(n) </script> time to convert a problem of size <span class="MathJax_Preview" style="color: inherit;"></span><span id="MathJax-Element-6-Frame" class="mjx-chtml MathJax_CHTML" tabindex="0" data-mathml="&lt;math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;&gt;&lt;mi&gt;n&lt;/mi&gt;&lt;/math&gt;" role="presentation" style="font-size: 119%; position: relative;"><span id="MJXc-Node-24" class="mjx-math" aria-hidden="true"><span id="MJXc-Node-25" class="mjx-mrow"><span id="MJXc-Node-26" class="mjx-mi"><span class="mjx-char MJXc-TeX-math-I" style="padding-top: 0.213em; padding-bottom: 0.265em;">n</span></span></span></span><span class="MJX_Assistive_MathML" role="presentation"><math xmlns="http://www.w3.org/1998/Math/MathML"><mi>n</mi></math></span></span><script type="math/tex" id="MathJax-Element-6"> n </script> into two subproblems, as described earlier, and it takes <span class="MathJax_Preview" style="color: inherit;"></span><span id="MathJax-Element-7-Frame" class="mjx-chtml MathJax_CHTML" tabindex="0" data-mathml="&lt;math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;&gt;&lt;mi&gt;O&lt;/mi&gt;&lt;mo stretchy=&quot;false&quot;&gt;(&lt;/mo&gt;&lt;mn&gt;1&lt;/mn&gt;&lt;mo stretchy=&quot;false&quot;&gt;)&lt;/mo&gt;&lt;/math&gt;" role="presentation" style="font-size: 119%; position: relative;"><span id="MJXc-Node-27" class="mjx-math" aria-hidden="true"><span id="MJXc-Node-28" class="mjx-mrow"><span id="MJXc-Node-29" class="mjx-mi"><span class="mjx-char MJXc-TeX-math-I" style="padding-top: 0.475em; padding-bottom: 0.318em;">O</span></span><span id="MJXc-Node-30" class="mjx-mo"><span class="mjx-char MJXc-TeX-main-R" style="padding-top: 0.475em; padding-bottom: 0.58em;">(</span></span><span id="MJXc-Node-31" class="mjx-mn"><span class="mjx-char MJXc-TeX-main-R" style="padding-top: 0.37em; padding-bottom: 0.318em;">1</span></span><span id="MJXc-Node-32" class="mjx-mo"><span class="mjx-char MJXc-TeX-main-R" style="padding-top: 0.475em; padding-bottom: 0.58em;">)</span></span></span></span><span class="MJX_Assistive_MathML" role="presentation"><math xmlns="http://www.w3.org/1998/Math/MathML"><mi>O</mi><mo stretchy="false">(</mo><mn>1</mn><mo stretchy="false">)</mo></math></span></span><script type="math/tex" id="MathJax-Element-7"> O(1) </script> time to combine the results of these subproblems into the result of the problem of size <span class="MathJax_Preview" style="color: inherit;"></span><span id="MathJax-Element-8-Frame" class="mjx-chtml MathJax_CHTML" tabindex="0" data-mathml="&lt;math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;&gt;&lt;mi&gt;n&lt;/mi&gt;&lt;/math&gt;" role="presentation" style="font-size: 119%; position: relative;"><span id="MJXc-Node-33" class="mjx-math" aria-hidden="true"><span id="MJXc-Node-34" class="mjx-mrow"><span id="MJXc-Node-35" class="mjx-mi"><span class="mjx-char MJXc-TeX-math-I" style="padding-top: 0.213em; padding-bottom: 0.265em;">n</span></span></span></span><span class="MJX_Assistive_MathML" role="presentation"><math xmlns="http://www.w3.org/1998/Math/MathML"><mi>n</mi></math></span></span><script type="math/tex" id="MathJax-Element-8"> n </script>. What is the time complexity of this algorithm? <b>Justify your answer.</b></p>
+
+<h4>Submission</h4>
+
+<p>Submit via the give command</p>
+
+<pre is="tty" class="exam terminal-window"><kbd is="sh">give cs2521 exam_q1 q1.txt</kbd>
+</pre>
+
+</section>
+
+
+<section class="exercise with-self">
+<header><h3>Question 2 (4 marks)</h3></header>
+
+<p><i>Write your answers for this question in <b>q2.txt</b>.</i></p>
+
+<p>An algorithm for solving a problem runs in exponential time <span class="MathJax_Preview" style="color: inherit;"></span><span id="MathJax-Element-9-Frame" class="mjx-chtml MathJax_CHTML" tabindex="0" data-mathml="&lt;math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;&gt;&lt;mi&gt;O&lt;/mi&gt;&lt;mo stretchy=&quot;false&quot;&gt;(&lt;/mo&gt;&lt;msup&gt;&lt;mn&gt;2&lt;/mn&gt;&lt;mi&gt;n&lt;/mi&gt;&lt;/msup&gt;&lt;mo stretchy=&quot;false&quot;&gt;)&lt;/mo&gt;&lt;/math&gt;" role="presentation" style="font-size: 119%; position: relative;"><span id="MJXc-Node-36" class="mjx-math" aria-hidden="true"><span id="MJXc-Node-37" class="mjx-mrow"><span id="MJXc-Node-38" class="mjx-mi"><span class="mjx-char MJXc-TeX-math-I" style="padding-top: 0.475em; padding-bottom: 0.318em;">O</span></span><span id="MJXc-Node-39" class="mjx-mo"><span class="mjx-char MJXc-TeX-main-R" style="padding-top: 0.475em; padding-bottom: 0.58em;">(</span></span><span id="MJXc-Node-40" class="mjx-msubsup"><span class="mjx-base"><span id="MJXc-Node-41" class="mjx-mn"><span class="mjx-char MJXc-TeX-main-R" style="padding-top: 0.37em; padding-bottom: 0.318em;">2</span></span></span><span class="mjx-sup" style="font-size: 70.7%; vertical-align: 0.591em; padding-left: 0px; padding-right: 0.071em;"><span id="MJXc-Node-42" class="mjx-mi" style=""><span class="mjx-char MJXc-TeX-math-I" style="padding-top: 0.213em; padding-bottom: 0.265em;">n</span></span></span></span><span id="MJXc-Node-43" class="mjx-mo"><span class="mjx-char MJXc-TeX-main-R" style="padding-top: 0.475em; padding-bottom: 0.58em;">)</span></span></span></span><span class="MJX_Assistive_MathML" role="presentation"><math xmlns="http://www.w3.org/1998/Math/MathML"><mi>O</mi><mo stretchy="false">(</mo><msup><mn>2</mn><mi>n</mi></msup><mo stretchy="false">)</mo></math></span></span><script type="math/tex" id="MathJax-Element-9"> O(2^n) </script>. Suppose that your computer, running an implementation of this algorithm, can process an input of size 10 in one day. What is the maximum input size that can be processed in one day by a computer that is 10000 times faster if it uses the same implementation? <b>Justify your answer.</b></p>
+
+<h4>Submission</h4>
+
+<p>Submit via the give command</p>
+
+<pre is="tty" class="exam terminal-window"><kbd is="sh">give cs2521 exam_q2 q2.txt</kbd>
+</pre>
+
+</section>
+
+
+<section class="exercise with-self">
+<header><h3>Question 3 (4 marks)</h3></header>
+
+<p><i>Write your answers for this question in <b>q3.txt</b>.</i></p>
+
+<p>Consider the following binary search tree:</p>
+
+<img class="center w-80 my-3" src="./COMP2521 22T3 - Final Exam_files/bst-rotations.svg">
+
+<p>Give the minimal sequence of rotations that would be required to bring the node with value 13 to the root. What are the values in the left and right child of the root node after the rotations?
+
+</p><h4>Submission</h4>
+
+<p>Submit via the give command</p>
+
+<pre is="tty" class="exam terminal-window"><kbd is="sh">give cs2521 exam_q3 q3.txt</kbd>
+</pre>
+
+</section>
+
+
+<section class="exercise with-self">
+<header><h3>Question 4 (4 marks)</h3></header>
+
+<p><i>Write your answers for this question in <b>q4.txt</b>.</i></p>
+
+<p>Consider the the following 2-3-4 tree:</p>
+
+<img class="center w-55 my-3" src="./COMP2521 22T3 - Final Exam_files/234-tree.svg">
+
+<p><b>Note:</b> In this question you should handle insertion into a full node by inserting the new value into the node (as if the node had space for four values) and then promoting the <em>smaller of the two middle values</em>.</p>
+
+<p>Insert the values 1, 2, 4 in this order into the above 2-3-4 tree, and answer the following questions:</p>
+
+<p><b>(a) (2 marks)</b></p>
+<p>What are the value(s) in the root node (after performing the insertions)?</p>
+
+<p><b>(b) (2 marks)</b></p>
+<p>What are the value(s) in each of the children of the root node (after performing the insertions)? Format your answer clearly so it is clear which value is in which node.</p>
+
+<h4>Submission</h4>
+
+<p>Submit via the give command</p>
+
+<pre is="tty" class="exam terminal-window"><kbd is="sh">give cs2521 exam_q4 q4.txt</kbd>
+</pre>
+
+</section>
+
+
+<section class="exercise with-self">
+<header><h3>Question 5 (6 marks)</h3></header>
+
+<p><i>Write your answers for this question in <b>q5.txt</b>.</i></p>
+
+<p>Consider the following undirected weighted graph:
+
+<img class="center w-50 my-3" src="./COMP2521 22T3 - Final Exam_files/dijkstra.png">
+
+</p><p>Use Dijkstra's algorithm to find the shortest path from vertex <span class="MathJax_Preview" style="color: inherit;"></span><span id="MathJax-Element-10-Frame" class="mjx-chtml MathJax_CHTML" tabindex="0" data-mathml="&lt;math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;&gt;&lt;mi&gt;a&lt;/mi&gt;&lt;/math&gt;" role="presentation" style="font-size: 119%; position: relative;"><span id="MJXc-Node-44" class="mjx-math" aria-hidden="true"><span id="MJXc-Node-45" class="mjx-mrow"><span id="MJXc-Node-46" class="mjx-mi"><span class="mjx-char MJXc-TeX-math-I" style="padding-top: 0.213em; padding-bottom: 0.265em;">a</span></span></span></span><span class="MJX_Assistive_MathML" role="presentation"><math xmlns="http://www.w3.org/1998/Math/MathML"><mi>a</mi></math></span></span><script type="math/tex" id="MathJax-Element-10"> a </script> to all other vertices. Give the order in which the vertices are visited, and show the state of the distance and predecessor arrays after each vertex is visited.</p>
+
+<h4>Submission</h4>
+
+<p>Submit via the give command</p>
+
+<pre is="tty" class="exam terminal-window"><kbd is="sh">give cs2521 exam_q5 q5.txt</kbd>
+</pre>
+</section>
+
+
+<section class="exercise with-self">
+<header><h3>Question 6 (10 marks)</h3></header>
+
+<p><i>Write your answers for this question in <b>q6.txt</b>.</i></p>
+
+<p>Consider the following array: </p><pre>[ 98, 26, 71, 96, 15, 55, 100, 4, 46, 41, 14, 5 ]</pre><p></p>
+
+<p><b>(a) (3 marks)</b></p>
+<p>Suppose the array above is sorted using <b>bubble sort</b>, implemented using bubble-down/downward scans (in the same way as in the lecture slides). Show the state of the array after the first four scans.</p>
+
+<p><b>(b) (3 marks)</b></p>
+<p>Suppose the array above is sorted using <b>bottom-up mergesort</b>. Show the state of the array after each pass of the algorithm.</p>
+
+<p><b>(c) (4 marks)</b></p>
+<p>Identify two important <b>differences</b> between <b>radix</b> sort and <b>merge</b> sort. Give one situation where radix sort would be more suitable than merge sort, and vice versa.</p>
+
+<h4>Submission</h4>
+
+<p>Submit via the give command</p>
+
+<pre is="tty" class="exam terminal-window"><kbd is="sh">give cs2521 exam_q6 q6.txt</kbd>
+</pre>
+</section>
+  
+
+<section class="exercise with-self">
+<header><h3>Question 7 (5 marks)</h3></header>
+
+<p><i>Write your answers for this question in <b>q7.txt</b>.</i></p>
+
+<p>Consider the following two (min) heaps, represented using arrays as discussed in the lectures:</p>
+
+<p>Heap <span class="MathJax_Preview" style="color: inherit;"></span><span id="MathJax-Element-11-Frame" class="mjx-chtml MathJax_CHTML" tabindex="0" data-mathml="&lt;math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;&gt;&lt;mi&gt;A&lt;/mi&gt;&lt;/math&gt;" role="presentation" style="font-size: 119%; position: relative;"><span id="MJXc-Node-47" class="mjx-math" aria-hidden="true"><span id="MJXc-Node-48" class="mjx-mrow"><span id="MJXc-Node-49" class="mjx-mi"><span class="mjx-char MJXc-TeX-math-I" style="padding-top: 0.475em; padding-bottom: 0.265em;">A</span></span></span></span><span class="MJX_Assistive_MathML" role="presentation"><math xmlns="http://www.w3.org/1998/Math/MathML"><mi>A</mi></math></span></span><script type="math/tex" id="MathJax-Element-11"> A </script>: <code>[ , 4, 5, 6, 15, 9, 7, 20, 16, 25, 14, 12, 11, 8 ]</code>
+
+</p><p>Heap <span class="MathJax_Preview" style="color: inherit;"></span><span id="MathJax-Element-12-Frame" class="mjx-chtml MathJax_CHTML" tabindex="0" data-mathml="&lt;math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;&gt;&lt;mi&gt;B&lt;/mi&gt;&lt;/math&gt;" role="presentation" style="font-size: 119%; position: relative;"><span id="MJXc-Node-50" class="mjx-math" aria-hidden="true"><span id="MJXc-Node-51" class="mjx-mrow"><span id="MJXc-Node-52" class="mjx-mi"><span class="mjx-char MJXc-TeX-math-I" style="padding-top: 0.475em; padding-bottom: 0.265em;">B</span></span></span></span><span class="MJX_Assistive_MathML" role="presentation"><math xmlns="http://www.w3.org/1998/Math/MathML"><mi>B</mi></math></span></span><script type="math/tex" id="MathJax-Element-12"> B </script>: <code>[ , 3, 8, 5, 15, 9, 6, 20, 16, 25, 14, 12, 11, 7 ]</code>
+
+</p><p>What <b>minimal</b> sequence of insert and/or removeMin operations on heap <span class="MathJax_Preview" style="color: inherit;"></span><span id="MathJax-Element-13-Frame" class="mjx-chtml MathJax_CHTML" tabindex="0" data-mathml="&lt;math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;&gt;&lt;mi&gt;A&lt;/mi&gt;&lt;/math&gt;" role="presentation" style="font-size: 119%; position: relative;"><span id="MJXc-Node-53" class="mjx-math" aria-hidden="true"><span id="MJXc-Node-54" class="mjx-mrow"><span id="MJXc-Node-55" class="mjx-mi"><span class="mjx-char MJXc-TeX-math-I" style="padding-top: 0.475em; padding-bottom: 0.265em;">A</span></span></span></span><span class="MJX_Assistive_MathML" role="presentation"><math xmlns="http://www.w3.org/1998/Math/MathML"><mi>A</mi></math></span></span><script type="math/tex" id="MathJax-Element-13"> A </script> will transform it into heap <span class="MathJax_Preview" style="color: inherit;"></span><span id="MathJax-Element-14-Frame" class="mjx-chtml MathJax_CHTML" tabindex="0" data-mathml="&lt;math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;&gt;&lt;mi&gt;B&lt;/mi&gt;&lt;/math&gt;" role="presentation" style="font-size: 119%; position: relative;"><span id="MJXc-Node-56" class="mjx-math" aria-hidden="true"><span id="MJXc-Node-57" class="mjx-mrow"><span id="MJXc-Node-58" class="mjx-mi"><span class="mjx-char MJXc-TeX-math-I" style="padding-top: 0.475em; padding-bottom: 0.265em;">B</span></span></span></span><span class="MJX_Assistive_MathML" role="presentation"><math xmlns="http://www.w3.org/1998/Math/MathML"><mi>B</mi></math></span></span><script type="math/tex" id="MathJax-Element-14"> B </script>? Show the state of the heap after each operation using the <i><b>array</b> representation</i>.</p>
+
+<h4>Submission</h4>
+
+<p>Submit via the give command</p>
+
+<pre is="tty" class="exam terminal-window"><kbd is="sh">give cs2521 exam_q7 q7.txt</kbd>
+</pre>
+</section>
+
+
+<section class="exercise with-self">
+<header><h3>Question 8 (4 marks)</h3></header>
+
+<p><i>Write your answers for this question in <b>q8.txt</b>.</i></p>
+
+<p>Consider a trie with <span class="MathJax_Preview" style="color: inherit;"></span><span id="MathJax-Element-15-Frame" class="mjx-chtml MathJax_CHTML" tabindex="0" data-mathml="&lt;math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;&gt;&lt;mi&gt;n&lt;/mi&gt;&lt;/math&gt;" role="presentation" style="font-size: 119%; position: relative;"><span id="MJXc-Node-59" class="mjx-math" aria-hidden="true"><span id="MJXc-Node-60" class="mjx-mrow"><span id="MJXc-Node-61" class="mjx-mi"><span class="mjx-char MJXc-TeX-math-I" style="padding-top: 0.213em; padding-bottom: 0.265em;">n</span></span></span></span><span class="MJX_Assistive_MathML" role="presentation"><math xmlns="http://www.w3.org/1998/Math/MathML"><mi>n</mi></math></span></span><script type="math/tex" id="MathJax-Element-15"> n </script> nodes in total (not including the root node) and <span class="MathJax_Preview" style="color: inherit;"></span><span id="MathJax-Element-16-Frame" class="mjx-chtml MathJax_CHTML" tabindex="0" data-mathml="&lt;math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;&gt;&lt;mi&gt;m&lt;/mi&gt;&lt;/math&gt;" role="presentation" style="font-size: 119%; position: relative;"><span id="MJXc-Node-62" class="mjx-math" aria-hidden="true"><span id="MJXc-Node-63" class="mjx-mrow"><span id="MJXc-Node-64" class="mjx-mi"><span class="mjx-char MJXc-TeX-math-I" style="padding-top: 0.213em; padding-bottom: 0.265em;">m</span></span></span></span><span class="MJX_Assistive_MathML" role="presentation"><math xmlns="http://www.w3.org/1998/Math/MathML"><mi>m</mi></math></span></span><script type="math/tex" id="MathJax-Element-16"> m </script> leaf nodes.</p>
+
+<p><b>(a) (2 marks)</b></p>
+<p>What is the maximum number of words that could be contained in the trie? <b>Justify your answer.</b></p>
+
+<p><b>(b) (2 marks)</b></p>
+<p>What is the minimum number of words that could be contained in the trie? <b>Justify your answer.</b></p>
+
+<h4>Submission</h4>
+
+<p>Submit via the give command</p>
+
+<pre is="tty" class="exam terminal-window"><kbd is="sh">give cs2521 exam_q8 q8.txt</kbd>
+</pre>
+</section>
+
+
+<section class="exercise with-self">
+<header><h3>Question 9 (4 marks)</h3></header>
+
+<p><i>Write your answers for this question in <b>q9.txt</b>.</i></p>
+
+<p>There are ten small islands in a lake and the government wants to build nine bridges to connect them so that each island can be reached from any other one via one or more bridges. The cost of constructing a bridge between two islands is proportional to the distance between the islands. You would like to keep the costs as low as possible.</p>
+
+<p>Which <b>data structure</b> and <b>algorithm</b> would you use to solve the above task? <b>Justify your answer.</b></p>
+
+<h4>Submission</h4>
+
+<p>Submit via the give command</p>
+
+<pre is="tty" class="exam terminal-window"><kbd is="sh">give cs2521 exam_q9 q9.txt</kbd>
+</pre>
+</section>
+
+
+<section class="exercise with-self">
+<header><h3>Question 10 (5 marks)</h3></header>
+
+<p><i>Write your answers for this question in <b>q10.txt</b>.</i></p>
+
+<p>Suppose that you need to implement an ADT that provides the following operations:</p>
+<ul>
+	<li>Push: Adds a new key-element pair</li>
+	<li>Pop: Remove a key-element pair with the lowest key</li>
+	<li>Remove-In-Range: Removes all key-element pairs where the key is between two given values</li>
+</ul>
+
+<p>Assuming that all three operations will be frequently used, which one of the following data structures is most suitable? <b>Justify your answer.</b> You must use time complexities as a basis for your justification.</p>
+
+<ul>
+	<li>Ordered Linked List</li>
+	<li>Ordered Array</li>
+	<li>Hash Table</li>
+	<li>Heap</li>
+</ul>
+
+<h4>Submission</h4>
+
+<p>Submit via the give command</p>
+
+<pre is="tty" class="exam terminal-window"><kbd is="sh">give cs2521 exam_q10 q10.txt</kbd>
+</pre>
+
+</section>
+
+
+<section class="exercise with-self">
+<header><h3>Question 11 (15 marks)</h3></header>
+
+<p>Your task is to implement the following function in the file <code>q11/findShortestSublist.c</code>:</p>
+
+<div class="highlight"><pre><span></span><span class="n">List</span> <span class="nf">findShortestSublist</span><span class="p">(</span><span class="n">List</span> <span class="n">l</span><span class="p">,</span> <span class="kt">int</span> <span class="n">start</span><span class="p">,</span> <span class="kt">int</span> <span class="n">end</span><span class="p">);</span>
+</pre></div>
+
+
+<p>The function takes a list <code>l</code> and two values <code>start</code> and <code>end</code>, and returns a copy of the shortest sublist of <code>l</code> that begins with the value <code>start</code>, and ends with the value <code>end</code>. If there are multiple such sublists with the shortest length, the function should return the first such sublist. If there are no sublists that begin with <code>start</code> and end with <code>end</code>, the function should return an empty list.</p>
+
+<h4>Examples</h4>
+
+<p>Consider the following list:</p>
+
+<pre>50 25 25 12 67 50 9 25 54 67 98 34 9 25 91 67 25 9</pre>
+
+<ul>
+	<li>If <code>start</code> is 25 and <code>end</code> is 50, then the function should return <code>[25, 12, 67, 50]</code>.</li>
+	<li>If <code>start</code> is 25 and <code>end</code> is 67, then the function should return <code>[25, 12, 67]</code>, because this is the first shortest sublist that begins with 25 and ends with 67 (the others are <code>[25, 54, 67]</code> and <code>[25, 91, 67]</code>).</li>
+	<li>If <code>start</code> is 25 and <code>end</code> is 25, then the function should return <code>[25]</code>, because this is the shortest sublist that begins with 25 and ends with 25.</li>
+	<li>If <code>start</code> is 25 and <code>end</code> is 33, then the function should return an empty list, because there are no sublists that begin with 25 and end with 33.</li>
+</ul>
+
+<h4 class="mt-3">Assumptions and Constraints</h4>
+<ul>
+	<li>All general assumptions and constraints at the top of this exam paper apply.</li>
+	<li>The input list must not be modified.</li>
+	<li>You must <b>not</b> use arrays. Failure to comply with this will result in a mark of zero for this question.</li>
+	<li>To get full marks for this question, the time complexity of your solution should be <span class="MathJax_Preview" style="color: inherit;"></span><span id="MathJax-Element-17-Frame" class="mjx-chtml MathJax_CHTML" tabindex="0" data-mathml="&lt;math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;&gt;&lt;mi&gt;O&lt;/mi&gt;&lt;mo stretchy=&quot;false&quot;&gt;(&lt;/mo&gt;&lt;mi&gt;n&lt;/mi&gt;&lt;mo stretchy=&quot;false&quot;&gt;)&lt;/mo&gt;&lt;/math&gt;" role="presentation" style="font-size: 119%; position: relative;"><span id="MJXc-Node-65" class="mjx-math" aria-hidden="true"><span id="MJXc-Node-66" class="mjx-mrow"><span id="MJXc-Node-67" class="mjx-mi"><span class="mjx-char MJXc-TeX-math-I" style="padding-top: 0.475em; padding-bottom: 0.318em;">O</span></span><span id="MJXc-Node-68" class="mjx-mo"><span class="mjx-char MJXc-TeX-main-R" style="padding-top: 0.475em; padding-bottom: 0.58em;">(</span></span><span id="MJXc-Node-69" class="mjx-mi"><span class="mjx-char MJXc-TeX-math-I" style="padding-top: 0.213em; padding-bottom: 0.265em;">n</span></span><span id="MJXc-Node-70" class="mjx-mo"><span class="mjx-char MJXc-TeX-main-R" style="padding-top: 0.475em; padding-bottom: 0.58em;">)</span></span></span></span><span class="MJX_Assistive_MathML" role="presentation"><math xmlns="http://www.w3.org/1998/Math/MathML"><mi>O</mi><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></math></span></span><script type="math/tex" id="MathJax-Element-17"> O(n) </script>, where <span class="MathJax_Preview" style="color: inherit;"></span><span id="MathJax-Element-18-Frame" class="mjx-chtml MathJax_CHTML" tabindex="0" data-mathml="&lt;math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;&gt;&lt;mi&gt;n&lt;/mi&gt;&lt;/math&gt;" role="presentation" style="font-size: 119%; position: relative;"><span id="MJXc-Node-71" class="mjx-math" aria-hidden="true"><span id="MJXc-Node-72" class="mjx-mrow"><span id="MJXc-Node-73" class="mjx-mi"><span class="mjx-char MJXc-TeX-math-I" style="padding-top: 0.213em; padding-bottom: 0.265em;">n</span></span></span></span><span class="MJX_Assistive_MathML" role="presentation"><math xmlns="http://www.w3.org/1998/Math/MathML"><mi>n</mi></math></span></span><script type="math/tex" id="MathJax-Element-18"> n </script> is the length of the given list. If your solution is slower than <span class="MathJax_Preview" style="color: inherit;"></span><span id="MathJax-Element-19-Frame" class="mjx-chtml MathJax_CHTML" tabindex="0" data-mathml="&lt;math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;&gt;&lt;mi&gt;O&lt;/mi&gt;&lt;mo stretchy=&quot;false&quot;&gt;(&lt;/mo&gt;&lt;mi&gt;n&lt;/mi&gt;&lt;mo stretchy=&quot;false&quot;&gt;)&lt;/mo&gt;&lt;/math&gt;" role="presentation" style="font-size: 119%; position: relative;"><span id="MJXc-Node-74" class="mjx-math" aria-hidden="true"><span id="MJXc-Node-75" class="mjx-mrow"><span id="MJXc-Node-76" class="mjx-mi"><span class="mjx-char MJXc-TeX-math-I" style="padding-top: 0.475em; padding-bottom: 0.318em;">O</span></span><span id="MJXc-Node-77" class="mjx-mo"><span class="mjx-char MJXc-TeX-main-R" style="padding-top: 0.475em; padding-bottom: 0.58em;">(</span></span><span id="MJXc-Node-78" class="mjx-mi"><span class="mjx-char MJXc-TeX-math-I" style="padding-top: 0.213em; padding-bottom: 0.265em;">n</span></span><span id="MJXc-Node-79" class="mjx-mo"><span class="mjx-char MJXc-TeX-main-R" style="padding-top: 0.475em; padding-bottom: 0.58em;">)</span></span></span></span><span class="MJX_Assistive_MathML" role="presentation"><math xmlns="http://www.w3.org/1998/Math/MathML"><mi>O</mi><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></math></span></span><script type="math/tex" id="MathJax-Element-19"> O(n) </script>, the maximum mark you can attain for this question will be 9 (out of 15). (<b>Tip:</b> If you can't think of an <span class="MathJax_Preview" style="color: inherit;"></span><span id="MathJax-Element-20-Frame" class="mjx-chtml MathJax_CHTML" tabindex="0" data-mathml="&lt;math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;&gt;&lt;mi&gt;O&lt;/mi&gt;&lt;mo stretchy=&quot;false&quot;&gt;(&lt;/mo&gt;&lt;mi&gt;n&lt;/mi&gt;&lt;mo stretchy=&quot;false&quot;&gt;)&lt;/mo&gt;&lt;/math&gt;" role="presentation" style="font-size: 119%; position: relative;"><span id="MJXc-Node-80" class="mjx-math" aria-hidden="true"><span id="MJXc-Node-81" class="mjx-mrow"><span id="MJXc-Node-82" class="mjx-mi"><span class="mjx-char MJXc-TeX-math-I" style="padding-top: 0.475em; padding-bottom: 0.318em;">O</span></span><span id="MJXc-Node-83" class="mjx-mo"><span class="mjx-char MJXc-TeX-main-R" style="padding-top: 0.475em; padding-bottom: 0.58em;">(</span></span><span id="MJXc-Node-84" class="mjx-mi"><span class="mjx-char MJXc-TeX-math-I" style="padding-top: 0.213em; padding-bottom: 0.265em;">n</span></span><span id="MJXc-Node-85" class="mjx-mo"><span class="mjx-char MJXc-TeX-main-R" style="padding-top: 0.475em; padding-bottom: 0.58em;">)</span></span></span></span><span class="MJX_Assistive_MathML" role="presentation"><math xmlns="http://www.w3.org/1998/Math/MathML"><mi>O</mi><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></math></span></span><script type="math/tex" id="MathJax-Element-20"> O(n) </script> solution then we recommend that you implement an inefficient solution first.)</li>
+</ul>
+
+<h4 class="mt-3">Files</h4>
+<table class="table-sm table-bordered">
+	<tbody><tr>
+		<td><b>Makefile</b></td>
+		<td>A Makefile to compile your code</td>
+	</tr>
+	<tr>
+		<td><b>list.c</b></td>
+		<td>Contains the implementation of basic linked list functions</td>
+	</tr>
+	<tr>
+		<td><b>list.h</b></td>
+		<td>Contains the definition of the linked list data structure and function prototypes</td>
+	</tr>
+	<tr>
+		<td class="pr-4"><b>testFindShortestSublist.c</b></td>
+		<td>A testing program. The program reads the list and the start and end values from <code>stdin</code>, calls <code>findShortestSublist</code>, and outputs the result to <code>stdout</code>.</td>
+	</tr>
+	<tr>
+		<td><b>findShortestSublist.c</b></td>
+		<td>Contains <code>findShortestSublist</code>, the function you must implement. <b>This is the only file you should modify.</b></td>
+	</tr>
+	<tr>
+		<td><b>tests/</b></td>
+		<td>A directory containing the inputs and expected outputs for some basic test cases</td>
+	</tr>
+</tbody></table>
+
+<h4 class="mt-3">Testing</h4>
+<p>You can compile and test your function using the following commands:</p>
+
+<pre is="tty" class="exam terminal-window"><kbd is="sh">make</kbd>                                            <span class="comment"># compiles the program</span>
+<kbd is="sh">./testFindShortestSublist</kbd>                       <span class="comment"># tests with manual input, outputs to terminal</span>
+<kbd is="sh">./testFindShortestSublist &lt; <i>input-file</i></kbd>          <span class="comment"># tests with input from a file, outputs to terminal</span>
+<kbd is="sh">./testFindShortestSublist &lt; tests/input1.txt</kbd>    <span class="comment"># for example, tests with input from tests/input1.txt</span>
+                                                  <span class="comment"># (then compare with tests/output1.txt)</span>
+</pre>
+
+<p>It is possible to devise your own tests by creating your own input files. See the existing input files for examples. Note that you will need to check the output yourself.</p>
+
+<h4 class="mt-3">Submission</h4>
+<p>Submit via the give command</p>
+<pre is="tty" class="exam terminal-window"><kbd is="sh">give cs2521 exam_q11 findShortestSublist.c</kbd>
+</pre>
+
+<p>Make sure you are in the <code>q11</code> directory before using this command.</p>
+
+</section>
+
+
+<section class="exercise with-self">
+<header><h3>Question 12 (15 marks)</h3></header>
+
+<p>Your task is to implement the following function in the file <code>q12/leafCount.c</code>:</p>
+
+<div class="highlight"><pre><span></span><span class="kt">int</span> <span class="nf">leafCount</span><span class="p">(</span><span class="n">BSTree</span> <span class="n">t</span><span class="p">,</span> <span class="kt">int</span> <span class="n">pathLength</span><span class="p">);</span>
+</pre></div>
+
+
+<p>The function takes a binary search tree <code>t</code> and an integer <code>pathLength</code>, and returns the number of leaf nodes where the path length from the root to the leaf node is greater than or equal to the given <code>pathLength</code>.</p>
+
+<h4 class="mt-3">Examples</h4>
+
+<p>Consider the following binary search tree:</p>
+
+<img class="center w-35 my-3" src="./COMP2521 22T3 - Final Exam_files/leaf-count.svg">
+
+<ul>
+	<li>The path length from the root to the leaf node 42 is 2.</li>
+	<li>The path length from the root to the leaf node 54 is 3.</li>
+	<li>The path length from the root to the leaf node 70 is 4.</li>
+	<li>The path length from the root to the leaf node 81 is 4.</li>
+	<li>The path length from the root to the leaf node 98 is 2.</li>
+</ul>
+
+<p>Therefore:</p>
+
+<ul>
+	<li>If <code>pathLength</code> is 2 or less, the function should return 5.</li>
+	<li>If <code>pathLength</code> is 3, the function should return 3.</li>
+	<li>If <code>pathLength</code> is 4, the function should return 2.</li>
+	<li>If <code>pathLength</code> is 5 or greater, the function should return 0.</li>
+</ul>
+
+<h4>Assumptions and Constraints</h4>
+
+<ul>
+    <li>All general assumptions and constraints at the top of this exam paper apply.</li>
+    <li>The given tree must not be modified.</li>
+    <li>You must <b>not</b> use arrays. Failure to comply with this will result in a mark of zero for this question.</li>
+    <li>To get full marks for this question, the time complexity of your solution should be <span class="MathJax_Preview" style="color: inherit;"></span><span id="MathJax-Element-21-Frame" class="mjx-chtml MathJax_CHTML" tabindex="0" data-mathml="&lt;math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;&gt;&lt;mi&gt;O&lt;/mi&gt;&lt;mo stretchy=&quot;false&quot;&gt;(&lt;/mo&gt;&lt;mi&gt;n&lt;/mi&gt;&lt;mo stretchy=&quot;false&quot;&gt;)&lt;/mo&gt;&lt;/math&gt;" role="presentation" style="font-size: 119%; position: relative;"><span id="MJXc-Node-86" class="mjx-math" aria-hidden="true"><span id="MJXc-Node-87" class="mjx-mrow"><span id="MJXc-Node-88" class="mjx-mi"><span class="mjx-char MJXc-TeX-math-I" style="padding-top: 0.475em; padding-bottom: 0.318em;">O</span></span><span id="MJXc-Node-89" class="mjx-mo"><span class="mjx-char MJXc-TeX-main-R" style="padding-top: 0.475em; padding-bottom: 0.58em;">(</span></span><span id="MJXc-Node-90" class="mjx-mi"><span class="mjx-char MJXc-TeX-math-I" style="padding-top: 0.213em; padding-bottom: 0.265em;">n</span></span><span id="MJXc-Node-91" class="mjx-mo"><span class="mjx-char MJXc-TeX-main-R" style="padding-top: 0.475em; padding-bottom: 0.58em;">)</span></span></span></span><span class="MJX_Assistive_MathML" role="presentation"><math xmlns="http://www.w3.org/1998/Math/MathML"><mi>O</mi><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></math></span></span><script type="math/tex" id="MathJax-Element-21"> O(n) </script>, where <span class="MathJax_Preview" style="color: inherit;"></span><span id="MathJax-Element-22-Frame" class="mjx-chtml MathJax_CHTML" tabindex="0" data-mathml="&lt;math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;&gt;&lt;mi&gt;n&lt;/mi&gt;&lt;/math&gt;" role="presentation" style="font-size: 119%; position: relative;"><span id="MJXc-Node-92" class="mjx-math" aria-hidden="true"><span id="MJXc-Node-93" class="mjx-mrow"><span id="MJXc-Node-94" class="mjx-mi"><span class="mjx-char MJXc-TeX-math-I" style="padding-top: 0.213em; padding-bottom: 0.265em;">n</span></span></span></span><span class="MJX_Assistive_MathML" role="presentation"><math xmlns="http://www.w3.org/1998/Math/MathML"><mi>n</mi></math></span></span><script type="math/tex" id="MathJax-Element-22"> n </script> is the number of nodes in the tree. If your solution is slower than <span class="MathJax_Preview" style="color: inherit;"></span><span id="MathJax-Element-23-Frame" class="mjx-chtml MathJax_CHTML" tabindex="0" data-mathml="&lt;math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;&gt;&lt;mi&gt;O&lt;/mi&gt;&lt;mo stretchy=&quot;false&quot;&gt;(&lt;/mo&gt;&lt;mi&gt;n&lt;/mi&gt;&lt;mo stretchy=&quot;false&quot;&gt;)&lt;/mo&gt;&lt;/math&gt;" role="presentation" style="font-size: 119%; position: relative;"><span id="MJXc-Node-95" class="mjx-math" aria-hidden="true"><span id="MJXc-Node-96" class="mjx-mrow"><span id="MJXc-Node-97" class="mjx-mi"><span class="mjx-char MJXc-TeX-math-I" style="padding-top: 0.475em; padding-bottom: 0.318em;">O</span></span><span id="MJXc-Node-98" class="mjx-mo"><span class="mjx-char MJXc-TeX-main-R" style="padding-top: 0.475em; padding-bottom: 0.58em;">(</span></span><span id="MJXc-Node-99" class="mjx-mi"><span class="mjx-char MJXc-TeX-math-I" style="padding-top: 0.213em; padding-bottom: 0.265em;">n</span></span><span id="MJXc-Node-100" class="mjx-mo"><span class="mjx-char MJXc-TeX-main-R" style="padding-top: 0.475em; padding-bottom: 0.58em;">)</span></span></span></span><span class="MJX_Assistive_MathML" role="presentation"><math xmlns="http://www.w3.org/1998/Math/MathML"><mi>O</mi><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></math></span></span><script type="math/tex" id="MathJax-Element-23"> O(n) </script>, the maximum mark you can attain for this question will be 9 (out of 15).</li>
+</ul>
+
+<h4 class="mt-3">Files</h4>
+<table class="table-sm table-bordered">
+    <tbody><tr>
+        <th>Makefile</th>
+        <td>A Makefile to compile your code</td>
+    </tr>
+    <tr>
+        <th>BSTree.c</th>
+        <td>Contains the implementation of basic binary search tree functions.</td>
+    </tr>
+    <tr>
+        <th>BSTree.h</th>
+        <td>Contains the definition of the binary search tree data structure and function prototypes.</td>
+    </tr>
+    <tr>
+        <th>testLeafCount.c</th>
+        <td>A testing program. The program reads the tree from <code>stdin</code>, calls <code>leafCount</code>, and outputs the result to <code>stdout</code>.</td>
+    </tr>
+    <tr>
+        <th>leafCount.c</th>
+        <td>Contains <code>leafCount</code>, the function you must implement. <b>This is the only file you should modify.</b></td>
+    </tr>
+    <tr>
+        <th>tests/</th>
+        <td>A directory containing the inputs and expected outputs for some basic test cases</td>
+    </tr>
+</tbody></table>
+
+<h4 class="mt-3">Testing</h4>
+<p>You can compile and test your function using the following commands:</p>
+
+<pre is="tty" class="exam terminal-window"><kbd is="sh">make</kbd>                                  <span class="comment"># compiles the program</span>
+<kbd is="sh">./testLeafCount</kbd>                       <span class="comment"># tests with manual input, outputs to terminal</span>
+<kbd is="sh">./testLeafCount &lt; <i>input-file</i></kbd>          <span class="comment"># tests with input from a file, outputs to terminal</span>
+<kbd is="sh">./testLeafCount &lt; tests/input1.txt</kbd>    <span class="comment"># for example, tests with input from tests/input1.txt</span>
+                                        <span class="comment"># (then manually compare with tests/output1.txt)</span>
+</pre>
+
+<p>It is possible to devise your own tests by creating your own input files. See the existing input files for examples. Note that you will need to check the output yourself.</p>
+
+
+<h4 class="mt-3">Submission</h4>
+<p>Submit via the give command</p>
+<pre is="tty" class="exam terminal-window"><kbd is="sh">give cs2521 exam_q12 leafCount.c</kbd>
+</pre>
+
+<p>Make sure you are in the <code>q12</code> directory before using this command.</p>
+</section>
+
+
+<section class="exercise with-self">
+<header><h3>Question 13 (20 marks)</h3></header>
+<p>Implement the following function in the file <code>q13/closeFollowers.c</code>:</p>
+
+<div class="highlight"><pre><span></span><span class="kt">void</span> <span class="nf">closeFollowers</span><span class="p">(</span><span class="n">Graph</span> <span class="n">g</span><span class="p">,</span> <span class="kt">int</span> <span class="n">src</span><span class="p">,</span> <span class="kt">int</span> <span class="n">distance</span><span class="p">,</span> <span class="kt">int</span> <span class="n">followers</span><span class="p">[]);</span>
+</pre></div>
+
+
+<p><code>closeFollowers</code> takes four arguments: a directed graph <code>g</code>, a source node <code>src</code>, a <code>distance</code>, and an array <code>followers</code>.</p>
+
+<p>Given a graph <code>g</code>, the function should find all the <i><span class="blue">close followers</span></i> of <code>src</code>, as defined below. For each close follower <code>i</code>, the function should set <code>followers[i]</code> to <code>1</code>. For example, <code>followers[2]</code> should be set to <code>1</code> if and only if node <code>2</code> is a close follower of <code>src</code>. Initially, all values in the <code>followers</code> array are set to <code>-1</code>. <code>followers[i]</code> should remain as <code>-1</code> if node <code>i</code> is not a close follower of <code>src</code>.</p>
+
+<div style="border: 1px solid lightgrey; padding: 10px 20px 0px;">
+	We say a node <code>A</code> is a <i><span class="blue">close follower</span></i> of node <code>B</code> if the following two conditions are satisfied:
+
+	<ol>
+		<li>There is a directed path from node <code>A</code> to node <code>B</code> with a path length less than or equal to the given <code>distance</code>, OR <code>A = B</code> (node itself).</li>
+		<li>For node <code>A</code>, <code>in(A) &gt; 1</code>, where <code>in(A)</code> is the number of incoming edges of node <code>A</code>.</li> 
+	</ol>
+</div>
+
+<h4 class="mt-3">Examples</h4>
+
+<p>Consider the following directed graph:</p>
+
+<img class="center w-45" src="./COMP2521 22T3 - Final Exam_files/close-followers.svg">
+
+<p>If <code>src</code> is 3 and <code>distance</code> is 2, then:</p>
+<ul>
+	<li>There are three close followers: nodes 1, 3 and 8.</li>
+	<li>Node 0 is not a close follower because there is no path from node 0 to node 3.</li>
+	<li>Node 2 is not a close follower because even though there is a path from node 2 to node 3 with length less than or equal to 2, node 2 only has one incoming edge. For similar reasons, nodes 4 and 7 are also not close followers.</li>
+	<li>Node 5 is not a close follower because even though there is a path from node 5 to node 3, the length of the path is greater than 2 (the given distance). For similar reasons, nodes 6 and 9 are also not close followers.</li>
+</ul>
+
+<h4 class="mt-3">Assumptions and Constraints</h4>
+<ul>
+	<li>All general assumptions and constraints at the top of this exam paper apply.</li>
+	<li>The size of the <code>followers</code> array is equal to the number of vertices in the graph.</li>
+	<li>All values in the <code>followers</code> array are initially -1.</li>
+	<li>To get full marks for this question, you should implement an efficient solution. (The time complexity requirement is intentionally not given - you must judge for yourself whether your solution is efficient enough.) Inefficient solutions will be penalised slightly.</li>
+</ul>
+
+<h4 class="mt-3">Files</h4>
+<table class="table-sm table-bordered">
+	<tbody><tr>
+		<td><b>Makefile</b></td>
+		<td>A Makefile to compile your code</td>
+	</tr>
+	<tr>
+		<td><b>Graph.c</b></td>
+		<td>Contains the implementation of the Directed Graph ADT (using the adjacency matrix representation)</td>
+	</tr>
+	<tr>
+		<td><b>Graph.h</b></td>
+		<td>Contains the definition of the Directed Graph ADT and function prototypes</td>
+	</tr>
+	<tr>
+		<td class="pr-4"><b>testCloseFollowers.c</b></td>
+		<td>A testing program. The program reads the graph and the values of <code>src</code> and <code>distance</code> from <code>stdin</code>, 
+			calls <code>closeFollowers</code>, and outputs the result to <code>stdout</code>.</td>
+	</tr>
+	<tr>
+		<td><b>closeFollowers.c</b></td>
+		<td>Contains <code>closeFollowers</code>, the function you must implement. <b>This is the only file you should modify.</b></td>
+	</tr>
+	<tr>
+		<td><b>tests/</b></td>
+		<td>A directory containing the inputs and expected outputs for some basic test cases</td>
+	</tr>
+</tbody></table>
+
+
+<h4 class="mt-3">Testing</h4>
+<p>You can compile and test your function using the following commands:</p>
+
+<pre is="tty" class="exam terminal-window"><kbd is="sh">make</kbd>                                       <span class="comment"># compiles the program</span>
+<kbd is="sh">./testCloseFollowers</kbd>                       <span class="comment"># tests with manual input, outputs to terminal</span>
+<kbd is="sh">./testCloseFollowers &lt; <i>input-file</i></kbd>          <span class="comment"># tests with input from a file, outputs to terminal</span>
+<kbd is="sh">./testCloseFollowers &lt; tests/input1.txt</kbd>    <span class="comment"># for example, tests with input from tests/input1.txt</span>
+                                             <span class="comment"># (then compare with tests/output1.txt)</span>
+</pre>
+
+<p>It is possible to devise your own tests by creating your own input files. See the existing input files for examples. Note that you will need to check the output yourself.</p>
+
+<h4 class="mt-3">Submission</h4>
+
+<p>Submit via the give command</p>
+
+<pre is="tty" class="exam terminal-window"><kbd is="sh">give cs2521 exam_q13 closeFollowers.c</kbd>
+</pre>
+
+<p>Make sure you are in the <code>q13</code> directory before using this command.</p>
+</section>
+
+<p class="text-center mb-4">This is the end of the exam.</p>
+
+
+      </div>
+    </main>
+
+    <footer class="mt-3 py-3 bg-dark text-center no-print">
+      <p class="text-muted">
+        <small>
+          <strong>COMP2521 22T3: Data Structures and Algorithms</strong>
+          is brought to you by<br>
+          the <a href="https://www.cse.unsw.edu.au/">School of Computer Science and Engineering</a><br>
+          at the <a href="https://www.unsw.edu.au/">University of New South Wales</a>, Sydney.<br>
+          For all enquiries, please email the class account at
+          <a href="mailto:cs2521@cse.unsw.edu.au">cs2521@cse.unsw.edu.au</a><br>
+          
+          CRICOS Provider 00098G
+        </small>
+      </p>
+    </footer>
+    
+    <script src="./COMP2521 22T3 - Final Exam_files/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="./COMP2521 22T3 - Final Exam_files/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="./COMP2521 22T3 - Final Exam_files/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+    <script src="./COMP2521 22T3 - Final Exam_files/bootstrap-toc.min.js"></script>
+    
+    <!-- math -->
+    <script src="./COMP2521 22T3 - Final Exam_files/latest.js" async=""></script>
+    
+    
+  
+</body></html>
