@@ -1,0 +1,10 @@
+Question 3
+
+Give the minimal sequence of rotations that would be required.
+
+
+
+Value in the left child of the root: 
+
+Value in the right child of the root: 
+

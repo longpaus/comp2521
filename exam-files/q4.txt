@@ -1,0 +1,12 @@
+Question 4
+
+(a) What are the value(s) in the root node (after performing the
+    insertions)?
+
+
+
+(b) What are the value(s) in each of the children of the root node
+    (after performing the insertions)?
+
+
+

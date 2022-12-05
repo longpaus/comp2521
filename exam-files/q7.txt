@@ -1,0 +1,8 @@
+Question 7
+
+What minimal sequence of insert and/or removeMin operations on heap A
+will transform it into heap B? Show the state of the heap after each
+operation using the array representation.
+
+
+

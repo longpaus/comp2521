@@ -1,0 +1,7 @@
+Question 10
+
+Which of the listed data structures is most suitable? Justify your
+answer. You must use time complexities as a basis for your justification.
+
+
+

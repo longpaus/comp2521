@@ -1,0 +1,22 @@
+nV: 10
+src: 3
+
+Edge inserted: 1 -> 0
+Edge inserted: 1 -> 3
+Edge inserted: 1 -> 5
+Edge inserted: 2 -> 0
+Edge inserted: 2 -> 1
+Edge inserted: 4 -> 1
+Edge inserted: 5 -> 8
+Edge inserted: 5 -> 9
+Edge inserted: 6 -> 2
+Edge inserted: 6 -> 9
+Edge inserted: 7 -> 3
+Edge inserted: 8 -> 7
+Edge inserted: 9 -> 8
+
+Close followers of node 3, distance 2:
+ node 1
+ node 3
+ node 8
+

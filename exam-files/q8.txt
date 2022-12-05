@@ -1,0 +1,12 @@
+Question 8
+
+(a) What is the maximum number of words that could be contained in the
+    trie? Justify your answer.
+
+
+
+(b) What is the minimum number of words that could be contained in the
+    trie? Justify your answer.
+
+
+

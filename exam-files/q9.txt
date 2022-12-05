@@ -1,0 +1,7 @@
+Question 9
+
+Which data structure and algorithm would you use to solve the task?
+Justify your answer.
+
+
+

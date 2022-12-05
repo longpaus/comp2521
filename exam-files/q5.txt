@@ -1,0 +1,85 @@
+Question 5
+
+Use Dijkstra's algorithm to find the shortest path from vertex a to all
+other vertices. Give the order in which the vertices are visited, and
+show the state of the distance and predecessor arrays after each vertex
+is visited.
+
+------------------------------------------------------------------------
+
+Initial state of the distance and predecessor arrays:
+
+      a   b   c   d   e   f
+dist  0  inf inf inf inf inf
+pred  X   X   X   X   X   X
+
+TIP: You can copy-paste and update this as you visit each vertex.
+
+------------------------------------------------------------------------
+Iteration 1
+
+Vertex visited this iteration: 
+
+State of the distance and predecessor arrays after visiting this vertex:
+
+      a   b   c   d   e   f
+dist inf inf inf inf inf inf
+pred  X   X   X   X   X   X
+
+------------------------------------------------------------------------
+Iteration 2
+
+Vertex visited this iteration: 
+
+State of the distance and predecessor arrays after visiting this vertex:
+
+      a   b   c   d   e   f
+dist inf inf inf inf inf inf
+pred  X   X   X   X   X   X
+
+------------------------------------------------------------------------
+Iteration 3
+
+Vertex visited this iteration: 
+
+State of the distance and predecessor arrays after visiting this vertex:
+
+      a   b   c   d   e   f
+dist inf inf inf inf inf inf
+pred  X   X   X   X   X   X
+
+------------------------------------------------------------------------
+Iteration 4
+
+Vertex visited this iteration: 
+
+State of the distance and predecessor arrays after visiting this vertex:
+
+      a   b   c   d   e   f
+dist inf inf inf inf inf inf
+pred  X   X   X   X   X   X
+
+------------------------------------------------------------------------
+Iteration 5
+
+Vertex visited this iteration: 
+
+State of the distance and predecessor arrays after visiting this vertex:
+
+      a   b   c   d   e   f
+dist inf inf inf inf inf inf
+pred  X   X   X   X   X   X
+
+------------------------------------------------------------------------
+Iteration 6
+
+Vertex visited this iteration: 
+
+State of the distance and predecessor arrays after visiting this vertex:
+
+      a   b   c   d   e   f
+dist inf inf inf inf inf inf
+pred  X   X   X   X   X   X
+
+------------------------------------------------------------------------
+
